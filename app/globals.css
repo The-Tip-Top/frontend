@@ -211,13 +211,13 @@
     @apply text-12 text-red-500;
   }
 
-  .form-btn {
+  /* .form-btn {
     @apply text-16 rounded-sm border border-tiptopGradient bg-[#8FB43A] font-semibold text-white shadow-form;
-  }
+  } */
 
-  .form-link {
+  /* .form-link {
     @apply text-14 cursor-pointer font-medium text-tiptopGradient;
-  }
+  } */
 
   /* Root Layout */
   .root-layout {

@@ -1,0 +1,123 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+//? npx prisma init    
+//? npx prisma generate         => to generate the model defined
+//? npx prisma db push          => to generate tables in the database
+//? npx prisma studio           => to start the prisma ui on local : on port 5555
+//? npx prisma migrate reset    => to reset the enteir database
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum EGiftStatus {
+  GIFT_GIVEN
+  WAITING
+  CANCELLED
+}
+
+enum UserRole {
+  ADMIN
+  USER
+  EMPLOYEE
+}
+
+model User {
+  userId      String   @id @default(cuid())
+  email       String   @unique
+  password    String?
+  firstName   String?
+  lastName    String?
+  userName    String?   @unique
+  dateOfBirth DateTime?
+  phoneNumber String?
+  role        UserRole @default(USER)
+
+  @@unique([email, userName])
+  ticket Ticket[]
+
+  emailVerified DateTime?
+  image         String?
+  Account       Account[]
+  // Optional for WebAuthn support
+  // Authenticator Authenticator[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Gift {
+  giftId      String      @id @default(cuid())
+  status      EGiftStatus @default(WAITING)
+  name        String
+  description String
+
+  participation Participation?
+  ticket Ticket?
+}
+
+model Ticket {
+  ticketId      String         @id @default(cuid())
+  maxValidDate  DateTime
+  isValid       Boolean
+  participation Participation?
+
+  ticketUserId String? @unique
+  user         User?   @relation(fields: [ticketUserId], references: [userId])
+  ticketGiftId String? @unique
+  gift Gift? @relation(fields: [ticketGiftId], references: [giftId]) 
+}
+
+model Participation {
+  participationId String   @id @default(cuid())
+  createdAt       DateTime
+  submitedAt      DateTime
+
+  participationTicketId String @unique
+  ticket                Ticket @relation(fields: [participationTicketId], references: [ticketId])
+
+  participationGiftId String @unique
+  gift                Gift   @relation(fields: [participationGiftId], references: [giftId])
+}
+
+model Account {
+  id                       String  @id @default(cuid())
+  userId                   String  @unique
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
+  refresh_token_expires_in Int?
+  user                     User?   @relation(fields: [userId], references: [userId])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model VerificationToken {
+  id String @id @default(cuid())
+  email String
+  token      String @unique @db.VarChar(512)
+  expires    DateTime
+
+  @@unique([email, token])
+}
