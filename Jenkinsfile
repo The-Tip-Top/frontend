@@ -25,23 +25,7 @@ pipeline {
                 }
             }
         }
-
-        stage('install dependencies') {
-            steps {
-                script {
-                    sh 'npm install'
-                }
-            }
-        }
-        
-        stage('build applications') {
-            steps {
-                script {
-                    sh 'npm run build'
-                }
-            }
-        }
-
+               
         stage('Docker build and push') {
             when {
                 anyOf {
