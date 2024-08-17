@@ -274,3 +274,29 @@
     @apply text-16 font-semibold text-black-2 max-xl:hidden;
   }
 }
+
+@keyframes auto-scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(calc(-100%));
+  }
+}
+
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+
+.no-scrollbar {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}
+
+@media (max-width: 1024px) {
+  .animate-auto-scroll {
+    animation: auto-scroll 15s linear infinite;
+  }
+}

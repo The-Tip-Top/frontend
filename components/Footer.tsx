@@ -9,9 +9,9 @@ const Footer = () => {
             <Image
               src="/logo.png"
               alt="Logo The Tip-Top Bio"
-              width={28}
-              height={28}
-              className="h-28 w-28 object-contain rounded-full"
+              width={35}
+              height={35}
+              className="h-35 w-35 object-contain rounded-full"
             />
           </div>
         </div>

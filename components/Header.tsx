@@ -14,9 +14,9 @@ const Header = () => {
   return (
     <header className="bg-white text-[#8FB43A] p-4 shadow-md fixed top-0 left-0 w-full z-50">
       <div className="container mx-auto flex justify-between items-center px-4 lg:px-12">
-        <div className="flex items-center">
+        <div className="flex items-center w-20 h-20">
           <Image width={16} height={16} src="/logo.png" alt="Logo The Tip-Top Bio" className="h-16" />
-          <h1 className="text-2xl ml-4 font-bold">Thé Tip-Topp</h1>
+          {/* <h1 className="text-2xl ml-4 font-bold">Thé Tip-Topp</h1> */}
         </div>
 
         {/* Burger Menu Button */}
