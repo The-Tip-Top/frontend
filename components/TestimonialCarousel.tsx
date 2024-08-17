@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-// Témoignages statiques
+// Témoignages statiques (3 seulement)
 const testimonials = [
   {
     id: '1',
@@ -23,22 +23,16 @@ const testimonials = [
     message: 'Je recommande vivement Thé Tip Top pour tous les amateurs de thé.',
     avatarUrl: '/avatar1.webp',
   },
-  {
-    id: '4',
-    name: 'Luc Durand',
-    message: 'Une expérience unique avec des saveurs incomparables.',
-    avatarUrl: '/avatar2.webp',
-  },
 ];
 
 const TestimonialCarousel = () => {
   return (
-    <div className="relative w-full overflow-hidden mt-8 mb-16 py-8 bg-gray-50">
-      <div className="flex space-x-8 animate-slow-scroll px-4">
+    <div className="relative w-full mt-8 mb-16 py-8 bg-gray-50 lg:overflow-hidden overflow-x-auto no-scrollbar">
+      <div className="flex space-x-8 lg:space-x-12 justify-center px-4 lg:px-16 animate-auto-scroll lg:animate-none">
         {testimonials.map((testimonial) => (
           <div
             key={testimonial.id}
-            className="w-80 bg-white shadow-lg border border-gray-200 rounded-lg p-4 flex-shrink-0"
+            className="w-80 bg-white shadow-lg border border-gray-200 rounded-lg p-4 flex-shrink-0 transform hover:scale-105 transition duration-300 ease-in-out"
           >
             <div className="flex flex-col items-center">
               <Image

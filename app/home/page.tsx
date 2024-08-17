@@ -6,8 +6,8 @@ import TestimonialCarousel from '@/components/TestimonialCarousel';
 const Home: React.FC = () => {
   return (
     <>
-      <div className="relative w-full h-64 lg:h-96 top-10">
-        <Image src="/image.png" alt="Image du jeu-concours" layout="fill" objectFit="cover" />
+      <div className="relative w-full h-64 lg:h-96 top-15">
+        <Image src="/headNouvel.png" alt="Image du jeu-concours" layout="fill" objectFit="cover" />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-center text-white p-4">
           <h1 className="text-2xl lg:text-4xl font-bold mb-4">Participez à notre jeu-concours exclusif !</h1>
