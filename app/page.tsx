@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { TicketForm } from '../../components/TicketForm';
+import { TicketForm } from '../components/TicketForm';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
 
 const Home: React.FC = () => {
