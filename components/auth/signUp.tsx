@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { Suspense, useState, useTransition } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
@@ -16,8 +16,9 @@ import FormMessage from '../FormMessage';
 import Social from '../Social';
 import { signUpSchema } from '@/lib/utils';
 import { PasswordField } from '../inputs/PasswordInput';
+import { BeatLoader } from 'react-spinners';
 
-const SignUpForm = () => {
+const SignUpFormContent = () => {
   // const [user, setUser] = useState(null);
   const [message, setMessage] = useState({
     error: '',
@@ -109,4 +110,11 @@ const SignUpForm = () => {
   );
 };
 
+const SignUpForm = () => {
+  return (
+    <Suspense fallback={<BeatLoader />}>
+      <SignUpFormContent />
+    </Suspense>
+  );
+};
 export default SignUpForm;

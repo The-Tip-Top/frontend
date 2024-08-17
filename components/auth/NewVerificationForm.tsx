@@ -1,13 +1,13 @@
 'use client';
 
+import { Suspense, useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { BeatLoader } from 'react-spinners';
-import { useCallback, useEffect, useState } from 'react';
 import CardWrapper from '../CardWrapper';
 import FormMessage from '../FormMessage';
 import { newVerification } from '@/lib/actions/newVerificationToken.action';
 
-const NewVerificationForm = () => {
+const NewVerificationFormContent = () => {
   const [error, setError] = useState<string | undefined>();
   const [success, setSuccess] = useState<string | undefined>();
 
@@ -22,9 +22,6 @@ const NewVerificationForm = () => {
     }
     newVerification(token)
       .then((data) => {
-        console.log('---- ', data);
-        //npm uninstall @typescript-eslint/parser @typescript-eslint/eslint-plugin
-        //npm install @typescript-eslint/parser@latest @typescript-eslint/eslint-plugin@latest
         setSuccess(data?.success);
         setError(data?.error);
       })
@@ -43,6 +40,14 @@ const NewVerificationForm = () => {
         <FormMessage type="SUCCESS" message={success} />
       </div>
     </CardWrapper>
+  );
+};
+
+const NewVerificationForm = () => {
+  return (
+    <Suspense fallback={<BeatLoader />}>
+      <NewVerificationFormContent />
+    </Suspense>
   );
 };
 

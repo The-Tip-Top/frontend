@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 const Settings = async () => {
   const session = await auth();
   return (
-    <div>
+    <div className="h-[300] relative w-full bg-cyan-300">
       {JSON.stringify(session)}
       <form
         action={async () => {

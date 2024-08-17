@@ -25,7 +25,7 @@ const Home: React.FC = () => {
 
       <section className="container mx-auto  mt-8 lg:mt-16 px-4 lg:px-12">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl text-[#8FB43A] font-bold text-gray-800">Comment se déroule le jeu-concours</h1>
+          <h1 className="text-4xl font-bold text-gray-800">Comment se déroule le jeu-concours</h1>
           <p className="mt-4 text-lg text-gray-600 leading-relaxed">
             Du 01/09/2024 au 30/09/2024, chaque achat supérieur à 49€ chez Thé Tip Top vous permet de recevoir un ticket
             avec un code unique de 10 caractères. Entrez ce code sur notre application pour participer à notre tirage au

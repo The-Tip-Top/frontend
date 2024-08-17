@@ -6,11 +6,27 @@ export enum UserRole {
   EMPLOYEE,
 }
 
+export interface Gift {
+  giftId: string;
+  status: string;
+  name: string;
+  description: string;
+  ticket?: Ticket;
+}
+
+export interface Ticket {
+  ticket: string;
+  ticketId: string;
+  maxValidDate: string;
+  isValid: string;
+  ticketUserId?: string;
+  ticketGiftId?: string;
+}
+
 export interface User {
   id: string;
   email: string;
   password: string | null;
-  name: string | null;
   name: string | null;
   dateOfBirth: Date | null;
   phoneNumber: string | null;
@@ -29,7 +45,7 @@ export interface User {
 
 export interface Account {
   id: string;
-  id: string;
+  userId: string;
   type: string;
   provider: string;
   providerAccountId: string;
@@ -46,19 +62,6 @@ export interface Account {
   createdAt: Date;
   updatedAt: Date;
 }
-
-// model Session {
-//   id           string   @id @default(cuid())
-//   sessionToken string   @unique
-//   id       string
-//   expires      DateTime
-//   user         User     @relation(fields: [id], references: [id])
-
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-
-//   @@index([id])
-// }
 
 export interface VerificationToken {
   id: string;

@@ -46,6 +46,7 @@
 @layer utilities {
   .input-class {
     @apply text-16 font-lato placeholder:font-lato placeholder:text-16 rounded-sm border bg-gray-100 border-gray-300 text-gray-900 placeholder:text-gray-600;
+    /* @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none; */
   }
 
   .sheet-content button {
@@ -213,13 +214,13 @@
     @apply text-12 text-red-500;
   }
 
-  /* .form-btn {
+  .form-btn {
     @apply text-16 rounded-sm border border-tiptopGradient bg-[#8FB43A] font-semibold text-white shadow-form;
-  } */
+  }
 
-  /* .form-link {
+  .form-link {
     @apply text-14 cursor-pointer font-medium text-tiptopGradient;
-  } */
+  }
 
   /* Root Layout */
   .root-layout {

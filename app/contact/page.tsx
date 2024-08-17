@@ -20,7 +20,6 @@ const ContactPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted', formData);
-    // Vous pouvez ajouter ici la logique pour envoyer les données à une API ou les traiter autrement.
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 

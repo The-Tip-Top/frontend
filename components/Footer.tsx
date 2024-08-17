@@ -1,10 +1,18 @@
+import Image from 'next/image';
+
 const Footer = () => {
   return (
     <footer className="bg-[#8FB43A] text-white py-6">
       <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center px-4 lg:px-12 space-y-8 lg:space-y-0 lg:space-x-8">
         <div className="flex-1 flex justify-center lg:justify-start mt-4">
           <div className="h-32 w-32 rounded-full bg-white flex justify-center items-center">
-            <img src="/logo.png" alt="Logo The Tip-Top Bio" className="h-28 w-28 object-contain rounded-full" />
+            <Image
+              src="/logo.png"
+              alt="Logo The Tip-Top Bio"
+              width={28}
+              height={28}
+              className="h-28 w-28 object-contain rounded-full"
+            />
           </div>
         </div>
 
