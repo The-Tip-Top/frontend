@@ -1,84 +1,77 @@
+/* eslint-disable indent */
 'use server';
 
 import { z } from 'zod';
-// import { authFormSchema } from "../utils";
-import { signUpSchema } from '../utils';
-import bcrypt from 'bcryptjs';
-import { UserRole } from '@/fakeModel';
-import { generateVerificationToken } from '../auth/tokens';
-import { sendVerificationEmail } from '../mail';
+import { signInSchema, signUpSchema } from '../utils';
+import { DEFAULT_REDIRECT_LOGIN } from '@/routes';
+import { AuthError } from 'next-auth';
+import { signIn } from '@/auth';
+import { myFetch } from '../hooks/useFetch';
+import { ResponseMessageWithStatus } from './newVerificationToken.action';
+import { User } from '@prisma/client';
 
-export const Register = async (values: z.infer<typeof signUpSchema>) => {
-  console.log(values);
-  const validData = signUpSchema.safeParse(values);
+export const Register = async (userData: z.infer<typeof signUpSchema>) => {
+  console.log(userData);
+  const validData = signUpSchema.safeParse(userData);
   if (!validData.success) return { error: 'Invalid inputs' };
 
-  const { email, password, userName, dateOfBirth, phoneNumber } = values as {
-    email: string;
-    password: string;
-    userName: string;
-    dateOfBirth: string;
-    phoneNumber: string;
-  };
-  const hashPassword = await bcrypt.hash(password, 10);
-
-  const exestingUser = await getUserByEmail(email);
+  const exestingUser = await getUserByEmail(userData.email);
 
   if (exestingUser) {
     return { error: 'Error: Email exists!!!' };
   }
-
-  // call api to create and save user
-  console.log('data:', {
-    email,
-    password: hashPassword,
-    dateOfBirth: new Date(dateOfBirth),
-    userName,
-    phoneNumber,
-  });
-
-  const vereficationToken = await generateVerificationToken(email);
-  await sendVerificationEmail(vereficationToken.email, vereficationToken.token);
+  const user = await myFetch('/users/newuser', { method: 'POST', body: userData });
+  console.log('----------result ', user);
 
   return { success: 'Confirmation Email sent!' };
 };
 
+export const Login = async (data: z.infer<typeof signInSchema>) => {
+  try {
+    const validData = signInSchema.safeParse(data);
+    if (!validData.success) return { error: 'Invalid inputs' };
+
+    const { email, password } = validData.data;
+    console.log('--- login info ', email, password);
+
+    const verificationLogin = await myFetch<ResponseMessageWithStatus>(`verificationLogin/${email}`, {
+      method: 'POST',
+      body: {},
+    });
+    console.log('login verification ', verificationLogin);
+    if (verificationLogin.status !== 200) {
+      return { error: verificationLogin.error };
+    }
+    await signIn('credentials', {
+      email,
+      password,
+      redirectTo: DEFAULT_REDIRECT_LOGIN,
+    });
+    return { success: verificationLogin.success };
+  } catch (err) {
+    if (err instanceof AuthError) {
+      switch (err.type) {
+        case 'CredentialsSignin':
+          return { error: 'Invalide Credencial' };
+        default:
+          return { error: 'Something went wrong !!!' };
+      }
+    }
+    throw err;
+  }
+};
+
 export const getUserByEmail = async (email: string) => {
   try {
-    // call api to get user by email
-    console.log(email);
-    return user;
+    return await myFetch<User>(`users/email/${email}`, {});
   } catch {
     return null;
   }
 };
 export const getUserById = async (id: string) => {
   try {
-    // call api to get user by id
-    console.log(id);
-    return user;
+    return await myFetch<User>(`users/id/${id}`, {});
   } catch {
     return null;
   }
-};
-
-const user = {
-  id: '',
-  email: '',
-  password: null,
-  name: null,
-  userName: null,
-  dateOfBirth: null,
-  phoneNumber: null,
-  role: UserRole.USER,
-
-  emailVerified: null,
-  image: null,
-  // Session       Session[]
-  Account: null,
-  // Optional for WebAuthn support
-  // Authenticator Authenticator[]
-
-  createdAt: null,
-  updatedAt: null,
 };

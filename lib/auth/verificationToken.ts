@@ -1,36 +1,18 @@
-import { v4 as uuidv4 } from 'uuid';
+// import { myFetch } from '../hooks/useFetch';
 
-export const getVerificationtionTokenByEmail = async (email: string) => {
-  const fakeToken = {
-    id: uuidv4(),
-    email: email,
-    token: 'token',
-    expires: new Date(),
-  };
-  try {
-    const token = fakeToken;
-    // await db.verificationToken.findFirst({
-    //   where: { email },
-    // });
-    return token;
-  } catch {
-    return null;
-  }
-};
-export const getVerificationtionTokenByToken = async (token: string) => {
-  const fakeToken = {
-    id: uuidv4(),
-    email: 'massi@gmail.com',
-    token: token,
-    expires: new Date(),
-  };
-  try {
-    const verificationtoken = fakeToken;
-    // await db.verificationToken.findUnique({
-    //   where: { token },
-    // });
-    return verificationtoken;
-  } catch {
-    return null;
-  }
-};
+// export const getVerificationtionTokenByEmail = async (email: string) => {
+//   try {
+//     const token = await myFetch(`verificationToken/email/${email}`, {});
+//     return token;
+//   } catch {
+//     return null;
+//   }
+// };
+// export const getVerificationtionTokenByToken = async (token: string) => {
+//   try {
+//     const verificationtoken = await myFetch(`verificationToken/token/${token}`, {});
+//     return verificationtoken;
+//   } catch {
+//     return null;
+//   }
+// };

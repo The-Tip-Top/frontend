@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { Suspense, useState, useTransition } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
@@ -16,8 +16,9 @@ import FormMessage from '../FormMessage';
 import Social from '../Social';
 import { signUpSchema } from '@/lib/utils';
 import { PasswordField } from '../inputs/PasswordInput';
+import { BeatLoader } from 'react-spinners';
 
-const SignUpForm = () => {
+const SignUpFormContent = () => {
   // const [user, setUser] = useState(null);
   const [message, setMessage] = useState({
     error: '',
@@ -67,7 +68,7 @@ const SignUpForm = () => {
             label="Nom d'utilisateur"
             placeholder="Entrer un nom d'utilisateur"
             control={form.control}
-            name="userName"
+            name="name"
           />
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 ">
             <CustomInput label="Téléphone" placeholder="ex 0123456789" control={form.control} name="phoneNumber" />
@@ -77,6 +78,7 @@ const SignUpForm = () => {
               control={form.control}
               name="dateOfBirth"
               type="date"
+              block={true}
             />
             {/* <DatePicker name="dateOfBirth" control={form.control} /> */}
           </div>
@@ -89,7 +91,6 @@ const SignUpForm = () => {
           />
         </>
         <CheckboxInput checked={checked} setChecked={setChecked} />
-
         <FormMessage message={message.error || urlError} type="ERROR" />
         <FormMessage message={message.success} type="SUCCESS" />
         <div className="flex justify-center flex-col gap-4">
@@ -99,7 +100,7 @@ const SignUpForm = () => {
                 <Loader2 size={20} className="animate-spin" /> &nbsp; Loading ...
               </>
             ) : (
-              'Sign Up'
+              'Inscription'
             )}
           </Button>
         </div>
@@ -109,4 +110,11 @@ const SignUpForm = () => {
   );
 };
 
+const SignUpForm = () => {
+  return (
+    <Suspense fallback={<BeatLoader />}>
+      <SignUpFormContent />
+    </Suspense>
+  );
+};
 export default SignUpForm;

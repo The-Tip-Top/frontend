@@ -17,10 +17,10 @@ const Social = () => {
   };
   return (
     <>
-      <div className="flex justify-center gap-x-2">
+      <div className="flex justify-center sm:gap-x-2 sm:flex-row flex-col gap-y-2">
         <Button
           // className="form-btn bg-des"
-          className="w-full bg-cyan-500"
+          className="w-full bg-white border hover:bg-gray-200 shadow-sm rounded-sm"
           type="button"
           size="lg"
           variant="destructive"
@@ -37,7 +37,7 @@ const Social = () => {
           )}
         </Button>
         <Button
-          className="w-full bg-green-400"
+          className="w-full bg-white border hover:bg-gray-200 shadow-sm rounded-sm"
           size="lg"
           // type="button"
           variant="destructive"
@@ -49,7 +49,7 @@ const Social = () => {
               <Loader2 size={20} className="animate-spin" /> &nbsp; Loading ...
             </>
           ) : (
-            <ImFacebook2 size={25} />
+            <ImFacebook2 size={25} className="text-blue-500" />
             // "Sign In with Facebook"
           )}
         </Button>

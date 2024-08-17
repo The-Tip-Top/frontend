@@ -47,19 +47,18 @@ export default auth((req) => {
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
   if (isApiAuthRoute) {
-    return null;
+    return undefined;
   }
   if (isAuthRoute) {
     if (isLoggedIn) {
       return Response.redirect(new URL(DEFAULT_REDIRECT_LOGIN, nextUrl));
     }
-    return null;
+    return undefined;
   }
-  // if (!isLoggedIn && !isPublicRoute) {
-  //   console.log('==== redirecting to signin');
-  //   return Response.redirect(new URL('/sign-in', nextUrl));
-  // }
-  return null;
+  if (!isLoggedIn && !isPublicRoute) {
+    return Response.redirect(new URL('/sign-in', nextUrl));
+  }
+  return undefined;
 });
 
 export const config = {

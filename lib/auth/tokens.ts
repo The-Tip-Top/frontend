@@ -1,31 +1,31 @@
-import { v4 as uuidv4 } from 'uuid';
-import { getVerificationtionTokenByEmail } from './verificationToken';
-import { VerificationToken } from '@/fakeModel';
+// import { v4 as uuidv4 } from 'uuid';
+// import { getVerificationtionTokenByEmail } from './verificationToken';
+// import { VerificationToken } from '@/fakeModel';
 
-export const generateVerificationToken = async (email: string) => {
-  const token = uuidv4();
-  const expires = new Date(new Date().getTime() + 3600 * 1000);
+// export const generateVerificationToken = async (email: string) => {
+//   const token = uuidv4();
+//   const expires = new Date(new Date().getTime() + 3600 * 1000);
 
-  const existingToken = await getVerificationtionTokenByEmail(email);
+//   const existingToken = await getVerificationtionTokenByEmail(email);
 
-  if (existingToken) {
-    // await db.verificationToken.delete({
-    //   where: { id: existingToken.id },
-    // });
-  }
-  const fakeToken = {
-    id: uuidv4(),
-    email: email,
-    token: token,
-    expires: expires,
-  };
+//   if (existingToken) {
+//     // await db.verificationToken.delete({
+//     //   where: { id: existingToken.id },
+//     // });
+//   }
+//   const fakeToken = {
+//     id: uuidv4(),
+//     email: email,
+//     token: token,
+//     expires: expires,
+//   };
 
-  const verificationToken = fakeToken;
-  // await db.
-  // verificationToken.create({
-  //   data: {
-  //     email, token, expires
-  //   }
-  // })
-  return verificationToken as VerificationToken;
-};
+//   const verificationToken = fakeToken;
+//   // await db.
+//   // verificationToken.create({
+//   //   data: {
+//   //     email, token, expires
+//   //   }
+//   // })
+//   return verificationToken as VerificationToken;
+// };

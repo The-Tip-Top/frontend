@@ -1,6 +1,9 @@
 import NextAuth, { type DefaultSession } from 'next-auth';
 import authConfig from '@/auth.config';
 import { getUserById } from './lib/actions/auth.action';
+import { myFetch } from './lib/hooks/useFetch';
+import { PrismaAdapter } from '@auth/prisma-adapter';
+import { prisma } from './lib/prisma';
 
 type ExtendedUser = DefaultSession['user'] & {
   role: 'ADMIN' | 'USER' | 'EMPLOYEE';
@@ -9,6 +12,9 @@ type ExtendedUser = DefaultSession['user'] & {
 declare module 'next-auth' {
   interface Session {
     user: ExtendedUser;
+  }
+  interface User {
+    id?: string;
   }
 }
 
@@ -21,18 +27,23 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   events: {
     async linkAccount({ user }) {
       // update user data "email verification"
-      console.log(user);
+      const res = await myFetch(`verificationEmail/${user?.id}`);
+      console.log('link account ', res);
     },
   },
   callbacks: {
     async signIn({ user, account }) {
       // allow authentication without email verification
       if (account?.provider !== 'credentials') return true;
+
+      console.log('-------- signin user', user);
       const exestingUser = await getUserById(user.id!);
       // bloc the login whiout verification email
+      console.log('== signin existing user ', exestingUser);
       if (!exestingUser || !exestingUser.emailVerified) {
         return false;
       }
+
       return true;
     },
     async session({ token, session }) {
@@ -53,7 +64,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return token;
     },
   },
-  // adapter: PrismaAdapter(db),
+  adapter: PrismaAdapter(prisma),
   session: { strategy: 'jwt' },
   ...authConfig,
 });

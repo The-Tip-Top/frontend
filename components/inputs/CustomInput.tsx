@@ -10,6 +10,7 @@ interface CustomInputProps<T extends z.infer<typeof signUpSchema | typeof signIn
   type?: string;
   label: string;
   placeholder: string;
+  block?: boolean;
   control: Control<T>;
 }
 
@@ -19,6 +20,7 @@ const CustomInput = <T extends z.infer<typeof signUpSchema | typeof signInSchema
   label,
   placeholder,
   name,
+  block = false,
 }: CustomInputProps<T>) => {
   return (
     <FormField
@@ -29,7 +31,13 @@ const CustomInput = <T extends z.infer<typeof signUpSchema | typeof signInSchema
           <FormLabel className="form-label">{label} </FormLabel>
           <div className="flex w-full flex-col">
             <FormControl>
-              <Input placeholder={placeholder} type={type} className="input-class w-full" {...field} />
+              <Input
+                placeholder={placeholder}
+                type={type}
+                style={{ display: block ? 'block' : 'flex' }}
+                className="input-class w-full"
+                {...field}
+              />
             </FormControl>
             <FormMessage className="form-message mt-2" />
           </div>

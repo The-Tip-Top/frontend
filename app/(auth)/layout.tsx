@@ -3,5 +3,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <main className="flex items-center justify-center h-screen">{children}</main>;
+  return (
+    <main>
+      <section className="flex items-center justify-center relative">{children}</section>
+    </main>
+  );
 }
