@@ -9,7 +9,7 @@ export function cn(...inputs: ClassValue[]) {
 export const signUpSchema = z.object({
   firstName: z.string().min(3),
   lastName: z.string().min(3),
-  userName: z.string().max(50),
+  name: z.string().max(50),
   dateOfBirth: z.string().min(10).max(10),
   phoneNumber: z.string().min(10).max(10),
 
@@ -22,7 +22,7 @@ export const signUpSchema = z.object({
 export const signInSchema = z.object({
   firstName: z.string().min(3).optional(),
   lastName: z.string().min(3).optional(),
-  userName: z.string().max(50).optional(),
+  name: z.string().max(50).optional(),
   dateOfBirth: z.string().min(10).max(10).optional(),
   phoneNumber: z.string().min(10).max(10).optional(),
   email: z.string().email({

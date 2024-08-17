@@ -11,7 +11,7 @@ export interface User {
   email: string;
   password: string | null;
   name: string | null;
-  userName: string | null;
+  name: string | null;
   dateOfBirth: Date | null;
   phoneNumber: string | null;
   role: UserRole;
@@ -29,7 +29,7 @@ export interface User {
 
 export interface Account {
   id: string;
-  userId: string;
+  id: string;
   type: string;
   provider: string;
   providerAccountId: string;
@@ -50,14 +50,14 @@ export interface Account {
 // model Session {
 //   id           string   @id @default(cuid())
 //   sessionToken string   @unique
-//   userId       string
+//   id       string
 //   expires      DateTime
-//   user         User     @relation(fields: [userId], references: [id])
+//   user         User     @relation(fields: [id], references: [id])
 
 //   createdAt DateTime @default(now())
 //   updatedAt DateTime @updatedAt
 
-//   @@index([userId])
+//   @@index([id])
 // }
 
 export interface VerificationToken {
