@@ -6,6 +6,17 @@ export enum UserRole {
   EMPLOYEE,
 }
 
+export type SearchParamProps = {
+  params: { [key: string]: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export enum EGiftStatus {
+  GIFT_GIVEN,
+  WAITING,
+  CANCELLED,
+}
+
 export interface Gift {
   giftId: string;
   status: string;
@@ -21,6 +32,8 @@ export interface Ticket {
   isValid: string;
   ticketUserId?: string;
   ticketGiftId?: string;
+  status: EGiftStatus;
+  user?: User | null;
 }
 
 export interface User {
@@ -41,6 +54,18 @@ export interface User {
 
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface Participation {
+  participationId: string;
+  createdAt: Date;
+  submitedAt: Date;
+
+  participationTicketId: string;
+  ticket: Ticket;
+
+  participationGiftId: string;
+  gift: Gift;
 }
 
 export interface Account {

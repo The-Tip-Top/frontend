@@ -6,8 +6,8 @@ interface FetchOptions {
   body?: unknown;
 }
 
-// const BASE_URL = 'http://localhost:3001/api/v1';
-const BASE_URL = 'http://staging.dsp5-archi-022a-4-5-g2.fr:3000/api/v1';
+const BASE_URL = 'http://localhost:3001/api/v1';
+// const BASE_URL = 'http://staging.dsp5-archi-022a-4-5-g2.fr:3000/api/v1';
 export const myFetch = async <T>(url: string, fetchOption: FetchOptions = {}): Promise<T> => {
   console.log('url ', `${BASE_URL}/${url}`);
   const { method = 'GET', headers = {}, body = null } = fetchOption;
@@ -29,7 +29,7 @@ export const myFetch = async <T>(url: string, fetchOption: FetchOptions = {}): P
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data: T = await response.json();
-    console.log('fetch res', data);
+    // console.log('fetch res', data);
     return data;
   } catch (error) {
     console.error('Fetch error:', error);
