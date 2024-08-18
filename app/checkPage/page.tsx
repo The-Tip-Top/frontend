@@ -1,5 +1,4 @@
-
-"use client";
+'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -13,11 +12,10 @@ export default function CheckCodePage() {
   };
 
   const handleVerifyCode = () => {
-    
     const isValidCode = code === 'VALID_CODE'; // juste exemle
 
     if (isValidCode) {
-      router.push(`/participation-details?id=${encodeURIComponent('1')}`); 
+      router.push(`/participation-details?id=${encodeURIComponent('1')}`);
     } else {
       alert('Code invalide');
     }
