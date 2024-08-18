@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Lato } from 'next/font/google';
 import './globals.css';
-import Header from '../components/Header';
+// import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -26,9 +26,9 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`${lato.className} ${inter.className} bg-background text-foreground`}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        {/* <Header /> */}
+        <main className="mt-14">{children}</main>
+        {/* <Footer /> */}
       </body>
     </html>
   );

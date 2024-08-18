@@ -46,6 +46,9 @@ export default auth((req) => {
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
+  if (nextUrl.pathname === '/') {
+    return Response.redirect(new URL('/home', nextUrl));
+  }
   if (isApiAuthRoute) {
     return undefined;
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import { TicketForm } from '../components/TicketForm';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
+import { TicketForm } from '@/components/TicketForm';
 
 const Home: React.FC = () => {
   return (

@@ -48,14 +48,14 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link href="/contact" legacyBehavior>
+              <Link href="/home/contact" legacyBehavior>
                 <a className="font-semibold hover:underline" onClick={toggleMenu}>
                   Contact
                 </a>
               </Link>
             </li>
             <li>
-              <Link href="/login" legacyBehavior>
+              <Link href="/sign-up" legacyBehavior>
                 <a
                   className="bg-[#8FB43A] text-white px-4 py-2 rounded-full font-semibold hover:bg-green-700 transition-colors"
                   onClick={toggleMenu}
