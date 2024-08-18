@@ -6,12 +6,28 @@ import TestimonialCarousel from '@/components/TestimonialCarousel';
 const Home: React.FC = () => {
   return (
     <>
-      <div className="relative w-full h-64 lg:h-96 top-15">
+      {/* <div className="relative w-full h-96 tp:20 lg:h-[500px]  absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-center text-white p-4">
         <Image src="/headNouvel.png" alt="Image du jeu-concours" layout="fill" objectFit="cover" />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-center text-white p-4">
-          <h1 className="text-2xl lg:text-4xl font-bold mb-4">Participez à notre jeu-concours exclusif !</h1>
-          <p className="text-lg lg:text-xl mb-6">
+          <h1 className="text-xl sm:text-2xl lg:text-4xl font-bold mb-4">Participez à notre jeu-concours exclusif !</h1>
+          <p className="text-base sm:text-lg lg:text-xl mb-6">
+            Gagnez des cadeaux incroyables en participant à notre tirage au sort.
+          </p>
+          <a
+            href="#ticket-form"
+            className="bg-[#8FB43A] text-white font-bold py-2 px-4 rounded hover:bg-[#7da32b] transition-colors"
+          >
+            Participer maintenant
+          </a>
+        </div>
+      </div> */}
+      <div className="relative w-full h-96 lg:h-[500px]">
+        <Image src="/headNouvel.png" alt="Image du jeu-concours" layout="fill" objectFit="cover" />
+
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-center text-white p-4 mt-8 lg:mt-16">
+          <h1 className="text-xl sm:text-2xl lg:text-4xl font-bold mb-4">Participez à notre jeu-concours exclusif !</h1>
+          <p className="text-base sm:text-lg lg:text-xl mb-6">
             Gagnez des cadeaux incroyables en participant à notre tirage au sort.
           </p>
           <a
@@ -23,7 +39,7 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      <section className="container mx-auto  mt-8 lg:mt-16 px-4 lg:px-12">
+      <section className="container mx-auto mt-8 lg:mt-16 px-4 lg:px-12">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl font-bold text-gray-800">Comment se déroule le jeu-concours</h1>
           <p className="mt-4 text-lg text-gray-600 leading-relaxed">
@@ -55,7 +71,7 @@ const Home: React.FC = () => {
           <p className="mt-4 text-lg text-gray-600 leading-relaxed">
             Grand tirage au sort final : Un an de thé dune valeur de 360€, tiré au sort sous contrôle dhuissier !
             <br />
-            <strong className="text-gray-800  font-bold text-[#8FB43A]">
+            <strong className=" font-bold text-[#8FB43A]">
               Ne manquez pas cette chance de gagner des cadeaux exclusifs et de profiter du meilleur de Thé Tip Top !
             </strong>
           </p>
@@ -67,7 +83,7 @@ const Home: React.FC = () => {
       </section>
 
       <section className="container mx-auto my-16 px-4 lg:px-12">
-        <h2 className="text-3xl font-bold mb-8 text-center  text-[#8FB43A] text-gray-800">Ce que nos clients disent</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center text-[#8FB43A] text-gray-800">Ce que nos clients disent</h2>
         <TestimonialCarousel />
       </section>
     </>
