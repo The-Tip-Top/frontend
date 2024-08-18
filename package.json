@@ -10,13 +10,6 @@
     "lint-staged": "lint-staged",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\" --ignore-path .prettierignore"
   },
-  "lint-staged": {
-    "*.{js,ts}": [
-      "prettier --write \"**/*.{js,jsx,ts,tsx}\" --ignore-path .prettierignore",
-      "eslint --fix"
-    ],
-    "*.{ts,js}": "eslint --cache --fix"
-  },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",
     "@hookform/resolvers": "^3.9.0",
@@ -70,10 +63,5 @@
     "prisma": "^5.18.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npx lint-staged"
-    }
   }
 }
