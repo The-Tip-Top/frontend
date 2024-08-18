@@ -1,36 +1,34 @@
 export const conditionGeneral = (
-  <div>
-    <h2>Mentions légales et politique de confidentialité</h2>
-    <p>
+  <div className="max-w-4xl mx-auto px-4 py-8">
+    <h2 className="text-2xl font-bold mb-4">Mentions légales et politique de confidentialité</h2>
+    <p className="mb-4">
       La société <strong>Thé tip top</strong>, soucieuse des droits des individus, notamment au regard des traitements
       automatisés et dans une volonté de transparence avec ses clients, a mis en place une politique reprenant
       l’ensemble de ces traitements, des finalités poursuivies par ces derniers ainsi que des moyens d’actions à la
       disposition des individus afin qu’ils puissent au mieux exercer leurs droits.
     </p>
-    <p>
+    <p className="mb-4">
       Pour toute information complémentaire sur la protection des données personnelles, nous vous invitons à consulter
       le site :{' '}
-      <a href="https://www.cnil.fr/" target="_blank">
+      <a href="https://www.cnil.fr/" target="_blank" className="text-blue-600 underline">
         https://www.cnil.fr/
       </a>
     </p>
-    <p>
+    <p className="mb-4">
       La poursuite de la navigation sur ce site vaut acceptation sans réserve des dispositions et conditions
       d&apos;utilisation qui suivent.
     </p>
-    <p>
+    <p className="mb-8">
       La version actuellement en ligne de ces conditions d&apos;utilisation est la seule opposable pendant toute la
       durée d&apos;utilisation du site et jusqu&apos;à ce qu&apos;une nouvelle version la remplace.
     </p>
 
-    <h3>
-      <strong>Article 1 - Mentions légales</strong>
-    </h3>
-    <ul>
-      <li>
+    <h3 className="text-xl font-semibold mb-2">Article 1 - Mentions légales</h3>
+    <ul className="list-disc list-inside mb-8">
+      <li className="mb-2">
         <strong>1.1 Site (ci-après « le site ») :</strong> Thé tip top
       </li>
-      <li>
+      <li className="mb-2">
         <strong>1.2 Éditeur (ci-après « l&apos;éditeur ») :</strong>
         <br />
         Thé tip top SARL au capital de 150 000 € dont le siège social est situé : 18 rue Léon Frot 75011
@@ -39,42 +37,42 @@ export const conditionGeneral = (
         <br />
         n° de téléphone : 0767577645
         <br />
-        adresse mail : <a href="mailto:workflowproject.g2@gmail.com">workflowproject.g2@gmail.com</a>
+        adresse mail :{' '}
+        <a href="mailto:workflowproject.g2@gmail.com" className="text-blue-600 underline">
+          workflowproject.g2@gmail.com
+        </a>
       </li>
-      <li>
+      <li className="mb-2">
         <strong>1.3 Hébergeur (ci-après « l&apos;hébergeur ») :</strong>
         <br />
         Thé tip top est hébergé par ********, dont le siège social est situé 18 rue Léon Frot 75011/Paris.
       </li>
-      <li>
+      <li className="mb-2">
         <strong>1.4 Délégué à la protection des données (DPO) :</strong>
         <br />
         Un délégué à la protection des données : Mr Bourdon,{' '}
-        <a href="mailto:workflowproject.g2@gmail.com">workflowproject.g2@gmail.com</a>, est à votre disposition pour
-        toute question relative à la protection de vos données personnelles.
+        <a href="mailto:workflowproject.g2@gmail.com" className="text-blue-600 underline">
+          workflowproject.g2@gmail.com
+        </a>, est à votre disposition pour toute question relative à la protection de vos données personnelles.
       </li>
     </ul>
 
-    <h3>
-      <strong>Article 2 - Accès au site</strong>
-    </h3>
-    <p>
+    <h3 className="text-xl font-semibold mb-2">Article 2 - Accès au site</h3>
+    <p className="mb-8">
       L&apos;accès au site et son utilisation sont réservés à un usage strictement personnel. Vous vous engagez à ne pas
       utiliser ce site et les informations ou données qui y figurent à des fins commerciales, politiques, publicitaires
       et pour toute forme de sollicitation commerciale et notamment l&apos;envoi de courriers électroniques non
       sollicités.
     </p>
 
-    <h3>
-      <strong>Article 3 - Contenu du site</strong>
-    </h3>
-    <p>
+    <h3 className="text-xl font-semibold mb-2">Article 3 - Contenu du site</h3>
+    <p className="mb-8">
       Toutes les marques, photographies, textes, commentaires, illustrations, images animées ou non, séquences vidéo,
       sons, ainsi que toutes les applications informatiques qui pourraient être utilisées pour faire fonctionner ce site
       et plus généralement tous les éléments reproduits ou utilisés sur le site sont protégés par les lois en vigueur au
       titre de la propriété intellectuelle.
     </p>
-    <p>
+    <p className="mb-8">
       Ils sont la propriété pleine et entière de l&apos;éditeur ou de ses partenaires. Toute reproduction,
       représentation, utilisation ou adaptation, sous quelque forme que ce soit, de tout ou partie de ces éléments, y
       compris les applications informatiques, sans l&apos;accord préalable et écrit de l&apos;éditeur, sont strictement
@@ -82,62 +80,56 @@ export const conditionGeneral = (
       utilisations non autorisées ne vaut pas acceptation desdites utilisations et renonciation aux poursuites.
     </p>
 
-    <h3>
-      <strong>Article 4 - Gestion du site</strong>
-    </h3>
-    <p>Pour la bonne gestion du site, l&apos;éditeur pourra à tout moment :</p>
-    <ul>
-      <li>
+    <h3 className="text-xl font-semibold mb-2">Article 4 - Gestion du site</h3>
+    <p className="mb-4">Pour la bonne gestion du site, l&apos;éditeur pourra à tout moment :</p>
+    <ul className="list-disc list-inside mb-8">
+      <li className="mb-2">
         suspendre, interrompre ou limiter l&apos;accès à tout ou partie du site, réserver l&apos;accès au site, ou à
         certaines parties du site, à une catégorie déterminée d&apos;internautes ;
       </li>
-      <li>
+      <li className="mb-2">
         supprimer toute information pouvant en perturber le fonctionnement ou entrant en contravention avec les lois
         nationales ou internationales ;
       </li>
-      <li>suspendre le site afin de procéder à des mises à jour.</li>
+      <li className="mb-2">suspendre le site afin de procéder à des mises à jour.</li>
     </ul>
 
-    <h3>
-      <strong>Article 5 - Responsabilités</strong>
-    </h3>
-    <p>
+    <h3 className="text-xl font-semibold mb-2">Article 5 - Responsabilités</h3>
+    <p className="mb-8">
       La responsabilité de l&apos;éditeur ne peut être engagée en cas de défaillance, panne, difficulté ou interruption
       de fonctionnement, empêchant l&apos;accès au site ou à une de ses fonctionnalités.
     </p>
-    <p>
+    <p className="mb-8">
       Le matériel de connexion au site que vous utilisez est sous votre entière responsabilité. Vous devez prendre
       toutes les mesures appropriées pour protéger votre matériel et vos propres données notamment d&apos;attaques
       virales par Internet. Vous êtes par ailleurs seul responsable des sites et données que vous consultez.
     </p>
-    <p>L&apos;éditeur ne pourra être tenu responsable en cas de poursuites judiciaires à votre encontre :</p>
-    <ul>
-      <li>du fait de l&apos;usage du site ou de tout service accessible via Internet ;</li>
-      <li>du fait du non-respect par vous des présentes conditions générales.</li>
+    <p className="mb-4">L&apos;éditeur ne pourra être tenu responsable en cas de poursuites judiciaires à votre encontre :</p>
+    <ul className="list-disc list-inside mb-8">
+      <li className="mb-2">du fait de l&apos;usage du site ou de tout service accessible via Internet ;</li>
+      <li className="mb-2">du fait du non-respect par vous des présentes conditions générales.</li>
     </ul>
-    <p>
+    <p className="mb-8">
       L&apos;éditeur n&apos;est pas responsable des dommages causés à vous-même, à des tiers et/ou à votre équipement du
       fait de votre connexion ou de votre utilisation du site et vous renoncez à toute action contre lui de ce fait.
     </p>
-    <p>
+    <p className="mb-8">
       Si l&apos;éditeur venait à faire l&apos;objet d&apos;une procédure amiable ou judiciaire en raison de votre
       utilisation du site, il pourra se retourner contre vous pour obtenir l&apos;indemnisation de tous les préjudices,
       sommes, condamnations et frais qui pourraient découler de cette procédure.
     </p>
 
-    <h3>
-      <strong>Article 6 - Liens hypertextes</strong>
-    </h3>
-    <p>
+    <h3 className="text-xl font-semibold mb-2">Article 6 - Liens hypertextes</h3>
+    <p className="mb-8">
       La mise en place par les utilisateurs de tous liens hypertextes vers tout ou partie du site est strictement
       interdite, sauf autorisation préalable et écrite de l&apos;éditeur.
     </p>
-    <p>
+    <p className="mb-8">
       L&apos;éditeur est libre de refuser cette autorisation sans avoir à justifier de quelque manière que ce soit sa
       décision. Dans le cas où l&apos;éditeur accorderait son autorisation, celle-ci n&apos;est dans tous les cas que
       temporaire et pourra être retirée à tout moment, sans obligation de justification à la charge de l&apos;éditeur.
     </p>
-    <p>
+    <p className="mb-8">
       Toute information accessible via un lien vers d&apos;autres sites n&apos;est pas publiée par l&apos;éditeur.
       L&apos;éditeur ne dispose d&apos;aucun droit sur le contenu présent dans ledit lien.
     </p>

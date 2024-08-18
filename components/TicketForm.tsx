@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Ticket } from '@prisma/client';
-import { myFetch } from '@/lib/hooks/useFatch';
+import { myFetch } from '@/lib/hooks/useFetch';
 import { useRouter } from 'next/navigation';
 
 export const TicketForm = () => {

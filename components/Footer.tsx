@@ -73,10 +73,10 @@ const Footer = () => {
 
         <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
           <h3 className="font-bold mb-2">CGU/CGV</h3>
-          <a href="/mentions-legales" className="hover:underline">
+          <a href="/home/mentions-legales" className="hover:underline">
             Mentions légales
           </a>
-          <a href="/cgu" className="hover:underline">
+          <a href="home/cgu" className="hover:underline">
             CGU / CGV
           </a>
         </div>

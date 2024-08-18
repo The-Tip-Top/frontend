@@ -1,6 +1,6 @@
 'use client';
 
-import { myFetch } from '@/lib/hooks/useFatch';
+import { myFetch } from '@/lib/hooks/useFetch';
 import { Gift } from '@/lib/types/types';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
