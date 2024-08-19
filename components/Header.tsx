@@ -2,70 +2,99 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { CircleUser, ContactIcon, HomeIcon, Menu, SquareUser, Search } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Checkbox } from "@/components/ui/checkbox"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Input } from "@/components/ui/input"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import NavBar from "@/components/Navbar"
+import Image from 'next/image';
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
 
   return (
-    <header className="bg-white text-[#8FB43A] p-2 shadow-md fixed top-0 left-0 w-full z-50 font-lato">
-      <div className="container mx-auto flex justify-between items-center px-4 lg:px-12">
-        <div className="flex items-center">
-          <img src="/logofinal.png" alt="Logo The Tip-Top Bio" className="h-24" /> {/* Adjusted height */}
-          <h1 className="text-2xl ml-4 font-bold">Thé Tip-Top</h1>
-        </div>
-
-        {/* Burger Menu Button */}
-        <button className="lg:hidden block text-[#8FB43A] focus:outline-none" onClick={toggleMenu}>
-          <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
-            {isOpen ? (
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M18.36 6.64a1 1 0 00-1.41-1.41L12 10.17 7.05 5.22a1 1 0 00-1.41 1.41L10.17 12l-4.95 4.95a1 1 0 101.41 1.41L12 13.83l4.95 4.95a1 1 0 001.41-1.41L13.83 12l4.95-4.95z"
+    <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 bg-white z-50 font-lato text-[#8FB43A] md:px-6">
+      <NavBar />
+      <Sheet >
+        <SheetTrigger asChild>
+          <Button
+            variant="outline"
+            size="icon"
+            className="shrink-0 md:hidden"
+          >
+            <Menu className="h-5 w-5" />
+            <span className="sr-only">Toggle navigation menu</span>
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="left" className='bg-white'>
+          <nav className="grid gap-6 text-lg font-medium">
+            <Link
+              href="#"
+              className="flex items-center gap-2 text-lg font-semibold"
+            >
+              <Image
+                src="/logofinal.png"
+                width={90}
+                height={90}
+                alt="Thetiotop logo"
+                className="bg-red-500"
               />
-            ) : (
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 110 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 110-2z"
-              />
-            )}
-          </svg>
-        </button>
+              <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">Thé Tip Top</h1>
+            </Link>
 
-        {/* Navigation Links */}
-        <nav className={`lg:flex lg:items-center ${isOpen ? 'block' : 'hidden'} w-full lg:w-auto`}>
-          <ul className="lg:flex lg:space-x-8 mt-4 lg:mt-0 space-y-4 lg:space-y-0">
-            <li>
-              <Link href="/home" legacyBehavior>
-                <a className="font-semibold hover:underline" onClick={toggleMenu}>
-                  Accueil
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/home/contact" legacyBehavior>
-                <a className="font-semibold hover:underline" onClick={toggleMenu}>
-                  Contact
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/sign-up" legacyBehavior>
-                <a
-                  className="bg-[#8FB43A] text-white px-4 py-2 rounded-full font-semibold hover:bg-green-700 transition-colors"
-                  onClick={toggleMenu}
-                >
-                  Inscription
-                </a>
-              </Link>
-            </li>
-          </ul>
-        </nav>
+            <Link
+              href="/home"
+              className="text-muted-foreground flex gap-6 transition-colors hover:text-foreground"
+            >
+              <HomeIcon />
+              Accueil
+            </Link>
+            <Link
+              href="/home/contact"
+              className="text-muted-foreground flex gap-6  transition-colors hover:text-foreground"
+            >
+              <ContactIcon />
+              Contact
+            </Link>
+            <Link
+              href="/sign-up"
+              className="text-muted-foreground flex gap-6 items-center transition-colors hover:text-foreground"
+            >
+              <SquareUser />
+              Inscription
+            </Link>
+          </nav>
+        </SheetContent>
+      </Sheet>
+      <div className="flex items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="secondary" size="icon" className="rounded-full">
+              <CircleUser className="h-9 w-9" />
+              <span className="sr-only">Toggle user menu</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className='bg-white' align="end">
+            <DropdownMenuItem className="cursor-pointer">Logout</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   );

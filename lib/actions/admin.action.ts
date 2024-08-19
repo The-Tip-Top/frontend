@@ -1,5 +1,6 @@
 'use server';
 
+import { auth, signOut } from '@/auth';
 import { myFetch } from '../hooks/useFetch';
 import { Participation } from '../types/types';
 
@@ -37,3 +38,11 @@ export const getCountTicketByStatus = async () => {
     console.log('error when fetching participations ', err);
   }
 };
+
+export const logoutAccount = async () => {
+  try {
+   await signOut()
+  } catch (error) {
+    return null;
+  }
+}

@@ -4,12 +4,12 @@ import { GrTableAdd } from 'react-icons/gr';
 /* eslint-disable prettier/prettier */
 export const sidebarLinks = [
   {
-    icon: <GrTableAdd size={'20'} />,
+    icon: "/icons/data.png",
     route: '/admin',
     label: 'Participation',
   },
   {
-    icon: <MdQueryStats size={'20'} />,
+    icon: "/icons/stats.png",
     route: '/admin/chart-data',
     label: 'Statistiques',
   },

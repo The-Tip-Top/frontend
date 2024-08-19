@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="fr">
       <body className={`${lato.className} ${inter.className} bg-background text-foreground`}>
         {/* <Header /> */}
-        <main className="mt-14">{children}</main>
+        <main>{children}</main>
         {/* <Footer /> */}
       </body>
     </html>
