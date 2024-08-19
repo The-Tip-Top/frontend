@@ -11,9 +11,10 @@ interface CardWrapperProps {
   backButtonLabel: string;
   backButtonHref: string;
   showSocial?: boolean;
+  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" ;
 }
 
-const CardWrapper = ({ children, headerLabel, backButtonHref, backButtonLabel }: CardWrapperProps) => {
+const CardWrapper = ({ children, headerLabel, backButtonHref, backButtonLabel, variant }: CardWrapperProps) => {
   return (
     <Card className="w-[400px] shadow-sm">
       <CardHeader>
@@ -24,7 +25,7 @@ const CardWrapper = ({ children, headerLabel, backButtonHref, backButtonLabel }:
       </CardHeader>
       <CardContent>{children}</CardContent>
       <CardFooter>
-        <Button variant="link" asChild className="font-normal w-full" size="sm">
+        <Button variant={variant} asChild className="font-normal w-full bg-[#8FB43A]" size="sm">
           <Link href={backButtonHref}>{backButtonLabel}</Link>
         </Button>
       </CardFooter>

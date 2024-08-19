@@ -230,11 +230,11 @@
 
   /* Footer */
   .footer {
-    @apply flex cursor-pointer items-center justify-between gap-2 mb-9;
+    @apply flex p-2 cursor-pointer items-center justify-between gap-2 mb-9 bg-gray-50 rounded-md;
   }
 
   .footer_name {
-    @apply flex size-10 items-center justify-center rounded-full bg-gray-200 max-xl:hidden;
+    @apply flex size-10 items-center justify-center rounded-full bg-gray-200;
   }
 
   .footer_email {

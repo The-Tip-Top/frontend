@@ -39,10 +39,3 @@ export const getCountTicketByStatus = async () => {
   }
 };
 
-export const logoutAccount = async () => {
-  try {
-   await signOut()
-  } catch (error) {
-    return null;
-  }
-}
