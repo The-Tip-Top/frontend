@@ -38,13 +38,12 @@ const Sidebar = ({ user }: SiderbarProps) => {
               key={item.label}
             >
               <div className="relative size-6">
-                {/* <Image
-                  src={item.imgURL}
+                <Image
+                  src={item.icon}
                   fill
                   alt={item.label}
                   className={cn({ 'brightness-[3] invert-0': isActive })}
-                /> */}
-                {item.icon}
+                />
               </div>
               <p
                 className={cn('sidebar-label text-sm', {
