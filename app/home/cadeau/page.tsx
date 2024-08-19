@@ -1,7 +1,7 @@
 'use client';
 
 import { myFetch } from '@/lib/hooks/useFetch';
-import { Gift } from '@/lib/types/types';
+import { Gift, Ticket } from '@/lib/types/types';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -10,6 +10,7 @@ import { BeatLoader } from 'react-spinners';
 
 const CadeauPageContent = () => {
   const [gifts, setGifts] = useState<Gift[]>([]);
+  const [ticket, setTicket] = useState<Ticket>();
   const [isLoading, setIsLoading] = useState(true);
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -20,11 +21,16 @@ const CadeauPageContent = () => {
     const fetchGifts = async () => {
       try {
         const response = await myFetch<Gift[]>('gifts', {});
+        console.log("--- gifts ", response)
         if (response) {
           setGifts(response);
         } else {
           console.error('Erreur lors de la récupération des gifts');
         }
+        myFetch<Ticket>(`tickets/id/${ticketId}`)
+          .then((res) => setTicket(res))
+          .catch((err) => console.log(err))
+
       } catch (error) {
         console.error('Erreur:', error);
       } finally {
@@ -36,6 +42,10 @@ const CadeauPageContent = () => {
   }, []);
 
   const handleValidate = () => {
+    console.log("--- ticket id storeg ", ticketId)
+    if(ticketId){
+      localStorage.setItem('ticketId', ticketId);
+    }
     // Redirection vers la page de connexion
     router.push('/sign-in');
   };
@@ -55,8 +65,8 @@ const CadeauPageContent = () => {
                 'bg-white shadow-md rounded-lg p-6 max-w-xs text-center transition-transform duration-300',
                 {
                   'border-4 border-green-500 scale-105 shadow-lg hover:scale-110 hover:shadow-2xl transition duration-300 ease-in-out':
-                    ticketId === gift?.ticket?.ticketId,
-                  'opacity-50': ticketId !== gift?.ticket?.ticketId,
+                    ticket?.gift?.giftId === gift?.giftId,
+                  'opacity-50': ticket?.gift?.giftId !== gift?.giftId,
                 },
               )}
             >

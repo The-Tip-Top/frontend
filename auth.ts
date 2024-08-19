@@ -4,6 +4,7 @@ import { getUserById } from './lib/actions/auth.action';
 import { myFetch } from './lib/hooks/useFetch';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { prisma } from './lib/prisma';
+import { cookies } from 'next/headers';
 
 type ExtendedUser = DefaultSession['user'] & {
   role: 'ADMIN' | 'USER' | 'EMPLOYEE';
@@ -36,14 +37,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       // allow authentication without email verification
       if (account?.provider !== 'credentials') return true;
 
-      console.log('-------- signin user', user);
       const exestingUser = await getUserById(user.id!);
       // bloc the login whiout verification email
       console.log('== signin existing user ', exestingUser);
       if (!exestingUser || !exestingUser.emailVerified) {
         return false;
       }
-
+      console.log('-------- signin -------', user.id, exestingUser.id);
+      
+      // localStorage.setItem('userId', exestingUser.id);
       return true;
     },
     async session({ token, session }) {

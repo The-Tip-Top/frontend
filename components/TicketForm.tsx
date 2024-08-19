@@ -20,8 +20,9 @@ export const TicketForm = () => {
 
     try {
       const response = await myFetch<Ticket>(`tickets/${code.trim()}`, {});
+      console.log("response tocket ", response)
       if (response) {
-        router.push(`/cadeau?ticketId=${response.ticketId}`);
+        router.push(`/home/cadeau?ticketId=${response.ticketId}`);
       } else {
         alert('Ticket non valide. Veuillez entrer un code valide.');
       }

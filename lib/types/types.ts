@@ -18,6 +18,7 @@ export enum EGiftStatus {
 }
 
 export interface Gift {
+  imageUrl: string;
   giftId: string;
   status: string;
   name: string;
@@ -34,6 +35,7 @@ export interface Ticket {
   ticketGiftId?: string;
   status: EGiftStatus;
   user?: User | null;
+  gift?: Gift | null;
 }
 
 export interface User {
