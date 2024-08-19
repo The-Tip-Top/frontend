@@ -14,10 +14,6 @@ const RecentParticipations = ({ page = 1, participations = [] }: RecentParticipa
   const indexOfLastParticipation = page * rowsPerPage;
   const indexOfFirstParticipation = indexOfLastParticipation - rowsPerPage;
 
-  console.log('totla pages ', totalPages);
-  console.log('index Of Last Participation ', indexOfLastParticipation);
-  console.log('index Of first Participation ', indexOfFirstParticipation);
-
   const currentParticipations = participations.slice(indexOfFirstParticipation, indexOfLastParticipation);
   return (
     <section className="recent-participations">
@@ -30,13 +26,6 @@ const RecentParticipations = ({ page = 1, participations = [] }: RecentParticipa
           <Pagination totalPages={totalPages} page={page} />
         </div>
       )}
-      {/* <Tabs defaultValue={'2'} className="w-full">
-        <TabsList className="recent-participations-tablist">
-          <TabsTrigger value="account">Account</TabsTrigger>
-        </TabsList>
-        <TabsContent value="account">
-        </TabsContent>
-      </Tabs> */}
     </section>
   );
 };
