@@ -31,6 +31,16 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 bg-white z-50 font-lato text-[#8FB43A] md:px-6">
+      <title>Thé Tip Top - Votre Boutique de Thé Bio à Nice</title>
+      <meta name="description" content="Découvrez Thé Tip Top, votre expert en thé bio à Nice. Participez à notre jeu-concours exclusif et explorez nos thés relaxants pour le bien-être.
+        Nous ouvrons notre nouvelle boutique à Nice. Thétiptop Nice vous réserve de très belles surprises" />
+        <h1 className="sr-only">Thétiptop, c'est bien plus qu'une boutique de thé. Nous sommes une communauté de passionnés qui croit au pouvoir des ingrédients naturels 
+          pour le bien-être. Installée à Nice, notre boutique vous propose une expérience sensorielle unique autour du thé bio. Thétiptop Nice vous réserve de très belles surprises.
+          Découvrez Thétiptop Nice, votre nouvelle boutique de vente de thé bio à Nice et participez à notre jeu-concours exclusif ! Thétiptop est votre destination de choix pour découvrir
+          une vaste sélection de thés bio à Nice. Située en plein cœur de la ville.
+          Nous avons des thés bio pour le bien-être, thé détox, thé minceur, thé vert, thé noir, thé blanc, thé rouge, thé oolong, thé matcha, thé bio en vrac, thé bio en sachet, thé bio en boîte.
+          Jeu concours Thétiptop, Bienvenue chez Thétiptop - Votre Expert en Thé Bio à Nice. Thétiptop, c'est bien plus qu'une boutique de thé. Nous sommes une communauté de passionnés qui croit au pouvoir des ingrédients naturels
+        </h1>
       <NavBar />
       <Sheet >
         <SheetTrigger asChild>
@@ -51,9 +61,9 @@ const Header = () => {
             >
               <Image
                 src="/logofinal.png"
+                alt="Thétiptop, votre boutique de thé bio à Nice"
                 width={90}
                 height={90}
-                alt="Thetiotop logo"
                 className="bg-red-500"
               />
               <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">Thé Tip Top</h1>
