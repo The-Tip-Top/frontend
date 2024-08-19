@@ -1,7 +1,11 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import {logoutAccount} from '../lib/actions/admin.action';
+import { logoutAccount } from '../lib/actions/auth.action';
 import React from 'react'
+import { useCurrentUser } from '@/lib/hooks/useCurrentUser';
+import LogoutButton from './auth/logoutButton';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { FaUser } from 'react-icons/fa';
 
 interface FooterProps {
   name: string;
@@ -11,20 +15,22 @@ interface FooterProps {
 
 const FooterAdmin = ({ name, email, type = 'desktop' }: FooterProps) => {
   const router = useRouter();
-
-  const handleLogOut = async () => {
-    const loggedOut = await logoutAccount();
-
-    if (loggedOut) router.push('/sign-in')
-  }
+  const user = useCurrentUser()
 
   return (
     <footer className="footer">
-      <div className={type === 'mobile' ? 'footer_name-mobile' : 'footer_name'}>
+      {/* <div className={type === 'mobile' ? 'footer_name-mobile' : 'footer_name'}>
         <p className="text-xl font-bold text-gray-700">
           {name.charAt(0)}
         </p>
-      </div>
+      </div> */}
+      <Avatar>
+        <AvatarImage src={user?.image || ""} />
+        <AvatarFallback className='bg-[#8FB43A] font-bold cursor-pointer'>
+          {name.charAt(0)} 
+          {/* <FaUser className='text-white' /> */}
+        </AvatarFallback>
+      </Avatar>
 
       <div className={type === 'mobile' ? 'footer_email-mobile' : 'footer_email'}>
         <h1 className="text-14 truncate text-gray-700 font-semibold">
@@ -35,9 +41,11 @@ const FooterAdmin = ({ name, email, type = 'desktop' }: FooterProps) => {
         </p>
       </div>
 
-      <div className="footer_image" onClick={handleLogOut}>
-        <Image src="icons/logout.svg" fill alt="jsm" />
-      </div>
+      <LogoutButton>
+        <div className="footer_image">
+          <Image src="icons/logout.svg" fill alt="jsm" />
+        </div>
+      </LogoutButton>
     </footer>
   )
 }

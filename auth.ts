@@ -16,6 +16,7 @@ declare module 'next-auth' {
   }
   interface User {
     id?: string;
+    role?: 'ADMIN' | 'USER' | 'EMPLOYEE';
   }
 }
 
@@ -25,13 +26,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     signIn: '/sign-in',
     error: '/error',
   },
-  events: {
-    async linkAccount({ user }) {
-      // update user data "email verification"
-      const res = await myFetch(`verificationEmail/${user?.id}`);
-      console.log('link account ', res);
-    },
-  },
+  // events: {
+  //   async linkAccount({ user }) {
+  //     // update user data "email verification"
+  //     const res = await myFetch(`verificationEmail/${user?.id}`);
+  //     console.log('link account ', res);
+  //   },
+  // },
+
   callbacks: {
     async signIn({ user, account }) {
       // allow authentication without email verification
@@ -43,9 +45,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (!exestingUser || !exestingUser.emailVerified) {
         return false;
       }
+      cookies().set('role', exestingUser.role)
+      user.role = "ADMIN";
       console.log('-------- signin -------', user.id, exestingUser.id);
-      
-      // localStorage.setItem('userId', exestingUser.id);
+     
       return true;
     },
     async session({ token, session }) {
@@ -58,11 +61,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
       return session;
     },
-    async jwt({ token }) {
+    async jwt({ token, user }) {
       if (!token.sub) return token; // loged out
       const exestingUser = await getUserById(token.sub);
       if (!exestingUser) return token;
       token.role = exestingUser.role;
+      if(user) {
+        user.role = exestingUser.role
+      }
       return token;
     },
   },

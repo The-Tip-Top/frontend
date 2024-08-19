@@ -6,6 +6,8 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import FooterAdmin from './FooterAdmin';
+import LogoutButton from './auth/logoutButton';
 
 interface SiderbarProps {
   user: User | null | unknown;
@@ -56,6 +58,9 @@ const Sidebar = ({ user }: SiderbarProps) => {
           );
         })}
       </nav>
+      <LogoutButton>
+        <FooterAdmin name={"admin"} email={"admin@gmail.com"} type="mobile" />
+      </LogoutButton>
     </section>
   );
 };

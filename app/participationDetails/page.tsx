@@ -2,11 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import '../../app/globals.css';
 
 export default function ParticipationDetailsPage() {
-  const router = useRouter();
-  const query = new URLSearchParams(window.location.search);
   const id = 1; // Récupération de l'id depuis l'URL
   const [participation, setParticipation] = useState<any>(null);
 

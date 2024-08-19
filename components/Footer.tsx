@@ -48,7 +48,7 @@ const Footer = () => {
           <div className="flex items-center justify-center lg:justify-start mb-6 lg:mb-0">
             <div className="h-32 w-32 bg-white rounded-full flex items-center overflow-hidden justify-center">
               <Image
-                src="/logo.png"
+                src="/logofinal.png"
                 alt="Logo The Tip-Top Bio"
                 width={120}
                 height={120}
@@ -62,8 +62,8 @@ const Footer = () => {
             <div className="lg:w-1/4 mb-6 lg:mb-0">
               <h3 className="font-bold text-lg text-white mb-2">À PROPOS</h3>
               <a href="/home" className="block text-white hover:underline text-sm mb-1">Accueil</a>
-              <a href="/login" className="block hover:underline text-sm mb-1 text-white">Connexion</a>
-              <a href="/register" className="block hover:underline text-sm text-white">Inscription</a>
+              <a href="/lsign-in" className="block hover:underline text-sm mb-1 text-white">Connexion</a>
+              <a href="/sign-up" className="block hover:underline text-sm text-white">Inscription</a>
             </div>
             <div className="lg:w-1/3 mb-6 lg:mb-0">
               <h3 className="font-bold text-lg text-white mb-2">NOS SERVICES</h3>
@@ -74,7 +74,7 @@ const Footer = () => {
             <div className="lg:w-1/4 mb-6 lg:mb-0">
               <h3 className="font-bold text-lg text-white mb-2">CGU/CGV</h3>
               <a href="/home/mentions-legales" className="block hover:underline text-sm mb-1 text-white">Mentions légales</a>
-              <a href="/home/cgu" className="block hover:underline text-sm text-white">CGU / CGV</a>
+              <a href="/home/cgu" className="block hover:underline text-sm text-white">Cgu / Cgv</a>
             </div>
           </div>
 

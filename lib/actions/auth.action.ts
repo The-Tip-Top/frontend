@@ -5,12 +5,12 @@ import { z } from 'zod';
 import { signInSchema, signUpSchema } from '../utils';
 import { DEFAULT_REDIRECT_LOGIN } from '@/routes';
 import { AuthError } from 'next-auth';
-import { auth, signIn } from '@/auth';
+import { auth, signIn, signOut } from '@/auth';
 import { myFetch } from '../hooks/useFetch';
 import { ResponseMessageWithStatus } from './newVerificationToken.action';
-import { User } from '@prisma/client';
 import { cookies } from 'next/headers';
 import { Ticket } from '../types/types';
+import { User } from '@prisma/client';
 
 export const Register = async (userData: z.infer<typeof signUpSchema>) => {
   console.log(userData);
@@ -74,11 +74,7 @@ export const Login = async (data: z.infer<typeof signInSchema>) => {
 };
 
 export const getUserByEmail = async (email: string) => {
-  try {
     return await myFetch<User>(`users/email/${email}`, {});
-  } catch {
-    return null;
-  }
 };
 export const getUserById = async (id: string) => {
   try {
@@ -102,4 +98,8 @@ export  const linkTicket = async (ticketId: string) => {
     console.log("----- link ticket ", ticketsUser);
     // setnewGigt(ticketsUser.tickets[0].gift ?? null)
   
+}
+
+export const logoutAccount = async () => {
+  await signOut()
 }

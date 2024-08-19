@@ -175,15 +175,15 @@ interface LinkTicketResponse {
 
 export default function HistoryPage() {
   const [newGigt, setnewGigt] = useState<Gift | null>(null);
-  useEffect(() => {
-    const ticketId = localStorage.getItem('ticketId')
-    const link = async () => {
-      if(ticketId) {
-       await linkTicket(ticketId)
-      }
-    }
-    link()
-  }, [])
+  // useEffect(() => {
+  //   const ticketId = localStorage.getItem('ticketId')
+  //   const link = async () => {
+  //     if(ticketId) {
+  //      await linkTicket(ticketId)
+  //     }
+  //   }
+  //   link()
+  // }, [])
 
   return (
     <div className="history-page bg-gray-50 min-h-screen py-10">

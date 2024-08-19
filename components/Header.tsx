@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { CircleUser, ContactIcon, HomeIcon, Menu, SquareUser, Search } from "lucide-react"
+import { CircleUser, ContactIcon, HomeIcon, Menu, SquareUser, Search, LogOut } from "lucide-react"
+import { FaUser } from 'react-icons/fa'
 
 import { Button } from "@/components/ui/button"
 import {
@@ -26,9 +27,12 @@ import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import NavBar from "@/components/Navbar"
 import Image from 'next/image';
+import { useCurrentUser } from '@/lib/hooks/useCurrentUser';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import LogoutButton from '@/components/auth/logoutButton';
 
 const Header = () => {
-
+  const user = useCurrentUser()
   return (
     <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 bg-white z-50 font-lato text-[#8FB43A] md:px-6">
       <NavBar />
@@ -83,19 +87,28 @@ const Header = () => {
           </nav>
         </SheetContent>
       </Sheet>
-      <div className="flex items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="secondary" size="icon" className="rounded-full">
-              <CircleUser className="h-9 w-9" />
-              <span className="sr-only">Toggle user menu</span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className='bg-white' align="end">
-            <DropdownMenuItem className="cursor-pointer">Logout</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
+      {user && (
+        <div className="flex items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Avatar>
+                <AvatarImage src={user?.image || ""} />
+                <AvatarFallback className='bg-[#8FB43A] cursor-pointer'>
+                  <FaUser className='text-white' />
+                </AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className='bg-white' align="end">
+              <LogoutButton>
+                <DropdownMenuItem className="cursor-pointer">
+                  <LogOut className='h-4 w-4 mr-2' />
+                  Logout</DropdownMenuItem>
+              </LogoutButton>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+
+      )}
     </header>
   );
 };
