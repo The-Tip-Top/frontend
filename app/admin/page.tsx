@@ -26,7 +26,7 @@ const Home = async ({ searchParams: { page } }: SearchParamProps) => {
       <Card x-chunk="dashboard-05-chunk-3" className={cn(borderColor, chipBackgroundColor)}>
         <CardHeader className="pb-2">
           <CardDescription className="text-xl text-center">{title}</CardDescription>
-          <CardTitle className={cn('text-4xl text-center', textColor)}>{countingTickets![status] ?? 0} </CardTitle>
+          <CardTitle className={cn('text-4xl text-center', textColor)}>{countingTickets?.[status] ?? 0} </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="text-xs text-muted-foreground"></div>
