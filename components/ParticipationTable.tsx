@@ -23,7 +23,6 @@ const StatusBadge = ({ status }: StatusBadgeProps) => {
 };
 
 const ParticipationTable = ({ participations }: ParticipationTableProps) => {
-  console.log('ticketttttt', participations[0]);
 
   return (
     <Table>

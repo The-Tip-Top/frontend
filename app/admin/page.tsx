@@ -29,7 +29,7 @@ const Home = async ({ searchParams: { page } }: SearchParamProps) => {
           <CardTitle className={cn('text-4xl text-center', textColor)}>{countingTickets![status] ?? 0} </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-xs text-muted-foreground">+10% from last month</div>
+          <div className="text-xs text-muted-foreground"></div>
         </CardContent>
       </Card>
     );
@@ -40,7 +40,7 @@ const Home = async ({ searchParams: { page } }: SearchParamProps) => {
       {/* {session && ( */}
       <div className="home-content">
         <header className="home-header">
-          <HeaderContainer title="Welcome" user={loggedIn.firstName || 'Gest'} subtext="Some text fo the tip top" />
+          <HeaderContainer title="Welcome" user={'Gest'} subtext="SBienvenue sur votre tableau de bord" />
         </header>
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4">
           <CustomCards status={EGiftStatus.WAITING} title={'Ticket en attente'} />
