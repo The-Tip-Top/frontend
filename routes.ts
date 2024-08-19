@@ -1,5 +1,6 @@
+
 export const publicRoutes = ['/home', '/home/contact', '/home/cadeau',
-    '/home/cgu', '/home/mentions-legales', '/new-verification'];
+    '/home/cgu', '/home/mentions-legales', '/new-verification', '/admin/chart-data'];
 
 export const authRoutes = ['/sign-up', '/sign-in', '/error', '/home/history'];
 
