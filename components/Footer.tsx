@@ -80,7 +80,7 @@ const Footer = () => {
 
           {/* Newsletter Subscription */}
           <div className="text-center lg:text-left mb-6">
-            <h3 className="font-bold text-lg text-white mb-2">ABONNEZ-VOUS À NOTRE NEWSLETTER</h3>
+            <h3 className="font-bold text-lg text-white mb-2">ABONNEZ-VOUS À NOS NEWSLETTERS</h3>
             <form className="flex flex-col sm:flex-row justify-center w-full max-w-md mx-auto lg:mx-0">
               <input
                 type="email"
