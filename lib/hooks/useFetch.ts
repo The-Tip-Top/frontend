@@ -24,7 +24,7 @@ export const myFetch = async <T>(url: string, fetchOption: FetchOptions = {}): P
       options.body = JSON.stringify(body);
     }
     const response = await fetch(`${BASE_URL}/${url}`, options);
-
+    console.log("-- fetch ", response)
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }

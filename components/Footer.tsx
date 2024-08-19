@@ -2,6 +2,15 @@
 import Image from 'next/image';
 import { useEffect } from 'react';
 
+declare global {
+  interface Window {
+    axeptioSettings: {
+      clientId: string;
+      cookiesVersion: string;
+    };
+  }
+}
+
 const Footer = () => {
   useEffect(() => {
     // Axeptio script settings

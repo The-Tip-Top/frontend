@@ -5,10 +5,12 @@ import { z } from 'zod';
 import { signInSchema, signUpSchema } from '../utils';
 import { DEFAULT_REDIRECT_LOGIN } from '@/routes';
 import { AuthError } from 'next-auth';
-import { signIn } from '@/auth';
+import { auth, signIn } from '@/auth';
 import { myFetch } from '../hooks/useFetch';
 import { ResponseMessageWithStatus } from './newVerificationToken.action';
 import { User } from '@prisma/client';
+import { cookies } from 'next/headers';
+import { Ticket } from '../types/types';
 
 export const Register = async (userData: z.infer<typeof signUpSchema>) => {
   console.log(userData);
@@ -47,6 +49,16 @@ export const Login = async (data: z.infer<typeof signInSchema>) => {
       password,
       redirectTo: DEFAULT_REDIRECT_LOGIN,
     });
+
+    const user = (await auth())?.user;
+    if(user) {
+      cookies().set('userId', user?.id as string, {
+        path: '/',
+        maxAge: 3600 * 5,
+        secure: true,
+      });
+    }
+    console.log("sign in userrrrr ", user)
     return { success: verificationLogin.success };
   } catch (err) {
     if (err instanceof AuthError) {
@@ -75,3 +87,19 @@ export const getUserById = async (id: string) => {
     return null;
   }
 };
+interface LinkTicketResponse {
+  tickets: Ticket[]
+}
+export  const linkTicket = async (ticketId: string) => {
+  // const userId = cookies().get('userId')?.value
+  const userId = (await auth())?.user?.id;
+  console.log("user id ===== ", userId, "------ ticket id ", ticketId)
+  const bodyData = { id: userId, ticketId: ticketId };
+  const ticketsUser = await myFetch<LinkTicketResponse>('linkTicketUser', {
+    method: 'PUT',
+    body: bodyData
+  })
+    console.log("----- link ticket ", ticketsUser);
+    // setnewGigt(ticketsUser.tickets[0].gift ?? null)
+  
+}
