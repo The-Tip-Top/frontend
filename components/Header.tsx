@@ -41,7 +41,7 @@ const Header = () => {
         <h1 className="sr-only">Thétiptop, c'est bien plus qu'une boutique de thé. Nous sommes une communauté de passionnés qui croit au pouvoir des ingrédients naturels 
           pour le bien-être. Installée à Nice, notre boutique vous propose une expérience sensorielle unique autour du thé bio. Thétiptop Nice vous réserve de très belles surprises.
           Découvrez Thétiptop Nice, votre nouvelle boutique de vente de thé bio à Nice et participez à notre jeu-concours exclusif ! Thétiptop est votre destination de choix pour découvrir
-          une vaste sélection de thés bio à Nice. Située en plein cœur de la ville.
+          une vaste sélection de thés bio à Nice. Notre nouvelle boutique est située en plein cœur de la ville.
           Nous avons des thés bio pour le bien-être, thé détox, thé minceur, thé vert, thé noir, thé blanc, thé rouge, thé oolong, thé matcha, thé bio en vrac, thé bio en sachet, thé bio en boîte.
           Jeu concours Thétiptop, Bienvenue chez Thétiptop - Votre Expert en Thé Bio à Nice. Thétiptop, c'est bien plus qu'une boutique de thé. Nous sommes une communauté de passionnés qui croit au pouvoir des ingrédients naturels
         </h1>

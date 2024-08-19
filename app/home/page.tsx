@@ -8,7 +8,7 @@ const Home: React.FC = () => {
     <>
       <h1 className="sr-only">
         Jeu concours Thétiptop
-        Bienvenue chez Thétiptop - Votre Expert en Thé Bio à Nice.
+        Bienvenue chez Thétiptop - Votre magasin de Thé Bio à Nice.
         Découvrez Thetiptop Nice, votre nouvelle boutique de vente de thé bio à Nice et participez à notre jeu-concours exclusif !
         Thétiptop est votre destination de choix pour découvrir une vaste sélection de thés bio à Nice. Située en plein cœur de la ville 
         de Nice, notre nouvelle boutique vous offre une expérience unique autour du thé, axée sur le bien-être et la relaxation.
@@ -54,7 +54,7 @@ const Home: React.FC = () => {
           <h2 className="text-4xl font-bold text-gray-800">Comment se déroule le jeu-concours</h2>
           <p className="mt-4 text-lg text-gray-600 leading-relaxed">
             Découvrez Thetiptop, votre nouvelle boutique de vente de thé bio à Nice. Profitez de notre jeu concours 
-            pour célébrer l'ouverture et explorez notre gamme de thés relaxants, parfaits pour le bien-être.
+            pour célébrer l'ouverture de notre nouveau magasin et explorez notre gamme de thés relaxants, parfaits pour le bien-être.
           </p>
           <p className="mt-4 text-lg text-gray-600 leading-relaxed">
             Du 01/09/2024 au 30/09/2024, chaque achat supérieur à 49€ chez Thé Tip Top vous permet de recevoir un ticket
