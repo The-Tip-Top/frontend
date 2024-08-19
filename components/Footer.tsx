@@ -32,77 +32,66 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="bg-[#8FB43A] text-white py-8">
-      <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center px-4 lg:px-12 space-y-8 lg:space-y-0 lg:space-x-8">
-        <div className="flex-1 flex justify-center lg:justify-start mt-4">
-          <div className="h-32 w-32 rounded-full bg-white flex justify-center items-center">
-            <Image
-              src="/logo.png"
-              alt="Logo The Tip-Top Bio"
-              width={35}
-              height={35}
-              className="h-35 w-35 object-contain rounded-full"
-            />
+    <footer className="bg-[#8FB43A] text-gray-300 py-6">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start">
+          {/* Logo */}
+          <div className="flex items-center justify-center lg:justify-start mb-6 lg:mb-0">
+            <div className="h-32 w-32 bg-white rounded-full flex items-center overflow-hidden justify-center">
+              <Image
+                src="/logo.png"
+                alt="Logo The Tip-Top Bio"
+                width={120}
+                height={120}
+                className="object-contain"
+              />
+            </div>
+          </div>
+
+          {/* Footer Links */}
+          <div className="flex flex-col lg:flex-row lg:space-x-12 text-center lg:text-left mb-6 lg:mb-0">
+            <div className="lg:w-1/4 mb-6 lg:mb-0">
+              <h3 className="font-bold text-lg text-white mb-2">À PROPOS</h3>
+              <a href="/home" className="block text-white hover:underline text-sm mb-1">Accueil</a>
+              <a href="/login" className="block hover:underline text-sm mb-1 text-white">Connexion</a>
+              <a href="/register" className="block hover:underline text-sm text-white">Inscription</a>
+            </div>
+            <div className="lg:w-1/3 mb-6 lg:mb-0">
+              <h3 className="font-bold text-lg text-white mb-2">NOS SERVICES</h3>
+              <a href="https://facebook.com" className="block hover:underline text-sm mb-1 text-white" target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a href="https://instagram.com" className="block hover:underline text-sm mb-1 text-white" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://linkedin.com" className="block hover:underline text-sm text-white">LinkedIn</a>
+            </div>
+            <div className="lg:w-1/4 mb-6 lg:mb-0">
+              <h3 className="font-bold text-lg text-white mb-2">CGU/CGV</h3>
+              <a href="/home/mentions-legales" className="block hover:underline text-sm mb-1 text-white">Mentions légales</a>
+              <a href="/home/cgu" className="block hover:underline text-sm text-white">CGU / CGV</a>
+            </div>
+          </div>
+
+          {/* Newsletter Subscription */}
+          <div className="text-center lg:text-left mb-6">
+            <h3 className="font-bold text-lg text-white mb-2">ABONNEZ-VOUS À NOTRE NEWSLETTER</h3>
+            <form className="flex flex-col sm:flex-row justify-center w-full max-w-md mx-auto lg:mx-0">
+              <input
+                type="email"
+                placeholder="Entrez votre email"
+                className="p-2 rounded-md text-gray-800 mb-2 sm:mb-0 sm:mr-2 text-sm"
+              />
+              <button
+                type="submit"
+                className="p-2 bg-white text-[#8FB43A] rounded-md font-semibold text-sm hover:bg-gray-200 transition duration-300"
+              >
+                S'abonner
+              </button>
+            </form>
           </div>
         </div>
-        <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
-          <h3 className="font-bold mb-2">THE TIP-TOP</h3>
-          <a href="/home" className="hover:underline">
-            Accueil
-          </a>
-          <a href="/login" className="hover:underline">
-            Connexion
-          </a>
-          <a href="/register" className="hover:underline">
-            Inscription
-          </a>
+        
+        {/* Copyright */}
+        <div className="text-center mt-4">
+          <p className="text-white-400 text-xs">&copy; 2024 Thé Tip-Top Bio. Tous droits réservés.</p>
         </div>
-
-        <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
-          <h3 className="font-bold mb-2">NOUS CONTACTER</h3>
-          <a href="https://facebook.com" className="hover:underline" target="_blank" rel="noopener noreferrer">
-            Facebook
-          </a>
-          <a href="https://instagram.com" className="hover:underline" target="_blank" rel="noopener noreferrer">
-            Instagram
-          </a>
-          <a href="https://linkedin.com" className="hover:underline" target="_blank" rel="noopener noreferrer">
-            LinkedIn
-          </a>
-        </div>
-
-        <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
-          <h3 className="font-bold mb-2">CGU/CGV</h3>
-          <a href="/home/mentions-legales" className="hover:underline">
-            Mentions légales
-          </a>
-          <a href="home/cgu" className="hover:underline">
-            CGU / CGV
-          </a>
-        </div>
-      </div>
-
-      <div className="container mx-auto text-center mt-6">
-        <div className="flex flex-col items-center">
-          <h3 className="font-bold mb-4">ABONNEZ-VOUS À NOTRE NEWSLETTER</h3>
-          <form className="flex flex-col sm:flex-row justify-center w-full max-w-md">
-            <input
-              type="email"
-              placeholder="Entrez votre email"
-              className="p-2 rounded-md text-gray-800 mb-2 sm:mb-0 sm:mr-2"
-            />
-            <button
-              type="submit"
-              className="p-2 bg-white text-[#8FB43A] rounded-md font-semibold hover:bg-gray-200 transition duration-300"
-            >
-              Sabonner
-            </button>
-          </form>
-        </div>
-      </div>
-
-      <div className="container mx-auto text-center mt-4">
-        <p className="text-white text-sm">&copy; 2024 Thé Tip-Top Bio</p>
       </div>
     </footer>
   );
