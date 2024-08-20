@@ -2,10 +2,10 @@ User-agent: *
 Disallow: /login
 Disallow: /sign-up
 Disallow: /register
-Disallow: /home/mentions-legales
-Disallow: /home/cgu
 
-Allow: /
-
+Allow: /home
+Allow: /home/contact
+Allow: /home/cgu
+Allow: /home/mentions-legales
 
 Sitemap: http://www.dsp5-archi-022a-4-5-g2.fr/sitemap.xml
