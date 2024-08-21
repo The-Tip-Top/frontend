@@ -8,24 +8,18 @@ import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { Loader2 } from 'lucide-react';
-import { useSearchParams } from 'next/navigation';
-import { Login } from '@/lib/actions/auth.action';
 import CustomInput from '../inputs/CustomInput';
 import FormMessage from '../FormMessage';
 import { PasswordField } from '../inputs/PasswordInput';
-import Social from '../Social';
 import { signInSchema } from '@/lib/utils';
 import { BeatLoader } from 'react-spinners';
+import { LoginAdmin } from '@/lib/actions/admin.action';
 
 const SignInFormContent = () => {
-  // const [user, setUser] = useState(null);
   const [message, setMessage] = useState({
     error: '',
     success: '',
   });
-  const searchParams = useSearchParams();
-  const urlError =
-    searchParams.get('error') === 'OAuthAccountNotLinked' ? 'Email déja utilisé avec un autre provider' : '';
   const [isPending, setTransition] = useTransition();
 
   const form = useForm<z.infer<typeof signInSchema>>({
@@ -40,16 +34,13 @@ const SignInFormContent = () => {
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
     try {
       setTransition(() => {
-        Login(data).then((data) => {
-          // console.log('loginn ', data);
+        LoginAdmin(data).then((data) => {
           setMessage({
             error: data?.error ?? '',
             success: data?.success ?? '',
           });
         });
       });
-      // const newUser = await signUp(data);
-      // setUser(newUser);
     } catch (error) {
       console.log(error);
     }
@@ -64,7 +55,7 @@ const SignInFormContent = () => {
           name="password"
           label="Mot de passe"
         />
-        <FormMessage message={message.error || urlError} type="ERROR" />
+        <FormMessage message={message.error} type="ERROR" />
         <FormMessage message={message.success} type="SUCCESS" />
         <div className="flex justify-center flex-col gap-4">
           <Button className="form-btn bg-des" type="submit" disabled={isPending}>
@@ -78,16 +69,15 @@ const SignInFormContent = () => {
           </Button>
         </div>
       </form>
-      <Social />
     </Form>
   );
 };
 
-const SignInForm = () => {
+const AdminSignInForm = () => {
   return (
     <Suspense fallback={<BeatLoader />}>
       <SignInFormContent />
     </Suspense>
   );
 };
-export default SignInForm;
+export default AdminSignInForm;

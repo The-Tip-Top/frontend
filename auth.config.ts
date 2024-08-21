@@ -10,10 +10,11 @@ import { getUserByEmail } from './lib/actions/auth.action';
 // const formSchema = authFormSchema("sign-in");
 
 const authConfig = {
+  trustHost: true,
   providers: [
     Google({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: '968686510140-p509kkasulv73qvi5f2tf5m66tb9gfgq.apps.googleusercontent.com',
+      clientSecret: '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',
     }),
     Facebook({
       clientId: process.env.FACEBOOK_CLIENT_ID,
@@ -28,7 +29,7 @@ const authConfig = {
           if (!user || !user.password) return null;
 
           const passwordCheck = await bcrypt.compare(password, user.password);
-          console.log('passwheckkk ', passwordCheck);
+          // console.log('passwheckkk ', passwordCheck);
           if (passwordCheck) return user;
         }
         return null;

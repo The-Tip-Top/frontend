@@ -4,12 +4,12 @@ import { GrTableAdd } from 'react-icons/gr';
 /* eslint-disable prettier/prettier */
 export const sidebarLinks = [
   {
-    icon: "/icons/data.png",
+    icon: '/icons/data.png',
     route: '/admin',
     label: 'Participation',
   },
   {
-    icon: "/icons/stats.png",
+    icon: '/icons/stats.png',
     route: '/admin/chart-data',
     label: 'Statistiques',
   },
@@ -70,13 +70,25 @@ export const participationStatusStyles = {
     textColor: 'text-red-700',
     chipBackgroundColor: 'bg-[#fef2f2]',
   },
-  'Non Remis': {
+  PARTICIPATION: {
     borderColor: 'border-[#F2F4F7]',
     backgroundColor: 'bg-gray-500',
     textColor: 'text-[#344054]',
     chipBackgroundColor: 'bg-[#F2F4F7]',
   },
+  CONCLUDED: {
+    borderColor: 'border-[#12B76A]',
+    backgroundColor: 'bg-[#12B76A]',
+    textColor: 'text-[#027A48]',
+    chipBackgroundColor: 'bg-[#ECFDF3]',
+  },
   GIFT_GIVEN: {
+    borderColor: 'border-[#12B76A]',
+    backgroundColor: 'bg-[#12B76A]',
+    textColor: 'text-[#027A48]',
+    chipBackgroundColor: 'bg-[#ECFDF3]',
+  },
+  CURRENT_PARTICIPATION: {
     borderColor: 'border-[#12B76A]',
     backgroundColor: 'bg-[#12B76A]',
     textColor: 'text-[#027A48]',

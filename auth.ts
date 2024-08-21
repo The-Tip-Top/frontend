@@ -6,7 +6,7 @@ import { PrismaAdapter } from '@auth/prisma-adapter';
 import { prisma } from './lib/prisma';
 import { cookies } from 'next/headers';
 
-type ExtendedUser = DefaultSession['user'] & {
+export type ExtendedUser = DefaultSession['user'] & {
   role: 'ADMIN' | 'USER' | 'EMPLOYEE';
 };
 
@@ -16,7 +16,7 @@ declare module 'next-auth' {
   }
   interface User {
     id?: string;
-    role?: 'ADMIN' | 'USER' | 'EMPLOYEE';
+    // role?: 'ADMIN' | 'USER' | 'EMPLOYEE';
   }
 }
 
@@ -26,13 +26,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     signIn: '/sign-in',
     error: '/error',
   },
-  // events: {
-  //   async linkAccount({ user }) {
-  //     // update user data "email verification"
-  //     const res = await myFetch(`verificationEmail/${user?.id}`);
-  //     console.log('link account ', res);
-  //   },
-  // },
+  events: {
+    async linkAccount({ user }) {
+      // update user data "email verification"
+      const res = await myFetch(`verificationEmail/${user?.id}`);
+      console.log('link account ', res);
+    },
+  },
 
   callbacks: {
     async signIn({ user, account }) {
@@ -41,18 +41,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
       const exestingUser = await getUserById(user.id!);
       // bloc the login whiout verification email
-      console.log('== signin existing user ', exestingUser);
       if (!exestingUser || !exestingUser.emailVerified) {
         return false;
       }
-      cookies().set('role', exestingUser.role)
-      user.role = "ADMIN";
-      console.log('-------- signin -------', user.id, exestingUser.id);
-     
+      cookies().set('role', exestingUser.role);
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      exestingUser.image && cookies().set('provider', exestingUser.image);
+      // user.role = "ADMIN";
+
       return true;
     },
     async session({ token, session }) {
-      console.log(token);
+      // console.log(token);
       if (token.sub && session.user) {
         session.user.id = token.sub;
       }
@@ -61,14 +61,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
       return session;
     },
-    async jwt({ token, user }) {
+    async jwt({ token }) {
       if (!token.sub) return token; // loged out
       const exestingUser = await getUserById(token.sub);
       if (!exestingUser) return token;
       token.role = exestingUser.role;
-      if(user) {
-        user.role = exestingUser.role
-      }
+      // if(user) {
+      //   user.role = exestingUser.role
+      // }
       return token;
     },
   },

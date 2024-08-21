@@ -33,8 +33,12 @@ const NewVerificationFormContent = () => {
   }, [onSubmit]);
 
   return (
-    <CardWrapper headerLabel="Confirmation de votre vérification" backButtonHref="/sign-in" 
-      variant='link' backButtonLabel="Revenir à la page de connexion">
+    <CardWrapper
+      headerLabel="Confirmation de votre vérification"
+      backButtonHref="/sign-in"
+      variant="link"
+      backButtonLabel="Revenir à la page de connexion"
+    >
       <div className="flex w-full items-center justify-center">
         {!success && !error && <BeatLoader />}
         <FormMessage type="ERROR" message={error} />

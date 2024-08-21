@@ -9,14 +9,15 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await auth();
+  const user = session?.user ?? undefined;
   return (
     <main className="flex h-screen w-full font-lato">
-      <Sidebar user={session?.user} />
+      <Sidebar user={user || undefined} />
       <div className="flex size-full flex-col">
         <div className="root-layout">
-          <Image src="/icons/bio.png" width={30} height={30} alt="logo" />
+          <Image src="/logofinal.png" width={75} height={75} alt="logo" />
           <div>
-            <MobileNav user={session?.user} />
+            <MobileNav user={session?.user || undefined} />
           </div>
         </div>
         {children}

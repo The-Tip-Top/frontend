@@ -1,24 +1,25 @@
-"use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use client';
 
 import { Line, Bar, Pie } from 'react-chartjs-2';
-import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, BarElement, ArcElement } from 'chart.js';
-import { useEffect, useState } from 'react';
-import { mockParticipations } from './mockdataTable';
-import { TrendingUp } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-
-Chart.register(
+import {
+  Chart,
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
-  BarElement,
-  ArcElement,
   Title,
   Tooltip,
-  Legend
-);
+  Legend,
+  BarElement,
+  ArcElement,
+} from 'chart.js';
+import { useEffect, useState } from 'react';
+import { mockParticipations } from './mockdataTable';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+
+Chart.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, ArcElement, Title, Tooltip, Legend);
 
 const ParticipationChart: React.FC = () => {
   const [period, setPeriod] = useState('week');
@@ -91,8 +92,18 @@ const ParticipationChart: React.FC = () => {
 
   const getCurrentMonthName = () => {
     const months = [
-      'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet',
-      'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+      'Janvier',
+      'Février',
+      'Mars',
+      'Avril',
+      'Mai',
+      'Juin',
+      'Juillet',
+      'Août',
+      'Septembre',
+      'Octobre',
+      'Novembre',
+      'Décembre',
     ];
     const now = new Date();
     return months[now.getMonth()];
@@ -101,11 +112,11 @@ const ParticipationChart: React.FC = () => {
   const transformData = (period: string) => {
     const participationCounts = {
       'En Attente': period === 'day' ? Array(31).fill(0) : period === 'week' ? Array(5).fill(0) : Array(12).fill(0),
-      'Remis': period === 'day' ? Array(31).fill(0) : period === 'week' ? Array(5).fill(0) : Array(12).fill(0),
-      'Annulé': period === 'day' ? Array(31).fill(0) : period === 'week' ? Array(5).fill(0) : Array(12).fill(0),
+      Remis: period === 'day' ? Array(31).fill(0) : period === 'week' ? Array(5).fill(0) : Array(12).fill(0),
+      Annulé: period === 'day' ? Array(31).fill(0) : period === 'week' ? Array(5).fill(0) : Array(12).fill(0),
     };
 
-    mockParticipations.forEach(p => {
+    mockParticipations.forEach((p) => {
       const date = new Date(p.createdAt);
       let index: number;
 
@@ -114,7 +125,8 @@ const ParticipationChart: React.FC = () => {
       } else if (period === 'week') {
         const weekNumber = Math.ceil(date.getDate() / 7);
         index = weekNumber - 1;
-      } else { // month
+      } else {
+        // month
         index = date.getMonth();
       }
 
@@ -127,16 +139,16 @@ const ParticipationChart: React.FC = () => {
       }
     });
 
-    const labels = period === 'day'
-      ? Array.from({ length: 31 }, (_, i) => `${i + 1}/${new Date().getMonth() + 1}`)
-      : period === 'week'
-      ? Array.from({ length: 5 }, (_, i) => `Semaine ${i + 1}`)
-      : Array.from({ length: 12 }, (_, i) => `Mois ${i + 1}`);
+    const labels =
+      period === 'day'
+        ? Array.from({ length: 31 }, (_, i) => `${i + 1}/${new Date().getMonth() + 1}`)
+        : period === 'week'
+          ? Array.from({ length: 5 }, (_, i) => `Semaine ${i + 1}`)
+          : Array.from({ length: 12 }, (_, i) => `Mois ${i + 1}`);
 
-    const totalParticipations = labels.map((_, i) => 
-      participationCounts['En Attente'][i] + 
-      participationCounts['Remis'][i] + 
-      participationCounts['Annulé'][i]
+    const totalParticipations = labels.map(
+      (_, i) =>
+        participationCounts['En Attente'][i] + participationCounts['Remis'][i] + participationCounts['Annulé'][i],
     );
 
     setLineData({
@@ -169,28 +181,32 @@ const ParticipationChart: React.FC = () => {
       ],
     });
 
-    setBarData(prevData => ({
+    setBarData((prevData) => ({
       ...prevData,
-      datasets: [{
-        ...prevData.datasets[0],
-        data: [
-          participationCounts['En Attente'].reduce((a, b) => a + b, 0),
-          participationCounts['Remis'].reduce((a, b) => a + b, 0),
-          participationCounts['Annulé'].reduce((a, b) => a + b, 0),
-        ],
-      }],
+      datasets: [
+        {
+          ...prevData.datasets[0],
+          data: [
+            participationCounts['En Attente'].reduce((a, b) => a + b, 0),
+            participationCounts['Remis'].reduce((a, b) => a + b, 0),
+            participationCounts['Annulé'].reduce((a, b) => a + b, 0),
+          ],
+        },
+      ],
     }));
 
-    setPieData(prevData => ({
+    setPieData((prevData) => ({
       ...prevData,
-      datasets: [{
-        ...prevData.datasets[0],
-        data: [
-          participationCounts['En Attente'].reduce((a, b) => a + b, 0),
-          participationCounts['Remis'].reduce((a, b) => a + b, 0),
-          participationCounts['Annulé'].reduce((a, b) => a + b, 0),
-        ],
-      }],
+      datasets: [
+        {
+          ...prevData.datasets[0],
+          data: [
+            participationCounts['En Attente'].reduce((a, b) => a + b, 0),
+            participationCounts['Remis'].reduce((a, b) => a + b, 0),
+            participationCounts['Annulé'].reduce((a, b) => a + b, 0),
+          ],
+        },
+      ],
     }));
 
     setEvolutionData({
@@ -375,7 +391,7 @@ const ParticipationChart: React.FC = () => {
                 <Pie data={pieData} options={optionsPie} />
               </div>
               <div className="border p-4">
-                <h3 className="text-lg font-semibold mb-2">Participations par Catégorie</h3>
+                <h3 className="text-[15px] md:text-lg font-semibold mb-2">Participations par Catégorie</h3>
                 <Bar data={barData} options={optionsBar} />
               </div>
             </div>
@@ -395,7 +411,7 @@ const ParticipationChart: React.FC = () => {
                 <Pie data={pieData} options={optionsPie} />
               </div>
               <div className="border p-4">
-                <h3 className="text-lg font-semibold mb-2">Participations par Catégorie</h3>
+                <h3 className="text-[15px] md:text-lg font-semibold mb-2">Participations par Catégorie</h3>
                 <Bar data={barData} options={optionsBar} />
               </div>
             </div>
@@ -414,9 +430,9 @@ const ParticipationChart: React.FC = () => {
                 <h3 className="text-lg font-semibold mb-2">Répartition des Participations</h3>
                 <Pie data={pieData} options={optionsPie} />
               </div>
-              <div className="border p-4">
-                <h3 className="text-lg font-semibold mb-2">Participations par Catégorie</h3>
-                <Bar data={barData} options={optionsBar} />
+              <div className="border p">
+                <h3 className="text-[15px] md:text-lg font-semibold mb-2">Participations par Catégorie</h3>
+                <Bar data={barData} options={optionsBar} className="h-[200px]" />
               </div>
             </div>
             <div className="border p-4 mt-4">
@@ -429,9 +445,8 @@ const ParticipationChart: React.FC = () => {
       <CardFooter>
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
-            
             <div className="flex items-center gap-2 leading-none text-muted-foreground">
-              Affichage de l'état des participations pour {currentMonth} 2024
+              Affichage de l&apos;état des participations pour {currentMonth} 2024
             </div>
           </div>
         </div>

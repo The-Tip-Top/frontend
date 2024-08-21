@@ -6,24 +6,24 @@ import { cn, formatDateTime, getColor } from '@/lib/utils';
 
 interface StatusBadgeProps {
   status: string;
+  frStatus?: string;
 }
 interface ParticipationTableProps {
   participations: Participation[];
 }
 
-const StatusBadge = ({ status }: StatusBadgeProps) => {
+export const StatusBadge = ({ status, frStatus = '' }: StatusBadgeProps) => {
   const { borderColor, backgroundColor, textColor, chipBackgroundColor } =
     participationStatusStyles[status as keyof typeof participationStatusStyles] || participationStatusStyles.default;
   return (
     <div className={cn('status-badge', borderColor, chipBackgroundColor)}>
       <div className={cn('size-2 rounded-full', backgroundColor)} />
-      <p className={cn('text-[12px] font-medium ', textColor)}>{status} </p>
+      <p className={cn('text-[12px] font-medium ', textColor)}>{frStatus || status} </p>
     </div>
   );
 };
 
 const ParticipationTable = ({ participations }: ParticipationTableProps) => {
-
   return (
     <Table>
       <TableHeader className="bg-[#f9fafb] ">
@@ -31,8 +31,8 @@ const ParticipationTable = ({ participations }: ParticipationTableProps) => {
           <TableHead className="p-2">Participant</TableHead>
           <TableHead className="p-2">Ticket</TableHead>
           <TableHead className="p-2">Statut</TableHead>
-          <TableHead className="p-2 max-md:hidden">Date de Prticipation</TableHead>
-          <TableHead className="p-2 max-md:hidden">Date de Remise</TableHead>
+          <TableHead className="p-2">Date de Prticipation</TableHead>
+          <TableHead className="p-2">Date de Remise</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
