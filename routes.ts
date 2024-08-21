@@ -1,8 +1,23 @@
+export const publicRoutes = [
+  '/home',
+  '/home/contact',
+  '/home/cadeau',
+  '/home/cgu',
+  '/home/mentions-legales',
+  '/new-verification',
+  '/employe/check-page',
+  '/employe/participation-details',
+];
 
-export const publicRoutes = ['/home', '/home/contact', '/home/cadeau',
-    '/home/cgu', '/home/mentions-legales', '/new-verification', '/admin/chart-data'];
-
-export const authRoutes = ['/sign-up', '/sign-in', '/error', '/home/history'];
+export const authRoutes = [
+  '/sign-up',
+  '/sign-in',
+  '/error',
+  '/account/history',
+  '/admin/sign-in',
+  '/admin',
+  '/admin/chart-data',
+];
 
 export const apiAuthPrefix = '/api/auth';
 

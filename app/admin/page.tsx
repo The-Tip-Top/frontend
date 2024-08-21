@@ -1,27 +1,27 @@
+import { auth } from '@/auth';
 import HeaderContainer from '@/components/HeaderContainer';
 import RecentParticipations from '@/components/RecentParticipations';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { participationStatusStyles } from '@/constants';
 import { CountingTicketResponse, getAllParticipations, getCountTicketByStatus } from '@/lib/actions/admin.action';
-import { SearchParamProps } from '@/lib/types/types';
+import { EParticipationStatus, SearchParamProps } from '@/lib/types/types';
 import { cn } from '@/lib/utils';
-import { EGiftStatus } from '@prisma/client';
 
 interface CustopnCardProps {
-  status: EGiftStatus;
+  status: EParticipationStatus;
   title: string;
 }
 
 const Home = async ({ searchParams: { page } }: SearchParamProps) => {
   const currentPage = Number(page as string) || 1;
-  const loggedIn = { firstName: 'Massi' };
-
+  const user = (await auth())?.user;
   const participation = await getAllParticipations();
   const countingTickets: CountingTicketResponse | undefined = await getCountTicketByStatus();
-
+  console.log('----- total participations ', participation?.length);
   const CustomCards = ({ status, title }: CustopnCardProps) => {
     const { borderColor, textColor, chipBackgroundColor } =
-      participationStatusStyles[status as keyof typeof participationStatusStyles] || participationStatusStyles.default;
+      participationStatusStyles[status as unknown as keyof typeof participationStatusStyles] ||
+      participationStatusStyles.default;
     return (
       <Card x-chunk="dashboard-05-chunk-3" className={cn(borderColor, chipBackgroundColor)}>
         <CardHeader className="pb-2">
@@ -37,15 +37,19 @@ const Home = async ({ searchParams: { page } }: SearchParamProps) => {
 
   return (
     <section className="home">
-      {/* {session && ( */}
       <div className="home-content">
         <header className="home-header">
-          <HeaderContainer title="Welcome" user={'Gest'} subtext="SBienvenue sur votre tableau de bord" />
+          <HeaderContainer
+            title="Bienvenue"
+            user={user?.name || ''}
+            subtext="Bienvenue dans l'espace administrateur de votre jeux concour!"
+          />
         </header>
-        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4">
-          <CustomCards status={EGiftStatus.WAITING} title={'Ticket en attente'} />
-          <CustomCards status={EGiftStatus.GIFT_GIVEN} title={'Ticket remis'} />
-          <CustomCards status={EGiftStatus.CANCELLED} title={'Ticket annulé'} />
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
+          <CustomCards status={EParticipationStatus.WAITING} title={'Ticket restant'} />
+          <CustomCards status={EParticipationStatus.CONCLUDED} title={'Cadeaux distribués'} />
+          <CustomCards status={EParticipationStatus.CURRENT_PARTICIPATION} title={'En cours'} />
+          <CustomCards status={EParticipationStatus.PARTICIPATION} title={'Total Participation'} />
         </div>
         <RecentParticipations page={currentPage} participations={participation ?? []} />
       </div>
