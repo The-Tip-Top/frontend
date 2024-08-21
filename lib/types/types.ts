@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 
 export enum UserRole {
-  ADMIN,
-  USER,
-  EMPLOYEE,
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+  EMPLOYEE = 'EMPLOYEE',
 }
 
 export type SearchParamProps = {
@@ -12,9 +12,19 @@ export type SearchParamProps = {
 };
 
 export enum EGiftStatus {
-  GIFT_GIVEN,
-  WAITING,
-  CANCELLED,
+  WAITING = 'WAITING',
+  GIFT_GIVEN = 'GIFT_GIVEN',
+  CANCELLED = 'CANCELLED',
+  PARTICIPATION = 'PARTICIPATION',
+  CURRENT_PARTICIPATION = 'CURRENT_PARTICIPATION',
+}
+
+export enum EParticipationStatus {
+  WAITING = 'WAITING',
+  CANCELLED = 'CANCELLED',
+  CONCLUDED = 'CONCLUDED',
+  PARTICIPATION = 'PARTICIPATION',
+  CURRENT_PARTICIPATION = 'CURRENT_PARTICIPATION',
 }
 
 export interface Gift {
@@ -26,9 +36,14 @@ export interface Gift {
   ticket?: Ticket;
 }
 
+export const frStatus: Partial<Record<EGiftStatus, string>> = {
+  GIFT_GIVEN: 'Cadeau Remis',
+  WAITING: 'Cadeau en Attente',
+};
+
 export interface Ticket {
-  ticket: string;
   ticketId: string;
+  code?: string;
   maxValidDate: string;
   isValid: string;
   ticketUserId?: string;
@@ -36,6 +51,7 @@ export interface Ticket {
   status: EGiftStatus;
   user?: User | null;
   gift?: Gift | null;
+  participation?: Participation | null;
 }
 
 export interface User {
@@ -60,8 +76,8 @@ export interface User {
 
 export interface Participation {
   participationId: string;
-  createdAt: Date;
-  submitedAt: Date;
+  createdAt: Date | string;
+  submitedAt: Date | string;
 
   participationTicketId: string;
   ticket: Ticket;

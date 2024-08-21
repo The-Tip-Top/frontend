@@ -11,7 +11,7 @@ interface CardWrapperProps {
   backButtonLabel: string;
   backButtonHref: string;
   showSocial?: boolean;
-  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" ;
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
 }
 
 const CardWrapper = ({ children, headerLabel, backButtonHref, backButtonLabel, variant }: CardWrapperProps) => {

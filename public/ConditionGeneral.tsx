@@ -53,7 +53,8 @@ export const conditionGeneral = (
         Un délégué à la protection des données : Mr Bourdon,{' '}
         <a href="mailto:workflowproject.g2@gmail.com" className="text-blue-600 underline">
           workflowproject.g2@gmail.com
-        </a>, est à votre disposition pour toute question relative à la protection de vos données personnelles.
+        </a>
+        , est à votre disposition pour toute question relative à la protection de vos données personnelles.
       </li>
     </ul>
 
@@ -104,7 +105,9 @@ export const conditionGeneral = (
       toutes les mesures appropriées pour protéger votre matériel et vos propres données notamment d&apos;attaques
       virales par Internet. Vous êtes par ailleurs seul responsable des sites et données que vous consultez.
     </p>
-    <p className="mb-4">L&apos;éditeur ne pourra être tenu responsable en cas de poursuites judiciaires à votre encontre :</p>
+    <p className="mb-4">
+      L&apos;éditeur ne pourra être tenu responsable en cas de poursuites judiciaires à votre encontre :
+    </p>
     <ul className="list-disc list-inside mb-8">
       <li className="mb-2">du fait de l&apos;usage du site ou de tout service accessible via Internet ;</li>
       <li className="mb-2">du fait du non-respect par vous des présentes conditions générales.</li>

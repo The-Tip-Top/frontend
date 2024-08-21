@@ -1,20 +1,22 @@
 'use client';
 
 import { sidebarLinks } from '@/constants';
-import { User } from '@/lib/types/types';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import FooterAdmin from './FooterAdmin';
 import LogoutButton from './auth/logoutButton';
+import { ExtendedUser } from '@/auth';
 
-interface SiderbarProps {
-  user: User | null | unknown;
+export interface SiderbarProps {
+  user?: ExtendedUser | undefined;
+  role?: 'ADMIN' | 'USER' | 'EMPLOYEE';
 }
 
 const Sidebar = ({ user }: SiderbarProps) => {
-  console.log(user);
+  if (!user) return null;
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const pathname = usePathname();
   return (
     <section className="sidebar">
@@ -27,7 +29,7 @@ const Sidebar = ({ user }: SiderbarProps) => {
             alt="The tip top logo"
             className="size-[50px] max-xl:size-14"
           />
-          <h1 className="sidebar-logo">TheTipTop </h1>
+          <h1 className="sidebar-logo">Thé Tip-Top </h1>
         </Link>
 
         {sidebarLinks?.map((item) => {
@@ -40,12 +42,7 @@ const Sidebar = ({ user }: SiderbarProps) => {
               key={item.label}
             >
               <div className="relative size-6">
-                <Image
-                  src={item.icon}
-                  fill
-                  alt={item.label}
-                  className={cn({ 'brightness-[3] invert-0': isActive })}
-                />
+                <Image src={item.icon} fill alt={item.label} className={cn({ 'brightness-[3] invert-0': isActive })} />
               </div>
               <p
                 className={cn('sidebar-label text-sm', {
@@ -58,8 +55,8 @@ const Sidebar = ({ user }: SiderbarProps) => {
           );
         })}
       </nav>
-      <LogoutButton>
-        <FooterAdmin name={"admin"} email={"admin@gmail.com"} type="mobile" />
+      <LogoutButton user={user}>
+        <FooterAdmin name={'admin'} email={'admin@gmail.com'} type="mobile" />
       </LogoutButton>
     </section>
   );

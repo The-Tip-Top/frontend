@@ -3,13 +3,12 @@
 
 import { z } from 'zod';
 import { signInSchema, signUpSchema } from '../utils';
-import { DEFAULT_REDIRECT_LOGIN } from '@/routes';
 import { AuthError } from 'next-auth';
 import { auth, signIn, signOut } from '@/auth';
 import { myFetch } from '../hooks/useFetch';
 import { ResponseMessageWithStatus } from './newVerificationToken.action';
 import { cookies } from 'next/headers';
-import { Ticket } from '../types/types';
+import { EGiftStatus, Gift, Ticket } from '../types/types';
 import { User } from '@prisma/client';
 
 export const Register = async (userData: z.infer<typeof signUpSchema>) => {
@@ -34,31 +33,24 @@ export const Login = async (data: z.infer<typeof signInSchema>) => {
     if (!validData.success) return { error: 'Invalid inputs' };
 
     const { email, password } = validData.data;
-    console.log('--- login info ', email, password);
+    // console.log('--- login info ', email, password);
 
     const verificationLogin = await myFetch<ResponseMessageWithStatus>(`verificationLogin/${email}`, {
       method: 'POST',
       body: {},
     });
-    console.log('login verification ', verificationLogin);
+    // console.log('login verification ', verificationLogin);
     if (verificationLogin.status !== 200) {
       return { error: verificationLogin.error };
     }
+    const user = (await auth())?.user;
+    console.log('----------user --------', user);
     await signIn('credentials', {
       email,
       password,
-      redirectTo: DEFAULT_REDIRECT_LOGIN,
+      redirectTo: '/account/history',
     });
 
-    const user = (await auth())?.user;
-    if(user) {
-      cookies().set('userId', user?.id as string, {
-        path: '/',
-        maxAge: 3600 * 5,
-        secure: true,
-      });
-    }
-    console.log("sign in userrrrr ", user)
     return { success: verificationLogin.success };
   } catch (err) {
     if (err instanceof AuthError) {
@@ -74,7 +66,7 @@ export const Login = async (data: z.infer<typeof signInSchema>) => {
 };
 
 export const getUserByEmail = async (email: string) => {
-    return await myFetch<User>(`users/email/${email}`, {});
+  return await myFetch<User>(`users/email/${email}`, {});
 };
 export const getUserById = async (id: string) => {
   try {
@@ -83,23 +75,81 @@ export const getUserById = async (id: string) => {
     return null;
   }
 };
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 interface LinkTicketResponse {
-  tickets: Ticket[]
+  tickets: Ticket[];
 }
-export  const linkTicket = async (ticketId: string) => {
+export const linkTicket = async (ticketId: string) => {
   // const userId = cookies().get('userId')?.value
   const userId = (await auth())?.user?.id;
-  console.log("user id ===== ", userId, "------ ticket id ", ticketId)
   const bodyData = { id: userId, ticketId: ticketId };
-  const ticketsUser = await myFetch<LinkTicketResponse>('linkTicketUser', {
-    method: 'PUT',
-    body: bodyData
-  })
-    console.log("----- link ticket ", ticketsUser);
-    // setnewGigt(ticketsUser.tickets[0].gift ?? null)
-  
+  if (userId && ticketId) {
+    const linktiketResponse = await myFetch<ResponseMessageWithStatus>('linkTicketUser', {
+      method: 'PUT',
+      body: bodyData,
+    });
+    console.log('----- link ticket ', linktiketResponse);
+    return linktiketResponse;
+  }
+  return null;
+};
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+interface GenericResponse<T> {
+  data: T | undefined;
+  status: number;
+  success?: string;
+  error?: string;
 }
 
+export const getUserTickets = async () => {
+  const userId = (await auth())?.user?.id;
+  if (userId) {
+    const userTickets = await myFetch<Ticket[]>(`userTikets/${userId}`, {});
+    console.log('errorrrr ', userTickets);
+    if (userTickets) {
+      return userTickets;
+    }
+  }
+  return null;
+};
+
+export const verifyCodeTicket = async (code: string) => {
+  if (code) {
+    const ticket = await myFetch<Ticket>(`tickets/${code}`, {});
+    console.log('errorrrr ', ticket);
+    if (ticket) {
+      return ticket;
+    }
+  }
+  return null;
+};
+export const getOneTicket = async (id: string) => {
+  if (id) {
+    const ticket = await myFetch<Ticket>(`tickets/id/${id}`, {});
+    console.log('errorrrr ', ticket);
+    if (ticket) {
+      return ticket;
+    }
+  }
+  return null;
+};
+
+export const updateParticipationStatus = async (id: string, status: EGiftStatus) => {
+  if (id) {
+    const participation = await myFetch<Gift>(`participations/${id}`, {
+      method: 'PUT',
+      body: { status: status },
+    });
+    console.log('errorrrr ', participation);
+    if (participation) {
+      return participation;
+    }
+  }
+  return null;
+};
+
 export const logoutAccount = async () => {
-  await signOut()
-}
+  cookies().delete('role');
+  await signOut();
+};

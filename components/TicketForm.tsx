@@ -1,34 +1,35 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Ticket } from '@prisma/client';
 import { myFetch } from '@/lib/hooks/useFetch';
 import { useRouter } from 'next/navigation';
+import FormMessage from '@/components/FormMessage';
 
 export const TicketForm = () => {
   const router = useRouter();
-
+  const [error, setError] = useState('');
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const code = (formData.get('code') as string).trim();
-
-    if (!code) {
-      alert('Veuillez entrer un code valide');
+    if (code.length !== 10) {
+      setError('Veuillez entrer un code valide');
       return;
     }
 
     try {
       const response = await myFetch<Ticket>(`tickets/${code.trim()}`, {});
-      console.log("response tocket ", response)
+      console.log('response tocket ', response);
       if (response) {
         router.push(`/home/cadeau?ticketId=${response.ticketId}`);
       } else {
-        alert('Ticket non valide. Veuillez entrer un code valide.');
+        setError('Ticket non valide. Veuillez entrer un code valide.');
+        // alert('Ticket non valide. Veuillez entrer un code valide.');
       }
     } catch (error) {
       console.error('Erreur lors de la vérification du ticket:', error);
-      alert('Une erreur est survenue. Veuillez réessayer.');
+      setError('Une erreur est survenue. Veuillez réessayer.');
     }
   };
 
@@ -44,6 +45,7 @@ export const TicketForm = () => {
           className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8FB43A] transition"
           required
         />
+        <FormMessage type="ERROR" message={error} />
         <button
           type="submit"
           className="bg-[#8FB43A] text-white px-4 py-3 rounded-lg hover:bg-green-700 transition duration-200 font-semibold"
