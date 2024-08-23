@@ -8,8 +8,8 @@ import { auth, signIn, signOut } from '@/auth';
 import { myFetch } from '../hooks/useFetch';
 import { ResponseMessageWithStatus } from './newVerificationToken.action';
 import { cookies } from 'next/headers';
-import { EGiftStatus, Gift, Ticket } from '../types/types';
-import { User } from '@prisma/client';
+import { EGiftStatus, Gift, Ticket, User } from '../types/types';
+// import { User } from '@prisma/client';
 
 export const Register = async (userData: z.infer<typeof signUpSchema>) => {
   console.log(userData);

@@ -18,7 +18,7 @@ const Home: React.FC = () => {
         en sachet, thé bio en boîte.
       </h1>
       <div className="relative w-full h-96 lg:h-[500px]">
-        <Image src="/headNouvel.png" alt="Image du jeu-concours" layout="fill" objectFit="cover" />
+        <Image src="/headNouvel.png" alt="Image du jeu-concours" fill style={{ objectFit: 'cover' }} />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-center text-white p-4 mt-8 lg:mt-16">
           <h2 className="text-xl sm:text-2xl lg:text-4xl font-bold mb-4">Participez à notre jeu-concours exclusif !</h2>

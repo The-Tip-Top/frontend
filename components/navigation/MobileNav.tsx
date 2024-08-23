@@ -1,15 +1,16 @@
 'use client';
 
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { sidebarLinks } from '@/constants';
-import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import FooterAdmin from '@/components/FooterAdmin';
 import { Separator } from '@/components/ui/separator';
-import LogoutButton from './auth/logoutButton';
+
+import { sidebarLinks } from '@/constants';
+import { cn } from '@/lib/utils';
 import { ExtendedUser } from '@/auth';
+import FooterAdmin from '@/components/FooterAdmin';
+import LogoutButton from '@/components/auth/logoutButton';
 
 interface MobileNavProps {
   user: ExtendedUser | undefined;

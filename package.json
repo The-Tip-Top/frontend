@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate  && next build",
     "start": "next start",
     "lint": "next lint",
     "lint-staged": "lint-staged",
@@ -24,6 +24,7 @@
     "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-tabs": "^1.1.0",
+    "@tanstack/react-table": "^8.20.1",
     "@typescript-eslint/eslint-plugin": "^8.0.1",
     "@typescript-eslint/parser": "^8.0.1",
     "bcryptjs": "^2.4.3",
@@ -31,6 +32,8 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cors": "^2.8.5",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2",
     "lint-staged": "^15.2.8",
     "lucide-react": "^0.408.0",
     "next": "14.2.5",
@@ -44,9 +47,11 @@
     "react-icons": "^5.2.1",
     "react-spinners": "^0.14.1",
     "resend": "^3.5.0",
+    "sharp": "^0.33.5",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "uuid": "^10.0.0",
+    "xlsx": "^0.18.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {

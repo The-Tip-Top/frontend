@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { SiderbarProps } from './Sidebar';
+import { SiderbarProps } from '@/components/navigation/Sidebar';
 
 const NavBar = ({ user, role = 'USER' }: SiderbarProps) => {
   return (

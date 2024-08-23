@@ -1,6 +1,6 @@
 import { auth } from '@/auth';
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import Header from '@/components/navigation/Header';
 
 export default async function RootLayout({
   children,
