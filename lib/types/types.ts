@@ -11,6 +11,19 @@ export type SearchParamProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
+export interface StatusBadgeProps {
+  status: string;
+  frStatus?: string;
+}
+export interface ParticipationTableProps {
+  participations: Participation[];
+}
+
+export interface RecentParticipationsProps {
+  participations: Participation[];
+  page: number;
+}
+
 export enum EGiftStatus {
   WAITING = 'WAITING',
   GIFT_GIVEN = 'GIFT_GIVEN',

@@ -1,27 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { participationStatusStyles } from '@/constants';
-import { EGiftStatus, Participation } from '@/lib/types/types';
-import { cn, formatDateTime, getColor } from '@/lib/utils';
-
-interface StatusBadgeProps {
-  status: string;
-  frStatus?: string;
-}
-interface ParticipationTableProps {
-  participations: Participation[];
-}
-
-export const StatusBadge = ({ status, frStatus = '' }: StatusBadgeProps) => {
-  const { borderColor, backgroundColor, textColor, chipBackgroundColor } =
-    participationStatusStyles[status as keyof typeof participationStatusStyles] || participationStatusStyles.default;
-  return (
-    <div className={cn('status-badge', borderColor, chipBackgroundColor)}>
-      <div className={cn('size-2 rounded-full', backgroundColor)} />
-      <p className={cn('text-[12px] font-medium ', textColor)}>{frStatus || status} </p>
-    </div>
-  );
-};
+import { EGiftStatus, Participation, ParticipationTableProps } from '@/lib/types/types';
+import {  formatDateTime, getColor } from '@/lib/utils';
+import { StatusBadge } from './StatusBadge';
 
 const ParticipationTable = ({ participations }: ParticipationTableProps) => {
   return (
