@@ -1,30 +1,31 @@
 import NextAuth from 'next-auth';
-import { apiAuthPrefix, authRoutes, DEFAULT_REDIRECT_LOGIN, publicRoutes } from './routes';
-
 import Credentials from 'next-auth/providers/credentials';
-import type { NextAuthConfig } from 'next-auth';
-import { getUserByEmail } from './lib/actions/auth.action';
 import bcrypt from 'bcryptjs';
+import { cookies } from 'next/headers';
+import { apiAuthPrefix, authRoutes, DEFAULT_REDIRECT_LOGIN, publicRoutes } from './routes';
+import { getUserByEmail } from './lib/actions/auth.action';
 import { signInSchema } from './lib/utils';
+import type { NextAuthConfig } from 'next-auth';
 
 const authConfig = {
   providers: [
     Credentials({
-      async authorize(credential) {
-        const validatedFields = signInSchema.safeParse(credential);
-        if (validatedFields.success) {
-          const { email, password } = validatedFields.data;
-          const user = await getUserByEmail(email);
-          if (!user || !user.password) return null;
+      async authorize(credentials) {
+        const validatedFields = signInSchema.safeParse(credentials);
+        if (!validatedFields.success) return null;
 
-          const passwordCheck = await bcrypt.compare(password, user.password);
+        const { email, password } = validatedFields.data;
+        const user = await getUserByEmail(email);
 
-          if (passwordCheck) return user;
-        }
-        return null;
+        if (!user || !user.password) return null;
+
+        const passwordCheck = await bcrypt.compare(password, user.password);
+        if (!passwordCheck) return null;
+
+        return user;
       },
     }),
-    // Google, Facebook
+    // Other providers (Google, Facebook, etc.)
   ],
 } satisfies NextAuthConfig;
 
@@ -41,26 +42,45 @@ export const {
 export default auth((req) => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
-  // Logged in users are authenticated, otherwise redirect to login page
+  const userRole = cookies().get('role')?.value;
+  const connectedWithProvider = cookies().get('provider')?.value;
+
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+  const isHomeRoute = DEFAULT_REDIRECT_LOGIN.includes(nextUrl.pathname);
+  const isAccountRoute = nextUrl.pathname.startsWith('/account');
+
+  if (isApiAuthRoute) {
+    return undefined;
+  }
 
   if (nextUrl.pathname === '/') {
     return Response.redirect(new URL('/home', nextUrl));
   }
-  if (isApiAuthRoute) {
-    return undefined;
+
+  if (!isLoggedIn && isAuthRoute && nextUrl.pathname.startsWith('/admin') && nextUrl.pathname !== '/admin/sign-in') {
+    return Response.redirect(new URL('/admin/sign-in', nextUrl));
   }
-  if (isAuthRoute) {
-    if (isLoggedIn) {
-      return Response.redirect(new URL(DEFAULT_REDIRECT_LOGIN, nextUrl));
+
+  if (isAuthRoute && !isHomeRoute) {
+    if (isLoggedIn && userRole === 'ADMIN' && !nextUrl.pathname.startsWith('/admin')) {
+      return Response.redirect(new URL('/admin', nextUrl));
+    }
+    if (isLoggedIn && (userRole === 'USER' || connectedWithProvider) && !nextUrl.pathname.includes('account')) {
+      return Response.redirect(new URL('/account/history', nextUrl));
+    }
+
+    if (!isLoggedIn && (isPublicRoute || isAccountRoute)) {
+      return Response.redirect(new URL('/home', nextUrl));
     }
     return undefined;
   }
+
   if (!isLoggedIn && !isPublicRoute) {
     return Response.redirect(new URL('/sign-in', nextUrl));
   }
+
   return undefined;
 });
 

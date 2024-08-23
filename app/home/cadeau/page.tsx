@@ -21,7 +21,7 @@ const CadeauPageContent = () => {
     const fetchGifts = async () => {
       try {
         const response = await myFetch<Gift[]>('gifts', {});
-        console.log("--- gifts ", response)
+        console.log('--- gifts ', response);
         if (response) {
           setGifts(response);
         } else {
@@ -29,8 +29,7 @@ const CadeauPageContent = () => {
         }
         myFetch<Ticket>(`tickets/id/${ticketId}`)
           .then((res) => setTicket(res))
-          .catch((err) => console.log(err))
-
+          .catch((err) => console.log(err));
       } catch (error) {
         console.error('Erreur:', error);
       } finally {
@@ -42,8 +41,8 @@ const CadeauPageContent = () => {
   }, []);
 
   const handleValidate = () => {
-    console.log("--- ticket id storeg ", ticketId)
-    if(ticketId){
+    console.log('--- ticket id storeg ', ticketId);
+    if (ticketId) {
       localStorage.setItem('ticketId', ticketId);
     }
     // Redirection vers la page de connexion
