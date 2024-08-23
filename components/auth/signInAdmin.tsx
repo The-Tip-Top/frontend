@@ -14,6 +14,7 @@ import { PasswordField } from '../inputs/PasswordInput';
 import { signInSchema } from '@/lib/utils';
 import { BeatLoader } from 'react-spinners';
 import { LoginAdmin } from '@/lib/actions/admin.action';
+import { usePathname } from 'next/navigation';
 
 const SignInFormContent = () => {
   const [message, setMessage] = useState({
@@ -21,6 +22,7 @@ const SignInFormContent = () => {
     success: '',
   });
   const [isPending, setTransition] = useTransition();
+  const pathname = usePathname();
 
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
@@ -32,9 +34,10 @@ const SignInFormContent = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
+    const redirectTo = pathname?.includes('/admin') ? '/admin' : '/employe';
     try {
       setTransition(() => {
-        LoginAdmin(data).then((data) => {
+        LoginAdmin(data, redirectTo).then((data) => {
           setMessage({
             error: data?.error ?? '',
             success: data?.success ?? '',

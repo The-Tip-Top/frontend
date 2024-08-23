@@ -1,9 +1,9 @@
-import AuthForm from '@/components/auth/AuthForm';
+import AdminAuthForm from '@/components/auth/AdminAuthForm';
 
 const SignIn = () => {
   return (
     <section className="flex-center size-full max-sm:px-6 flex-row">
-      <AuthForm type="sign-in" />
+      <AdminAuthForm />
     </section>
   );
 };

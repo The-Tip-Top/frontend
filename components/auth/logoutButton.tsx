@@ -9,8 +9,10 @@ interface LogoutButtonProps {
 }
 
 const LogoutButton = ({ children, user }: LogoutButtonProps) => {
+  const redirectTo =
+    user?.role === 'ADMIN' ? '/admin/sign-in' : user?.role === 'EMPLOYEE' ? '/employe/sign-in' : '/sign-in';
   const onClick = async () => {
-    await signOut({ redirect: true, callbackUrl: user?.role === 'ADMIN' ? '/admin/sign-in' : '/sign-in' });
+    await signOut({ redirect: true, callbackUrl: redirectTo });
   };
 
   return (

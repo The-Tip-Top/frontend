@@ -5,8 +5,6 @@ export const publicRoutes = [
   '/home/cgu',
   '/home/mentions-legales',
   '/new-verification',
-  '/employe/check-page',
-  '/employe/participation-details',
 ];
 
 export const authRoutes = [
@@ -17,6 +15,9 @@ export const authRoutes = [
   '/admin/sign-in',
   '/admin',
   '/admin/chart-data',
+  '/employe/sign-in',
+  '/employe',
+  '/employe/participation-details',
 ];
 
 export const apiAuthPrefix = '/api/auth';
