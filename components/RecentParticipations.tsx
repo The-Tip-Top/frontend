@@ -1,12 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Pagination } from './Pagination';
-import ParticipationTable from './ParticipationTable';
-import { Participation } from '@/lib/types/types';
-
-interface RecentParticipationsProps {
-  participations: Participation[];
-  page: number;
-}
+import { Pagination } from '@/components/dataTable/Pagination';
+import { DataTable } from '@/components/dataTable/dataTable';
+import { RecentParticipationsProps } from '@/lib/types/types';
 
 const RecentParticipations = ({ page = 1, participations = [] }: RecentParticipationsProps) => {
   const rowsPerPage = 5;
@@ -17,10 +12,10 @@ const RecentParticipations = ({ page = 1, participations = [] }: RecentParticipa
   const currentParticipations = participations.slice(indexOfFirstParticipation, indexOfLastParticipation);
   return (
     <section className="recent-participations">
-      <header className="flex items-center justify-between">
-        <h2 className="recent-participations-label">Recent participation</h2>
+      <header className="flex items-center justify-between border shadow-sm px-1 py-2 rounded-sm">
+        <h2 className="recent-participations-label  ">Participations Recentes:</h2>
       </header>
-      <ParticipationTable participations={currentParticipations} />
+      <DataTable data={currentParticipations} />
       {totalPages > 1 && (
         <div className="my-4 w-full">
           <Pagination totalPages={totalPages} page={page} />

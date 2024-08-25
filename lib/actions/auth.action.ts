@@ -8,8 +8,8 @@ import { auth, signIn, signOut } from '@/auth';
 import { myFetch } from '../hooks/useFetch';
 import { ResponseMessageWithStatus } from './newVerificationToken.action';
 import { cookies } from 'next/headers';
-import { EGiftStatus, Gift, Ticket } from '../types/types';
-import { User } from '@prisma/client';
+import { EGiftStatus, Gift, Ticket, User } from '../types/types';
+// import { User } from '@prisma/client';
 
 export const Register = async (userData: z.infer<typeof signUpSchema>) => {
   console.log(userData);
@@ -106,7 +106,7 @@ export const getUserTickets = async () => {
   const userId = (await auth())?.user?.id;
   if (userId) {
     const userTickets = await myFetch<Ticket[]>(`userTikets/${userId}`, {});
-    console.log('errorrrr ', userTickets);
+    // console.log('errorrrr ', userTickets);
     if (userTickets) {
       return userTickets;
     }
@@ -117,7 +117,7 @@ export const getUserTickets = async () => {
 export const verifyCodeTicket = async (code: string) => {
   if (code) {
     const ticket = await myFetch<Ticket>(`tickets/${code}`, {});
-    console.log('errorrrr ', ticket);
+    // console.log('errorrrr ', ticket);
     if (ticket) {
       return ticket;
     }
@@ -127,7 +127,7 @@ export const verifyCodeTicket = async (code: string) => {
 export const getOneTicket = async (id: string) => {
   if (id) {
     const ticket = await myFetch<Ticket>(`tickets/id/${id}`, {});
-    console.log('errorrrr ', ticket);
+    // console.log('errorrrr ', ticket);
     if (ticket) {
       return ticket;
     }
@@ -141,7 +141,7 @@ export const updateParticipationStatus = async (id: string, status: EGiftStatus)
       method: 'PUT',
       body: { status: status },
     });
-    console.log('errorrrr ', participation);
+    // console.log('errorrrr ', participation);
     if (participation) {
       return participation;
     }

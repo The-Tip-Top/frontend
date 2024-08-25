@@ -2,24 +2,16 @@
 /* eslint-disable prettier/prettier */
 'use server';
 
-import { auth, signIn } from '@/auth';
+import { signIn } from '@/auth';
 import { myFetch } from '../hooks/useFetch';
 import { EParticipationStatus, Participation } from '../types/types';
 import { z } from 'zod';
 import { signInSchema } from '../utils';
 import { ResponseMessageWithStatus } from './newVerificationToken.action';
-import { cookies } from 'next/headers';
 import { AuthError } from 'next-auth';
 
 //http://localhost:3001/api/v1/admin/getAllParticipations
 
-// interface ParticipationResponse {
-//   participations: Participation[];
-// }
-
-// export interface CountingTicketResponse  {
-//   [key in keyof typeof EGiftStatus]: nuber;
-// }
 export type CountingTicketResponse = Record<keyof typeof EParticipationStatus, number>;
 export const getAllParticipations = async () => {
   try {
@@ -45,7 +37,7 @@ export const getCountTicketByStatus = async () => {
   }
 };
 
-export const LoginAdmin = async (data: z.infer<typeof signInSchema>) => {
+export const LoginAdmin = async (data: z.infer<typeof signInSchema>, redirectTo: string ) => {
   try {
     const validData = signInSchema.safeParse(data);
     if (!validData.success) return { error: 'Invalid inputs' };
@@ -60,21 +52,20 @@ export const LoginAdmin = async (data: z.infer<typeof signInSchema>) => {
     if (verificationLogin.status !== 200) {
       return { error: verificationLogin.error };
     }
-    const user = (await auth())?.user;
-    console.log('----------user --------', user);
+
     await signIn('credentials', {
       email,
       password,
-      redirectTo: '/admin',
+      redirectTo: redirectTo,
     });
 
-    if (user) {
-      cookies().set('userId', user?.id as string, {
-        path: '/',
-        maxAge: 3600 * 5,
-        secure: true,
-      });
-    }
+    // if (user) {
+    //   cookies().set('userId', user?.id as string, {
+    //     path: '/',
+    //     maxAge: 3600 * 5,
+    //     secure: true,
+    //   });
+    // }
     // console.log("sign in userrrrr ", user)
     return { success: verificationLogin.success };
   } catch (err) {

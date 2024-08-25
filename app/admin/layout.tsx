@@ -1,7 +1,7 @@
-import { auth } from '@/auth';
-import MobileNav from '@/components/MobileNav';
-import Sidebar from '@/components/Sidebar';
 import Image from 'next/image';
+import { auth } from '@/auth';
+import MobileNav from '@/components/navigation/MobileNav';
+import Sidebar from '@/components/navigation/Sidebar';
 
 export default async function RootLayout({
   children,

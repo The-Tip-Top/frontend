@@ -62,12 +62,25 @@ export default auth((req) => {
   if (!isLoggedIn && isAuthRoute && nextUrl.pathname.startsWith('/admin') && nextUrl.pathname !== '/admin/sign-in') {
     return Response.redirect(new URL('/admin/sign-in', nextUrl));
   }
+  // console.log('=========================== ', isLoggedIn, userRole);
+  if (
+    !isLoggedIn &&
+    isAuthRoute &&
+    nextUrl.pathname.startsWith('/employe') &&
+    nextUrl.pathname !== '/employe/sign-in'
+  ) {
+    return Response.redirect(new URL('/employe/sign-in', nextUrl));
+  }
 
   if (isAuthRoute && !isHomeRoute) {
-    if (isLoggedIn && userRole === 'ADMIN' && !nextUrl.pathname.startsWith('/admin')) {
+    if (isLoggedIn && userRole === 'ADMIN' && nextUrl.pathname !== '/admin') {
       return Response.redirect(new URL('/admin', nextUrl));
     }
-    if (isLoggedIn && (userRole === 'USER' || connectedWithProvider) && !nextUrl.pathname.includes('account')) {
+
+    if (isLoggedIn && userRole === 'EMPLOYEE' && nextUrl.pathname !== '/employe') {
+      return Response.redirect(new URL('/employe', nextUrl));
+    }
+    if (isLoggedIn && userRole === 'USER' && !nextUrl.pathname.includes('account')) {
       return Response.redirect(new URL('/account/history', nextUrl));
     }
 

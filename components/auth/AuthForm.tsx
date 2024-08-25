@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import SignUpForm from '@/components/auth/signUp';
-import SignInForm from './auth/signIn';
-import { Card } from './ui/card';
+import SignInForm from '@/components/auth/signIn';
+import { Card } from '@/components/ui/card';
 
 const AuthForm = ({ type }: { type: string }) => {
   return (

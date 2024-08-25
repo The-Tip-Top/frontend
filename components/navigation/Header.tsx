@@ -3,23 +3,23 @@
 import Link from 'next/link';
 import { ContactIcon, HomeIcon, Menu, SquareUser, LogOut } from 'lucide-react';
 import { FaUser } from 'react-icons/fa';
-
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Separator } from '@/components/ui/separator';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Sheet, SheetClose, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import NavBar from '@/components/Navbar';
-import Image from 'next/image';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-import LogoutButton from '@/components/auth/logoutButton';
-import { SiderbarProps } from './Sidebar';
-import { Separator } from './ui/separator';
-import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+
+import NavBar from '@/components/navigation/Navbar';
+import LogoutButton from '@/components/auth/logoutButton';
+import { SiderbarProps } from '@/components/navigation/Sidebar';
 
 const Header = ({ user, role }: SiderbarProps) => {
   const pathname = usePathname();
@@ -44,65 +44,6 @@ const Header = ({ user, role }: SiderbarProps) => {
         des ingrédients naturels
       </h1>
       <NavBar role={role} user={user} />
-      {/* <Sheet >
-        <SheetTrigger asChild>
-          <Button
-            variant="outline"
-            size="icon"
-            className="shrink-0 md:hidden"
-          >
-            <Menu className="h-5 w-5" />
-            <span className="sr-only">Toggle navigation menu</span>
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="left" className='bg-white'>
-          <nav className="grid gap-6 text-lg font-medium">
-            <Link
-              href={role === 'EMPLOYEE' ? '/employe/check-page' : '/home'}
-              className="flex items-center gap-2 text-lg font-semibold"
-            >
-              <Image
-                src="/logofinal.png"
-                alt="Thétiptop, votre boutique de thé bio à Nice"
-                width={90}
-                height={90}
-                className="bg-red-500"
-              />
-              <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">Thé Tip Top</h1>
-            </Link>
-
-            {role === 'EMPLOYEE' ? (
-              <Link
-                href="/employe/check-page'"
-                className="text-muted-foreground flex gap-6 transition-colors hover:text-foreground"
-              >
-                <HomeIcon />
-                Accueil
-              </Link>
-            ) : (
-              <>
-                <Link href="/home" className="text-muted-foreground flex gap-6 transition-colors hover:text-foreground">
-                  Accueil
-                </Link>
-                <Link
-                  href="/home/contact"
-                  className="text-muted-foreground flex gap-6  transition-colors hover:text-foreground"
-                >
-                  <ContactIcon />
-                  Contact
-                </Link>
-                <Link
-                  href="/sign-in"
-                  className="text-muted-foreground flex gap-6 items-center transition-colors hover:text-foreground"
-                >
-                  <SquareUser />
-                  Connexion
-                </Link>
-              </>
-            )}
-          </nav>
-        </SheetContent>
-      </Sheet> */}
       <section className="w-fulll max-w-[264px]">
         <Sheet>
           <SheetTrigger asChild>
@@ -113,13 +54,7 @@ const Header = ({ user, role }: SiderbarProps) => {
           </SheetTrigger>
           <SheetContent side="left" className="bg-white">
             <Link href="/home" className="cursor-pointer flex items-center gap-1 px-4">
-              <Image
-                src="/logofinal.png"
-                width={70}
-                height={70}
-                alt="Thé Tip-Top logo"
-                // className="bg-red-500"
-              />
+              <Image src="/logofinal.png" width={70} height={70} alt="Thé Tip-Top logo" />
               <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">Thé Tip-Top</h1>
             </Link>
             <Separator className="my-4 text-black-2 bg-gray-300" />

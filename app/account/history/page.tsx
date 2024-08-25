@@ -1,6 +1,6 @@
 'use client';
 
-import { StatusBadge } from '@/components/ParticipationTable';
+import { StatusBadge } from '@/components/StatusBadge';
 import { Card } from '@/components/ui/card';
 import { getUserTickets, linkTicket } from '@/lib/actions/auth.action';
 import { frStatus, Ticket } from '@/lib/types/types';

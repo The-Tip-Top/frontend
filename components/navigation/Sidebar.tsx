@@ -1,13 +1,14 @@
 'use client';
 
-import { sidebarLinks } from '@/constants';
-import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import FooterAdmin from './FooterAdmin';
-import LogoutButton from './auth/logoutButton';
+import { sidebarLinks } from '@/constants';
+import { cn } from '@/lib/utils';
+
 import { ExtendedUser } from '@/auth';
+import FooterAdmin from '@/components/FooterAdmin';
+import LogoutButton from '@/components/auth/logoutButton';
 
 export interface SiderbarProps {
   user?: ExtendedUser | undefined;
@@ -34,7 +35,6 @@ const Sidebar = ({ user }: SiderbarProps) => {
 
         {sidebarLinks?.map((item) => {
           const isActive = pathname === item.route; //|| pathname.startsWith(`${item.route}/`);
-          console.log(isActive, '=== ', pathname, '::: ', item.route);
           return (
             <Link
               className={cn('sidebar-link items-center', { 'bg-[#8FB43A]': isActive })}
@@ -56,7 +56,7 @@ const Sidebar = ({ user }: SiderbarProps) => {
         })}
       </nav>
       <LogoutButton user={user}>
-        <FooterAdmin name={'admin'} email={'admin@gmail.com'} type="mobile" />
+        <FooterAdmin name={user?.name ?? 'admin'} email={user?.email ?? 'admin@gmail.com'} type="mobile" />
       </LogoutButton>
     </section>
   );
