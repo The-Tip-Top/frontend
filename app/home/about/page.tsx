@@ -12,7 +12,7 @@ const About = () => {
         />
         <meta
           name="keywords"
-          content="Thé bio, Nice, boutique de thé, Thé Tip Top, jeu concours, thé de qualité, thé nature, cadeaux, bien-être"
+          content="Thé bio, Nice, boutique de thé à Nice, Thé Tip Top, jeu concours, thé de qualité, thé nature, cadeaux, bien-être, jeu-concours thé tip tip"
         />
         <meta property="og:title" content="À Propos de Thé Tip Top | Boutique de Thé Bio à Nice" />
         <meta property="og:description" content="Découvrez Thé Tip Top, votre boutique de thé bio à Nice, et participez à notre jeu-concours pour célébrer l'ouverture de notre 10ème boutique." />

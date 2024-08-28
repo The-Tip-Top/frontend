@@ -96,7 +96,7 @@ const Footer = () => {
             <div className="lg:w-1/4 mb-6 lg:mb-0">
               <h3 className="font-bold text-lg text-white mb-2">CGU/CGV</h3>
               <a href="/home/mentions-legales" className="block hover:underline text-sm mb-1 text-white">
-                Mentions légales
+                Mentions Légales
               </a>
               <a href="/home/cgu" className="block hover:underline text-sm text-white">
                 CGU / CGV

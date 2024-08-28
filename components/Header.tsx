@@ -78,7 +78,7 @@ const Header = ({ user, role }: SiderbarProps) => {
                   className="text-muted-foreground flex gap-6  transition-colors hover:text-foreground"
                 >
                   <ContactIcon />
-                  Jeu-concours
+                  Jeu Concours
                 </Link>
                 <Link
                   href="/home/about"

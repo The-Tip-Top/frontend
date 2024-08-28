@@ -36,7 +36,7 @@ const Blog = () => {
                         <li>Effectuez un achat de <strong>49€ ou plus</strong> dans l'une de nos boutiques ou sur notre site internet.</li>
                         <li>Sur votre ticket de caisse ou facture, un code unique de <strong>10 caractères</strong> (chiffres et lettres) sera imprimé.</li>
                     </ul>
-                    <p className="text-lg text-gray-700">Chaque code vous donne une chance de gagner un cadeau, et <strong>100% des tickets sont gagnants</strong>.
+                    <p className="text-lg text-gray-700">Chaque code est une chance de gagner un cadeau, et <strong>100% des tickets sont gagnants</strong>.
                         Le jeu démarre le <strong>1er septembre 2024</strong> et se termine le <strong>30 septembre 2024</strong>.
                         Vous disposez de 30 jours de plus à la fin du jeu concours pour vérifier vos tickets gagnants et réclamer vos lots.
                     </p>
