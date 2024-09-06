@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
 import { TicketForm } from '@/components/TicketForm';
-
+ 
 const Home: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -11,13 +11,13 @@ const Home: React.FC = () => {
     minutes: 0,
     seconds: 0,
   });
-
+ 
   useEffect(() => {
     const targetDate = new Date('2024-10-30T23:59:59'); // Date de fin du jeu
     const interval = setInterval(() => {
       const now = new Date();
       const difference = targetDate.getTime() - now.getTime();
-
+ 
       if (difference > 0) {
         setTimeLeft({
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -29,10 +29,10 @@ const Home: React.FC = () => {
         clearInterval(interval);
       }
     }, 1000);
-
+ 
     return () => clearInterval(interval);
   }, []);
-
+ 
   return (
     <>
       <h1 className="sr-only">
@@ -48,7 +48,7 @@ const Home: React.FC = () => {
 
       <div className="relative w-full h-96 lg:h-[500px]">
         <Image src="/newhead.png" alt="Image du jeu-concours" layout="fill" objectFit="cover" />
-
+ 
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-center text-white p-4">
           <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-4">Participez à notre jeu-concours exclusif !</h2>
           <p className="text-lg sm:text-xl lg:text-2xl mb-4">
@@ -85,7 +85,7 @@ const Home: React.FC = () => {
           </a>
         </div>
       </div>
-
+ 
       <section className="container mx-auto mt-8 lg:mt-16 px-4 lg:px-12">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-gray-800">Comment se déroule le jeu-concours</h2>
@@ -99,7 +99,7 @@ const Home: React.FC = () => {
             avec un code unique de 10 caractères. Entrez ce code sur notre application pour participer à notre tirage au
             sort et gagner des cadeaux incroyables !
           </p>
-
+ 
           <div className="flex justify-center mt-4">
             <ul className="text-lg text-[#8FB43A] font-semibold leading-relaxed text-left">
               <li className="flex items-center">
@@ -116,7 +116,7 @@ const Home: React.FC = () => {
               </li>
             </ul>
           </div>
-
+ 
           <p className="mt-4 text-lg text-gray-600 leading-relaxed">
             Vous avez 30 jours supplémentaires après la fin du concours pour vérifier vos gains en ligne.
           </p>
@@ -130,11 +130,11 @@ const Home: React.FC = () => {
           </p>
         </div>
       </section>
-
+ 
       <section id="ticket-form" className="container mx-auto my-16 px-4 lg:px-12 text-center">
         <TicketForm />
       </section>
-
+ 
       <section className="container mx-auto my-16 px-4 lg:px-12">
         <h2 className="text-3xl font-bold mb-8 text-center text-[#8FB43A]">Ce que disent nos clients</h2>
         <TestimonialCarousel />
@@ -142,5 +142,5 @@ const Home: React.FC = () => {
     </>
   );
 };
-
+ 
 export default Home;
