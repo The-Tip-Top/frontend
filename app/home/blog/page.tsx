@@ -11,10 +11,10 @@ const Blog = () => {
                 <meta property="og:title" content="Participez au Jeu-Concours Thé Tip Top | Thé Bio et Handmades" />
                 <meta property="og:description" content="Célébrez l'ouverture de notre 10ème boutique à Nice en participant à notre jeu-concours et remportez des cadeaux exceptionnels !" />
                 <meta property="og:image" content="/images/the-tip-top-concours.jpg" />
-                <meta property="og:url" content="http://localhost:3000/home" />
+                <meta property="og:url" content="https://dsp5-archi-022a-4-5-g2.fr/home" />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="http://localhost:3000/home" />
+                <link rel="canonical" href="https://dsp5-archi-022a-4-5-g2.fr/home" />
             </Head>
 
             <article className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
@@ -68,7 +68,7 @@ const Blog = () => {
                     <p className="text-base md:text-lg lg:text-xl text-gray-700 mb-4">La participation au jeu-concours se déroule en deux étapes simples :</p>
                     <ol className="list-decimal list-inside text-base md:text-lg lg:text-xl text-gray-700 space-y-2">
                         <li><strong>Achetez pour 49€ ou plus</strong> dans l'une de nos boutiques. Recevez un ticket de caisse ou une facture contenant votre code unique de 10 caractères.</li>
-                        <li><strong>Visitez notre <a href="http://localhost:3000/home" className="text-blue-600 underline">site internet</a> </strong> dédié au jeu-concours et entrez votre code pour découvrir instantanément votre gain.</li>
+                        <li><strong>Visitez notre <a href="https://dsp5-archi-022a-4-5-g2.fr/home" className="text-blue-600 underline">site internet</a> </strong> dédié au jeu-concours et entrez votre code pour découvrir instantanément votre gain.</li>
                     </ol>
                 </section>
 
@@ -114,7 +114,7 @@ const Blog = () => {
                 </p>
 
                 <p className="text-base md:text-lg lg:text-xl text-gray-700">
-                    Pour plus d'informations, vous pouvez nous contacter <a href="http://localhost:3000/home/contact" className="text-blue-600 underline">ici</a>.
+                    Pour plus d'informations, vous pouvez nous contacter <a href="https://dsp5-archi-022a-4-5-g2.fr/home/contact" className="text-blue-600 underline">ici</a>.
                 </p>
 
             </article>
