@@ -55,34 +55,57 @@ const Home: React.FC = () => {
             Thetiptop - Votre Boutique de Thé Bio à Nice | Jeu Concours pour l&apos;Ouverture
           </p>
           <div className="flex flex-col lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-6 mt-4">
-            <div className="flex flex-col items-center space-y-2 bg-[#767772] p-3 rounded-lg shadow-lg">
-              <h2 className="text-2xl font-semibold text-white mb-2">Temps restant avant le grand tirage</h2>
-              <div className="flex space-x-4 justify-center items-center bg-[#8FB43A] p-2 rounded-lg shadow-lg">
-                <div className="text-center">
-                  <p className="text-4xl font-bold">{String(timeLeft.days).padStart(2, '0')}</p>
-                  <span>Jours</span>
-                </div>
-                <div className="text-center">
-                  <p className="text-4xl font-bold">{String(timeLeft.hours).padStart(2, '0')}</p>
-                  <span>Heures</span>
-                </div>
-                <div className="text-center">
-                  <p className="text-4xl font-bold">{String(timeLeft.minutes).padStart(2, '0')}</p>
-                  <span>Minutes</span>
-                </div>
-                <div className="text-center">
-                  <p className="text-4xl font-bold">{String(timeLeft.seconds).padStart(2, '0')}</p>
-                  <span>Secondes</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <a
-            href="#ticket-form"
-            className="text-white bg-[#8FB43A] font-bold py-3 px-6 rounded-full transition-colors shadow-lg mt-4"
-          >
-            Participer maintenant
-          </a>
+  <div
+    className="flex flex-col items-center space-y-2 bg-[#505050] p-3 rounded-lg shadow-lg"
+    aria-labelledby="countdown-title"
+  >
+    <h2
+      id="countdown-title"
+      className="text-2xl font-semibold text-white mb-2"
+      style={{ color: '#F9F9F9' }}  // Assurer un bon contraste
+    >
+      Le grand tirage dans 
+    </h2>
+    <div
+      className="flex space-x-4 justify-center items-center  p-2 rounded-lg shadow-lg"
+      aria-live="polite"
+    >
+      <div className="text-center">
+        <p className="text-4xl font-bold" aria-label={`Il reste ${timeLeft.days} jours`}>
+          {String(timeLeft.days).padStart(2, '0')}
+        </p>
+        <span>Jours</span>
+      </div>
+      <div className="text-center">
+        <p className="text-4xl font-bold" aria-label={`Il reste ${timeLeft.hours} heures`}>
+          {String(timeLeft.hours).padStart(2, '0')}
+        </p>
+        <span>Heures</span>
+      </div>
+      <div className="text-center">
+        <p className="text-4xl font-bold" aria-label={`Il reste ${timeLeft.minutes} minutes`}>
+          {String(timeLeft.minutes).padStart(2, '0')}
+        </p>
+        <span>Minutes</span>
+      </div>
+      <div className="text-center">
+        <p className="text-4xl font-bold" aria-label={`Il reste ${timeLeft.seconds} secondes`}>
+          {String(timeLeft.seconds).padStart(2, '0')}
+        </p>
+        <span>Secondes</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a
+  href="#ticket-form"
+  className="text-white bg-[#6AA843] font-bold py-3 px-6 rounded-full transition-colors shadow-lg mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#505050] hover:bg-[#5A9437]"
+  aria-label="Cliquez ici pour participer au jeu concours"
+>
+  Participer maintenant
+</a>
+
         </div>
       </div>
  

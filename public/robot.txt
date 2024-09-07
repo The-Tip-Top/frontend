@@ -4,8 +4,10 @@ Disallow: /sign-up
 Disallow: /register
 
 Allow: /home
+Allow: /home/about
+Allow: /home/blog
 Allow: /home/contact
 Allow: /home/cgu
 Allow: /home/mentions-legales
 
-Sitemap: http://www.dsp5-archi-022a-4-5-g2.fr/sitemap.xml
+Sitemap: https://dsp5-archi-022a-4-5-g2.fr/sitemap.xml
