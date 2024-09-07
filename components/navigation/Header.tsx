@@ -84,6 +84,26 @@ const Header = ({ user, role }: SiderbarProps) => {
                       </Link>
 
                       <Link
+                        href="/home/blog"
+                        className={cn(`mobilenav-sheet_close w-full bg-gray-50`, {
+                          'bg-[#8FB43A]': pathname === '/home/blog',
+                        })}
+                      >
+                        <ContactIcon />
+                        Blog
+                      </Link>
+
+                      <Link
+                        href="/home/blog"
+                        className={cn(`mobilenav-sheet_close w-full bg-gray-50`, {
+                          'bg-[#8FB43A]': pathname === '/home/about',
+                        })}
+                      >
+                        <ContactIcon />
+                        About
+                      </Link>
+
+                      <Link
                         href="/account/history"
                         className={cn(`mobilenav-sheet_close w-full bg-gray-50`, {
                           'bg-[#8FB43A]': pathname === '/account/history',
