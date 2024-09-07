@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import { ExtendedUser } from '@/auth';
 import FooterAdmin from '@/components/FooterAdmin';
 import LogoutButton from '@/components/auth/logoutButton';
+import { Separator } from '../ui/separator';
 
 export interface SiderbarProps {
   user?: ExtendedUser | undefined;
@@ -22,7 +23,7 @@ const Sidebar = ({ user }: SiderbarProps) => {
   return (
     <section className="sidebar">
       <nav className="flex flex-col gap-4">
-        <Link href="/" className="mb-12 cursor-pointer flex items-center gap-2">
+        <Link href="/" className="mb-4 cursor-pointer flex items-center gap-2">
           <Image
             src="/icons/bio.png"
             width={50}
@@ -30,14 +31,14 @@ const Sidebar = ({ user }: SiderbarProps) => {
             alt="The tip top logo"
             className="size-[50px] max-xl:size-14"
           />
-          <h1 className="sidebar-logo">Thé Tip-Top </h1>
+          <h1 className="text-26  font-bold font-lato text-[#8FB43A]">Thé Tip Top</h1>
         </Link>
-
+        <Separator className="bg-gray-200" />
         {sidebarLinks?.map((item) => {
           const isActive = pathname === item.route; //|| pathname.startsWith(`${item.route}/`);
           return (
             <Link
-              className={cn('sidebar-link items-center', { 'bg-[#8FB43A]': isActive })}
+              className={cn('sidebar-link items-center', { '!bg-[#8FB43A]': isActive })}
               href={item.route}
               key={item.label}
             >
@@ -45,7 +46,7 @@ const Sidebar = ({ user }: SiderbarProps) => {
                 <Image src={item.icon} fill alt={item.label} className={cn({ 'brightness-[3] invert-0': isActive })} />
               </div>
               <p
-                className={cn('sidebar-label text-sm', {
+                className={cn('sidebar-label text-sm ', {
                   '!text-white': isActive,
                 })}
               >

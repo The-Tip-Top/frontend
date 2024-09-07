@@ -54,7 +54,8 @@ const Header = ({ user, role }: SiderbarProps) => {
           </SheetTrigger>
           <SheetContent side="left" className="bg-white">
             <Link href="/home" className="cursor-pointer flex items-center gap-1 px-4">
-              <Image src="/logofinal.png" width={70} height={70} alt="Thé Tip-Top logo" />
+              <Image src="/logofinal.png" width={70} height={70} alt="Thé Tip-Top logo" 
+                 />
               <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">Thé Tip-Top</h1>
             </Link>
             <Separator className="my-4 text-black-2 bg-gray-300" />

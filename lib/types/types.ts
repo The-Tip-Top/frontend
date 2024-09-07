@@ -11,6 +11,22 @@ export type SearchParamProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
+export interface TicketStats {
+  day: string;
+  remis: number;
+  annule: number;
+  enAttente: number;
+}
+export interface ParticipationStats {
+  day: string;
+  total: number;
+}
+
+export interface StatsResponse {
+  total: ParticipationStats[],
+  totalDetails: TicketStats[]
+}
+
 export interface StatusBadgeProps {
   status: string;
   frStatus?: string;

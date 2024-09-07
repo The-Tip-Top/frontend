@@ -13,7 +13,7 @@ const ErrorCard = () => {
         width={34}
         height={34}
         alt="The tip top logo"
-        className="size-[24px] mt-2 max-xl:size-14"
+        className="size-[24px] mt-2 max-xl:size-14 w-auto h-auto"
       />
       <CardHeader>
         <Label className="font-normal text-gray-600 text-xl">Something went wrong !!</Label>

@@ -31,12 +31,13 @@ const MobileNav = ({ user }: MobileNavProps) => {
           <Link href="/" className="cursor-pointer flex items-center gap-1 px-4">
             <Image
               src="/icons/bio.png"
-              width={40}
-              height={40}
+              width={80}
+              height={80}
               alt="Thetiotop logo"
-              // className="bg-red-500"
+              // style={{ width: 'auto', height: 'auto' }}
+              // className="bg-red-500 p-2"
             />
-            <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">Thetiotop</h1>
+            <h1 className="text-26  font-bold font-lato text-[#8FB43A]">Thé Tip Top</h1>
           </Link>
           <Separator className="my-4 text-black-2 bg-gray-300" />
           <div className="mobilenav-sheet">
@@ -61,7 +62,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
                             'brightness-[3] invert-0': isActive,
                           })}
                         />
-                        <p className={cn('text-16 font-semibold text-black-2', { 'text-white': isActive })}>
+                        <p className={cn('text-[13px] xs:text-[18px] font-semibold text-black-2', { 'text-white': isActive })}>
                           {item.label}
                         </p>
                       </Link>

@@ -73,7 +73,7 @@ export default auth((req) => {
   }
 
   if (isAuthRoute && !isHomeRoute) {
-    if (isLoggedIn && userRole === 'ADMIN' && nextUrl.pathname !== '/admin') {
+    if (isLoggedIn && userRole === 'ADMIN' && !nextUrl.pathname.startsWith('/admin')) {
       return Response.redirect(new URL('/admin', nextUrl));
     }
 

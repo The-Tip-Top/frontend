@@ -4,7 +4,7 @@
 
 import { signIn } from '@/auth';
 import { myFetch } from '../hooks/useFetch';
-import { EParticipationStatus, Participation } from '../types/types';
+import { EParticipationStatus, Participation, StatsResponse } from '../types/types';
 import { z } from 'zod';
 import { signInSchema } from '../utils';
 import { ResponseMessageWithStatus } from './newVerificationToken.action';
@@ -80,3 +80,18 @@ export const LoginAdmin = async (data: z.infer<typeof signInSchema>, redirectTo:
     throw err;
   }
 };
+
+export const getStatistics = async () => {
+  try {
+    const stats = await myFetch<StatsResponse>('admin/stats', {
+      method: 'GET',
+    });
+    if(stats){
+      console.log('stats tickets ', stats);
+      return stats;
+    }
+    return null
+  } catch (err) {
+    console.log('error when fetching participations ', err);
+  }
+}

@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss';
 import tailwindcssAnimate from 'tailwindcss-animate';
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 const config = {
   darkMode: ['class'],
@@ -16,8 +17,13 @@ const config = {
       center: true,
       padding: '2rem',
       screens: {
-        '2xl': '1400px',
+        'xs': '440px',
+        ...defaultTheme.screens,
       },
+    },
+    screens: {
+      'xs': '440px',
+      ...defaultTheme.screens,
     },
     extend: {
       colors: {
