@@ -1,7 +1,30 @@
-﻿"http://www.dsp5-archi-022a-4-5-g2.fr/home",
-"http://www.dsp5-archi-022a-4-5-g2.fr/login",
-"http://www.dsp5-archi-022a-4-5-g2.fr/sign-up",
-"http://www.dsp5-archi-022a-4-5-g2.fr/home/mentions-legales",
-"http://www.dsp5-archi-022a-4-5-g2.fr/home/contact"
-"http://www.dsp5-archi-022a-4-5-g2.fr/home/cgu",
-"http://www.dsp5-archi-022a-4-5-g2.fr/register",
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <url>
+      <loc>https://dsp5-archi-022a-4-5-g2.fr/home</loc>
+   </url>
+   <url>
+      <loc>https://dsp5-archi-022a-4-5-g2.fr/login</loc>
+   </url>
+   <url>
+      <loc>https://dsp5-archi-022a-4-5-g2.fr/sign-up</loc>
+   </url>
+   <url>
+      <loc>https://dsp5-archi-022a-4-5-g2.fr/home/mentions-legales</loc>
+   </url>
+   <url>
+      <loc>https://dsp5-archi-022a-4-5-g2.fr/home/blog</loc>
+   </url>
+   <url>
+      <loc>https://dsp5-archi-022a-4-5-g2.fr/home/about</loc>
+   </url>
+   <url>
+      <loc>https://dsp5-archi-022a-4-5-g2.fr/home/contact</loc>
+   </url>
+   <url>
+      <loc>https://dsp5-archi-022a-4-5-g2.fr//home/cgu</loc>
+   </url>
+   <url>
+      <loc>https://dsp5-archi-022a-4-5-g2.fr/register</loc>
+   </url>
+</urlset>
