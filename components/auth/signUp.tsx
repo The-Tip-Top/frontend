@@ -50,12 +50,12 @@ const SignUpFormContent = () => {
           });
         });
       });
-      // console.log("== ", data.dateOfBirth)
     } catch (error) {
       console.log(error);
     }
   };
-  // console.log(form.formState.errors)
+  const passCheck = form.getFieldState('password')?.error?.message?.length! > 0;
+  
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 sm:space-y-4">
@@ -80,7 +80,6 @@ const SignUpFormContent = () => {
               type="date"
               block={true}
             />
-            {/* <DatePicker name="dateOfBirth" control={form.control} /> */}
           </div>
           <CustomInput label="Email" placeholder="Entrer votre email" control={form.control} name="email" />
           <PasswordField<z.infer<typeof signUpSchema>>
@@ -94,7 +93,7 @@ const SignUpFormContent = () => {
         <FormMessage message={message.error || urlError} type="ERROR" />
         <FormMessage message={message.success} type="SUCCESS" />
         <div className="flex justify-center flex-col gap-4">
-          <Button className="form-btn bg-des" type="submit" disabled={isPending || !checked}>
+          <Button className="form-btn bg-des" type="submit" disabled={isPending || !checked || passCheck}>
             {isPending ? (
               <>
                 <Loader2 size={20} className="animate-spin" /> &nbsp; Loading ...

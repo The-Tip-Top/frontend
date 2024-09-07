@@ -42,8 +42,8 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#8FB43A] text-gray-300 py-6">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex flex-col md:flex-row md:justify-between md:items-start">
+      <div className="flex flex-center  px-4 lg:px-8">
+        <div className="flex flex-col md:flex-row md:justify-between gap-x-3 md:items-start">
           {/* Logo */}
           <div className="flex items-center justify-center lg:justify-start mb-6 lg:mb-0">
             <div className="h-32 w-32 bg-white rounded-full flex items-center overflow-hidden justify-center">
@@ -125,10 +125,10 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
+      </div>
         <div className="text-center mt-4 ">
           <p className="text-white text-xs">&copy; 2024 Thé Tip-Top Bio. Tous droits réservés.</p>
         </div>
-      </div>
     </footer>
   );
 };
