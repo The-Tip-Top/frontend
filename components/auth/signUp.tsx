@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { Loader2 } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
-import { Register } from '@/lib/actions/auth.action';
+import { Register } from '@/lib/actions/user.auth.action';
 import CustomInput from '../inputs/CustomInput';
 import { CheckboxInput } from '../inputs/CheckboxInput';
 import FormMessage from '../FormMessage';
@@ -19,14 +19,13 @@ import { PasswordField } from '../inputs/PasswordInput';
 import { BeatLoader } from 'react-spinners';
 
 const SignUpFormContent = () => {
-  // const [user, setUser] = useState(null);
   const [message, setMessage] = useState({
     error: '',
     success: '',
   });
   const searchParams = useSearchParams();
   const urlError =
-    searchParams.get('error') === 'OAuthAccountNotLinked' ? 'Email already in use with another provider' : '';
+    searchParams.get('error') === 'OAuthAccountNotLinked' ? 'Email déja utilisé avec un autre provider' : '';
 
   const [isPending, setTransition] = useTransition();
   const [checked, setChecked] = useState(false);

@@ -3,8 +3,8 @@ import HeaderContainer from '@/components/HeaderContainer';
 import RecentParticipations from '@/components/RecentParticipations';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { participationStatusStyles } from '@/constants';
-import { CountingTicketResponse, getAllParticipations, getCountTicketByStatus } from '@/lib/actions/admin.action';
-import { EParticipationStatus, SearchParamProps } from '@/lib/types/types';
+import { getAllParticipations, getCountTicketByStatus } from '@/lib/actions/admin.action';
+import { CountingTicketResponse, EParticipationStatus, SearchParamProps } from '@/lib/types/types';
 import { cn } from '@/lib/utils';
 
 interface CustopnCardProps {
@@ -17,7 +17,7 @@ const Home = async ({ searchParams: { page } }: SearchParamProps) => {
   const user = (await auth())?.user;
   const participation = await getAllParticipations();
   const countingTickets: CountingTicketResponse | undefined = await getCountTicketByStatus();
-  console.log('----- total participations ', participation?.length);
+
   const CustomCards = ({ status, title }: CustopnCardProps) => {
     const { borderColor, textColor, chipBackgroundColor } =
       participationStatusStyles[status as unknown as keyof typeof participationStatusStyles] ||
@@ -42,7 +42,7 @@ const Home = async ({ searchParams: { page } }: SearchParamProps) => {
           <HeaderContainer
             title="Bienvenue"
             user={user?.name || ''}
-            subtext="Bienvenue dans l'espace administrateur de votre jeux concour!"
+            subtext="Bienvenue dans l'éspace administrateur de votre jeux concour!"
           />
         </header>
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
@@ -53,7 +53,6 @@ const Home = async ({ searchParams: { page } }: SearchParamProps) => {
         </div>
         <RecentParticipations page={currentPage} participations={participation ?? []} />
       </div>
-      {/* )} */}
     </section>
   );
 };

@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 'use client';
 
 import * as React from 'react';
@@ -85,11 +84,9 @@ export function DataTable({ data }: { data: Participation[] }) {
               const filterValue = event.target.value;
               table.getColumn('participant')?.setFilterValue(filterValue);
             }} 
-            // onBlur={(event) => event.target.style.border = '1px solid #ccc'}
             className="lg:max-w-sm w-full mx-1 border-gray-400 focus:border-none focus:shadow-none"
           />
           <div className='flex  w-full items-center justify-end gap-x-2 flex-col gap-y-2 xs:flex-row'>
-            {/* <div> */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size={'sm'} className="w-full flex justify-between text-white bg-[#18181B]">

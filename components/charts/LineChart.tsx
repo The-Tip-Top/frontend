@@ -47,10 +47,10 @@ interface OneLineChartCardProps {
 export const LineChartCard = ({multiLineData}: LineChartCardProps) => {
   return (
     <Card>
-      <CardHeader>
+      {/* <CardHeader>
         <CardTitle>Line Chart - Multiple</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
-      </CardHeader>
+      </CardHeader> */}
       <CardContent>
         <ChartContainer config={chartConfig}>
           <LineChart
@@ -112,10 +112,10 @@ export const LineChartCard = ({multiLineData}: LineChartCardProps) => {
 export const OneLineChartCard = ({singleLineData}: OneLineChartCardProps) => {
   return (
     <Card>
-      <CardHeader>
+      {/* <CardHeader>
         <CardTitle>Line Chart - Multiple</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
-      </CardHeader>
+      </CardHeader> */}
       <CardContent>
         <ChartContainer config={chartConfig}>
           <LineChart

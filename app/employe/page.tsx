@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import FormMessage from '@/components/FormMessage';
-import { verifyCodeTicket } from '@/lib/actions/auth.action';
+import { verifyCodeTicket } from '@/lib/actions/user.action';
 
 export default function CheckCodePage() {
   const [code, setCode] = useState('');
@@ -70,13 +70,6 @@ export default function CheckCodePage() {
       </div>
 
       <div className="mt-8">
-        {/* <Button
-          onClick={handleVerifyCode}
-          variant="ghost"
-          className="px-8 py-3 text-lg rounded-full"
-        >
-          Vérifier
-        </Button> */}
       </div>
     </div>
   );

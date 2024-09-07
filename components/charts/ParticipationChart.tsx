@@ -217,6 +217,7 @@ const ParticipationChart = () => {
   const [stats, setStats] = useState<StatsResponse | null>(null)
   useEffect(() => {
     getStatistics().then((data) => {
+      console.log("==== ", data)
       if(data) setStats(data)
     })
     .catch((err) => console.log(err))

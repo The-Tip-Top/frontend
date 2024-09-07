@@ -23,8 +23,8 @@ export interface ParticipationStats {
 }
 
 export interface StatsResponse {
-  total: ParticipationStats[],
-  totalDetails: TicketStats[]
+  total: ParticipationStats[];
+  totalDetails: TicketStats[];
 }
 
 export interface StatusBadgeProps {
@@ -55,6 +55,14 @@ export enum EParticipationStatus {
   PARTICIPATION = 'PARTICIPATION',
   CURRENT_PARTICIPATION = 'CURRENT_PARTICIPATION',
 }
+
+export type UserWithDetails = User & {
+  tickets: Ticket[];
+  gifts: Gift[];
+  participations: Participation[];
+};
+
+export type CountingTicketResponse = Record<keyof typeof EParticipationStatus, number>;
 
 export interface Gift {
   imageUrl: string;

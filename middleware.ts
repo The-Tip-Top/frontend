@@ -3,7 +3,7 @@ import Credentials from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
 import { apiAuthPrefix, authRoutes, DEFAULT_REDIRECT_LOGIN, publicRoutes } from './routes';
-import { getUserByEmail } from './lib/actions/auth.action';
+import { getUserByEmail } from './lib/actions/user.auth.action';
 import { signInSchema } from './lib/utils';
 import type { NextAuthConfig } from 'next-auth';
 
@@ -25,7 +25,6 @@ const authConfig = {
         return user;
       },
     }),
-    // Other providers (Google, Facebook, etc.)
   ],
 } satisfies NextAuthConfig;
 
@@ -62,7 +61,6 @@ export default auth((req) => {
   if (!isLoggedIn && isAuthRoute && nextUrl.pathname.startsWith('/admin') && nextUrl.pathname !== '/admin/sign-in') {
     return Response.redirect(new URL('/admin/sign-in', nextUrl));
   }
-  // console.log('=========================== ', isLoggedIn, userRole);
   if (
     !isLoggedIn &&
     isAuthRoute &&

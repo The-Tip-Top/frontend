@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { getOneTicket, updateParticipationStatus } from '@/lib/actions/auth.action';
+import { getOneTicket, updateParticipationStatus } from '@/lib/actions/user.action';
 import { EGiftStatus, frStatus, Ticket } from '@/lib/types/types';
 import { formatDateTime } from '@/lib/utils';
 import { useSearchParams } from 'next/navigation';
