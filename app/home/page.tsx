@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
 import { TicketForm } from '@/components/TicketForm';
- 
+
 const Home: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -99,7 +99,7 @@ const Home: React.FC = () => {
 </div>
 
 <a
-  href="#ticket-form"
+  href="/sign-in?concour=true"
   className="text-white bg-[#6AA843] font-bold py-3 px-6 rounded-full transition-colors shadow-lg mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#505050] hover:bg-[#5A9437]"
   aria-label="Cliquez ici pour participer au jeu concours"
 >

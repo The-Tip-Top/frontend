@@ -95,7 +95,7 @@ const Header = ({ user, role }: SiderbarProps) => {
                       </Link>
 
                       <Link
-                        href="/home/blog"
+                        href="/home/about"
                         className={cn(`mobilenav-sheet_close w-full bg-gray-50`, {
                           'bg-[#8FB43A]': pathname === '/home/about',
                         })}
