@@ -1,5 +1,7 @@
 export const publicRoutes = [
   '/home',
+  '/home/about',
+  '/home/blog',
   '/home/contact',
   '/home/cadeau',
   '/home/cgu',
@@ -12,6 +14,7 @@ export const authRoutes = [
   '/sign-in',
   '/error',
   '/account/history',
+  '/account/ticket',
   '/admin/sign-in',
   '/admin',
   '/admin/chart-data',

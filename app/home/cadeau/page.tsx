@@ -41,12 +41,10 @@ const CadeauPageContent = () => {
   }, []);
 
   const handleValidate = () => {
-    console.log('--- ticket id storeg ', ticketId);
     if (ticketId) {
       localStorage.setItem('ticketId', ticketId);
     }
-    // Redirection vers la page de connexion
-    router.push('/sign-in');
+    router.push('/account/history');
   };
 
   return (

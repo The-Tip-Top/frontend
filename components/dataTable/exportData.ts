@@ -1,24 +1,30 @@
-import * as XLSX from 'xlsx';
+import ExcelJS from 'exceljs';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { formatDateTime } from '../../lib/utils';
 import { Participation } from '../../lib/types/types';
 
-export const exportTableToExcel = (data: Participation[], fileName: string) => {
-  const formattedData = data.map((row) => ({
-    Status: row.ticket?.status ?? 'N/A',
-    Participant: row.ticket?.user?.name ?? 'N/A',
-    Gift: row.gift?.name ?? 'N/A',
-    'Date participation': row.createdAt ? formatDateTime(new Date(row.createdAt)).dateTime : 'N/A',
-    'Date de récupération': row.submitedAt ? formatDateTime(new Date(row.submitedAt)).dateTime : 'N/A',
-  }));
+export const exportTableToExcel = async (data: Participation[], fileName: string) => {
+  const workbook = new ExcelJS.Workbook();
+  const worksheet = workbook.addWorksheet('Sheet1');
 
-  const worksheet = XLSX.utils.json_to_sheet(formattedData);
-  const workbook = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+ 
+  worksheet.addRow(['Status', 'Participant', 'Gift', 'Date participation', 'Date de récupération']);
 
-  const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-  const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+ 
+  data.forEach((row) => {
+    worksheet.addRow([
+      row.ticket?.status ?? 'N/A',
+      row.ticket?.user?.name ?? 'N/A',
+      row.gift?.name ?? 'N/A',
+      row.createdAt ? formatDateTime(new Date(row.createdAt)).dateTime : 'N/A',
+      row.submitedAt ? formatDateTime(new Date(row.submitedAt)).dateTime : 'N/A',
+    ]);
+  });
+
+  const buffer = await workbook.xlsx.writeBuffer();
+
+  const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
   const url = window.URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
@@ -28,18 +34,25 @@ export const exportTableToExcel = (data: Participation[], fileName: string) => {
   document.body.removeChild(link);
 };
 
-export const exportTableToCSV = (data: Participation[], fileName: string) => {
-  const formattedData = data.map((row) => ({
-    Status: row.ticket?.status ?? 'N/A',
-    Participant: row.ticket?.user?.name ?? 'N/A',
-    Gift: row.gift?.name ?? 'N/A',
-    'Date participation': row.createdAt ? formatDateTime(new Date(row.createdAt)).dateTime : 'N/A',
-    'Date de récupération': row.submitedAt ? formatDateTime(new Date(row.submitedAt)).dateTime : 'N/A',
-  }));
+export const exportTableToCSV = async (data: Participation[], fileName: string) => {
+  const workbook = new ExcelJS.Workbook();
+  const worksheet = workbook.addWorksheet('Sheet1');
 
-  const worksheet = XLSX.utils.json_to_sheet(formattedData);
-  const csv = XLSX.utils.sheet_to_csv(worksheet);
-  const blob = new Blob([csv], { type: 'text/csv' });
+  worksheet.addRow(['Status', 'Participant', 'Gift', 'Date participation', 'Date de récupération']);
+
+  data.forEach((row) => {
+    worksheet.addRow([
+      row.ticket?.status ?? 'N/A',
+      row.ticket?.user?.name ?? 'N/A',
+      row.gift?.name ?? 'N/A',
+      row.createdAt ? formatDateTime(new Date(row.createdAt)).dateTime : 'N/A',
+      row.submitedAt ? formatDateTime(new Date(row.submitedAt)).dateTime : 'N/A',
+    ]);
+  });
+
+  const csvBuffer = await workbook.csv.writeBuffer();
+
+  const blob = new Blob([csvBuffer], { type: 'text/csv' });
   const url = window.URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;

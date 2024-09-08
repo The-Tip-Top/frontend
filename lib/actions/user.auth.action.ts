@@ -23,7 +23,7 @@ export const Register = async (userData: z.infer<typeof signUpSchema>) => {
   return { success: 'Confirmation Email sent!' };
 };
 
-export const Login = async (data: z.infer<typeof signInSchema>) => {
+export const Login = async (data: z.infer<typeof signInSchema>, variable?:string) => {
   try {
     const validData = signInSchema.safeParse(data);
     if (!validData.success) return { error: 'Invalid inputs' };
@@ -39,10 +39,11 @@ export const Login = async (data: z.infer<typeof signInSchema>) => {
     }
     const user = (await auth())?.user;
 
+    console.log("==================== ", variable ? '/account/ticket': '/account/history')
     await signIn('credentials', {
       email,
       password,
-      redirectTo: '/account/history',
+      redirectTo: variable ? '/account/ticket': '/account/history',
     });
 
     return { success: verificationLogin.success };
