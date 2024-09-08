@@ -11,6 +11,22 @@ export type SearchParamProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
+export interface TicketStats {
+  day: string;
+  remis: number;
+  annule: number;
+  enAttente: number;
+}
+export interface ParticipationStats {
+  day: string;
+  total: number;
+}
+
+export interface StatsResponse {
+  total: ParticipationStats[];
+  totalDetails: TicketStats[];
+}
+
 export interface StatusBadgeProps {
   status: string;
   frStatus?: string;
@@ -39,6 +55,14 @@ export enum EParticipationStatus {
   PARTICIPATION = 'PARTICIPATION',
   CURRENT_PARTICIPATION = 'CURRENT_PARTICIPATION',
 }
+
+export type UserWithDetails = User & {
+  tickets: Ticket[];
+  gifts: Gift[];
+  participations: Participation[];
+};
+
+export type CountingTicketResponse = Record<keyof typeof EParticipationStatus, number>;
 
 export interface Gift {
   imageUrl: string;

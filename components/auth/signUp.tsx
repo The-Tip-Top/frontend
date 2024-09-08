@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { Loader2 } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
-import { Register } from '@/lib/actions/auth.action';
+import { Register } from '@/lib/actions/user.auth.action';
 import CustomInput from '../inputs/CustomInput';
 import { CheckboxInput } from '../inputs/CheckboxInput';
 import FormMessage from '../FormMessage';
@@ -19,14 +19,13 @@ import { PasswordField } from '../inputs/PasswordInput';
 import { BeatLoader } from 'react-spinners';
 
 const SignUpFormContent = () => {
-  // const [user, setUser] = useState(null);
   const [message, setMessage] = useState({
     error: '',
     success: '',
   });
   const searchParams = useSearchParams();
   const urlError =
-    searchParams.get('error') === 'OAuthAccountNotLinked' ? 'Email already in use with another provider' : '';
+    searchParams.get('error') === 'OAuthAccountNotLinked' ? 'Email déja utilisé avec un autre provider' : '';
 
   const [isPending, setTransition] = useTransition();
   const [checked, setChecked] = useState(false);
@@ -50,12 +49,12 @@ const SignUpFormContent = () => {
           });
         });
       });
-      // console.log("== ", data.dateOfBirth)
     } catch (error) {
       console.log(error);
     }
   };
-  // console.log(form.formState.errors)
+  const passCheck = form.getFieldState('password')?.error?.message?.length! > 0;
+  
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 sm:space-y-4">
@@ -80,7 +79,6 @@ const SignUpFormContent = () => {
               type="date"
               block={true}
             />
-            {/* <DatePicker name="dateOfBirth" control={form.control} /> */}
           </div>
           <CustomInput label="Email" placeholder="Entrer votre email" control={form.control} name="email" />
           <PasswordField<z.infer<typeof signUpSchema>>
@@ -94,7 +92,7 @@ const SignUpFormContent = () => {
         <FormMessage message={message.error || urlError} type="ERROR" />
         <FormMessage message={message.success} type="SUCCESS" />
         <div className="flex justify-center flex-col gap-4">
-          <Button className="form-btn bg-des" type="submit" disabled={isPending || !checked}>
+          <Button className="form-btn bg-des" type="submit" disabled={isPending || !checked || passCheck}>
             {isPending ? (
               <>
                 <Loader2 size={20} className="animate-spin" /> &nbsp; Loading ...

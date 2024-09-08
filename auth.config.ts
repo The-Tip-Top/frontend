@@ -5,9 +5,7 @@ import Credentials from 'next-auth/providers/credentials';
 
 import { signInSchema } from './lib/utils';
 import { NextAuthConfig } from 'next-auth';
-import { getUserByEmail } from './lib/actions/auth.action';
-
-// const formSchema = authFormSchema("sign-in");
+import { getUserByEmail } from './lib/actions/user.auth.action';
 
 const authConfig = {
   trustHost: true,
@@ -29,7 +27,6 @@ const authConfig = {
           if (!user || !user.password) return null;
 
           const passwordCheck = await bcrypt.compare(password, user.password);
-          // console.log('passwheckkk ', passwordCheck);
           if (passwordCheck) return user;
         }
         return null;

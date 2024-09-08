@@ -1,7 +1,3 @@
-import { MdQueryStats } from 'react-icons/md';
-import { GrTableAdd } from 'react-icons/gr';
-
-/* eslint-disable prettier/prettier */
 export const sidebarLinks = [
   {
     icon: '/icons/data.png',
@@ -12,6 +8,11 @@ export const sidebarLinks = [
     icon: '/icons/stats.png',
     route: '/admin/chart-data',
     label: 'Statistiques',
+  },
+  {
+    icon: '/icons/game.png',
+    route: '/admin/final-game',
+    label: 'Grand jeux',
   },
 ];
 

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Pagination } from '@/components/dataTable/Pagination';
 import { DataTable } from '@/components/dataTable/dataTable';
 import { RecentParticipationsProps } from '@/lib/types/types';

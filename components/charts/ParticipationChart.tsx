@@ -1,27 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import { Line, Bar, Pie } from 'react-chartjs-2';
-import {
-  Chart,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  ArcElement,
-} from 'chart.js';
 import { useEffect, useState } from 'react';
 import { mockParticipations } from './mockdataTable';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { BarChartCard } from './BarChart';
+import { PieChartCard } from './PieChart';
+import { LineChartCard, OneLineChartCard } from './LineChart';
+import { StatsResponse } from '@/lib/types/types';
+import { getStatistics } from '@/lib/actions/admin.action';
 
-Chart.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, ArcElement, Title, Tooltip, Legend);
-
-const ParticipationChart: React.FC = () => {
+const ParticipationChart = () => {
   const [period, setPeriod] = useState('week');
   const [lineData, setLineData] = useState({
     labels: [] as string[],
@@ -222,7 +212,16 @@ const ParticipationChart: React.FC = () => {
         },
       ],
     });
+
   };
+  const [stats, setStats] = useState<StatsResponse | null>(null)
+  useEffect(() => {
+    getStatistics().then((data) => {
+      console.log("==== ", data)
+      if(data) setStats(data)
+    })
+    .catch((err) => console.log(err))
+  }, []);
 
   useEffect(() => {
     transformData(period);
@@ -383,61 +382,61 @@ const ParticipationChart: React.FC = () => {
           <TabsContent value="day">
             <div className="border p-4">
               <h3 className="text-lg font-semibold mb-2">Tendance de Participation Quotidienne</h3>
-              <Line data={lineData} options={optionsLine} />
+              <LineChartCard multiLineData={stats?.totalDetails ?? []} />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
               <div className="border p-4">
                 <h3 className="text-lg font-semibold mb-2">Répartition des Participations</h3>
-                <Pie data={pieData} options={optionsPie} />
+                <PieChartCard data={stats?.totalDetails ?? []} />
               </div>
               <div className="border p-4">
                 <h3 className="text-[15px] md:text-lg font-semibold mb-2">Participations par Catégorie</h3>
-                <Bar data={barData} options={optionsBar} />
+                <BarChartCard chartData={stats?.totalDetails ?? []} />
               </div>
-            </div>
             <div className="border p-4 mt-4">
               <h3 className="text-lg font-semibold mb-2">Évolution des Total des Participations</h3>
-              <Line data={evolutionData} options={optionsEvolution} />
+              <OneLineChartCard singleLineData={stats?.total ?? []}/>
             </div>
           </TabsContent>
           <TabsContent value="week">
             <div className="border p-4">
               <h3 className="text-lg font-semibold mb-2">Tendance de Participation Hebdomadaire</h3>
-              <Line data={lineData} options={optionsLine} />
+              <LineChartCard  multiLineData={stats?.totalDetails ?? []}/>
+
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
               <div className="border p-4">
                 <h3 className="text-lg font-semibold mb-2">Répartition des Participations</h3>
-                <Pie data={pieData} options={optionsPie} />
+                <PieChartCard data={stats?.totalDetails ?? []} />
               </div>
+          
               <div className="border p-4">
                 <h3 className="text-[15px] md:text-lg font-semibold mb-2">Participations par Catégorie</h3>
-                <Bar data={barData} options={optionsBar} />
+                <BarChartCard chartData={stats?.totalDetails ?? []} />
               </div>
-            </div>
             <div className="border p-4 mt-4">
               <h3 className="text-lg font-semibold mb-2">Évolution des Total des Participations</h3>
-              <Line data={evolutionData} options={optionsEvolution} />
+              <OneLineChartCard singleLineData={stats?.total ?? []}/>
+
             </div>
           </TabsContent>
           <TabsContent value="month">
             <div className="border p-4">
               <h3 className="text-lg font-semibold mb-2">Tendance de Participation Mensuelle</h3>
-              <Line data={lineData} options={optionsLine} />
+              <LineChartCard multiLineData={stats?.totalDetails ?? []}/>
+
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
               <div className="border p-4">
                 <h3 className="text-lg font-semibold mb-2">Répartition des Participations</h3>
-                <Pie data={pieData} options={optionsPie} />
+                <PieChartCard data={stats?.totalDetails ?? []} />
               </div>
               <div className="border p">
                 <h3 className="text-[15px] md:text-lg font-semibold mb-2">Participations par Catégorie</h3>
-                <Bar data={barData} options={optionsBar} className="h-[200px]" />
+                <BarChartCard chartData={stats?.totalDetails ?? []} />
               </div>
-            </div>
+            
             <div className="border p-4 mt-4">
               <h3 className="text-lg font-semibold mb-2">Évolution des Total des Participations</h3>
-              <Line data={evolutionData} options={optionsEvolution} />
+              <OneLineChartCard singleLineData={stats?.total ?? []} />
+
             </div>
           </TabsContent>
         </Tabs>
@@ -451,7 +450,7 @@ const ParticipationChart: React.FC = () => {
           </div>
         </div>
       </CardFooter>
-    </Card>
+    </Card >
   );
 };
 

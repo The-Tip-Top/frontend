@@ -1,6 +1,6 @@
 import NextAuth, { type DefaultSession } from 'next-auth';
 import authConfig from '@/auth.config';
-import { getUserById } from './lib/actions/auth.action';
+import { getUserById } from './lib/actions/user.auth.action';
 import { myFetch } from './lib/hooks/useFetch';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { prisma } from './lib/prisma';

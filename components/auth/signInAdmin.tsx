@@ -3,18 +3,17 @@
 import { Suspense, useState, useTransition } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { Loader2 } from 'lucide-react';
 import CustomInput from '../inputs/CustomInput';
 import FormMessage from '../FormMessage';
-import { PasswordField } from '../inputs/PasswordInput';
 import { signInSchema } from '@/lib/utils';
 import { BeatLoader } from 'react-spinners';
-import { LoginAdmin } from '@/lib/actions/admin.action';
+import { LoginAdmin } from '@/lib/actions/admin.auth.action';
 import { usePathname } from 'next/navigation';
+import { SignInPasswordField } from '../inputs/PasswordInputSignIn';
 
 const SignInFormContent = () => {
   const [message, setMessage] = useState({
@@ -52,7 +51,7 @@ const SignInFormContent = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <CustomInput label="Email" placeholder="Entrer votre email" control={form.control} name="email" />
-        <PasswordField<z.infer<typeof signInSchema>>
+        <SignInPasswordField<z.infer<typeof signInSchema>>
           placeholder="Entrer un mot de passe"
           control={form.control}
           name="password"

@@ -2,7 +2,7 @@
 
 import { StatusBadge } from '@/components/StatusBadge';
 import { Card } from '@/components/ui/card';
-import { getUserTickets, linkTicket } from '@/lib/actions/auth.action';
+import { getUserTickets, linkTicket } from '@/lib/actions/user.action';
 import { frStatus, Ticket } from '@/lib/types/types';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';

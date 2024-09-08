@@ -12,7 +12,7 @@ export default async function RootLayout({
   return (
     <section className="flex h-screen w-full flex-col">
       <Header role="EMPLOYEE" user={user || undefined} />
-      <main className="size-full">{children}</main>
+      <main className="">{children}</main>
       <Footer />
     </section>
   );
