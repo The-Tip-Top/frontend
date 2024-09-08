@@ -31,9 +31,9 @@ export const getUserTickets = async () => {
   return null;
 };
 
-export const verifyCodeTicket = async (code: string) => {
-  if (code) {
-    const ticket = await myFetch<Ticket>(`tickets/${code}`, {});
+export const verifyCodeTicket = async (email: string) => {
+  if (email) {
+    const ticket = await myFetch<Ticket[]>(`employee/check-ticket/${email}`, {});
     if (ticket) {
       return ticket;
     }
@@ -62,3 +62,15 @@ export const updateParticipationStatus = async (id: string, status: EGiftStatus)
   }
   return null;
 };
+
+export const subscribeToNewsLetter = async (id: string | undefined) => {
+  if(id) {
+    const updated = await myFetch<User>(`subscribeNews/${id}`, {
+      method: 'PUT',
+    })
+    if(updated){
+      return updated
+    }
+  }
+  return null
+}

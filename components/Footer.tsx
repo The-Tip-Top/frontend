@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { useEffect } from 'react';
+import NewsLetter from './NewsLetter';
 
 declare global {
   interface Window {
@@ -41,9 +42,82 @@ const Footer = () => {
   }, []);
 
   return (
+    // <footer className="bg-[#8FB43A] text-gray-300 py-6">
+    //   <div className="flex flex-center  px-4 lg:px-8">
+    //     <div className="flex flex-col md:flex-row md:justify-between gap-x-3 md:items-start">
+    //       {/* Logo */}
+    //       <div className="flex items-center justify-center lg:justify-start mb-6 lg:mb-0">
+    //         <div className="h-32 w-32 bg-white rounded-full flex items-center overflow-hidden justify-center">
+    //           <Image
+    //             src="/logofinal.png"
+    //             alt="Logo The Tip-Top Bio"
+    //             width={120}
+    //             height={120}
+    //             className="object-contain"
+    //             style={{ width: 'auto', height: 'auto' }}
+    //           />
+    //         </div>
+    //       </div>
+
+    //       {/* Footer Links */}
+    //       <div className="flex flex-col md:flex-row md:space-x-12 text-center md:text-left mb-6 md:mb-0">
+    //         <div className="lg:w-1/4 mb-6 lg:mb-0">
+    //           <h3 className="font-bold text-lg text-white mb-2">À PROPOS</h3>
+    //           <a href="/home" className="block text-white hover:underline text-sm mb-1">
+    //             Accueil
+    //           </a>
+    //           <a href="/lsign-in" className="block hover:underline text-sm mb-1 text-white">
+    //             Connexion
+    //           </a>
+    //           <a href="/sign-up" className="block hover:underline text-sm text-white">
+    //             Inscription
+    //           </a>
+    //         </div>
+    //         <div className="lg:w-1/3 mb-6 lg:mb-0">
+    //           <h3 className="font-bold text-lg text-white mb-2">NOS SERVICES</h3>
+    //           <a
+    //             href="https://facebook.com"
+    //             className="block hover:underline text-sm mb-1 text-white"
+    //             target="_blank"
+    //             rel="noopener noreferrer"
+    //           >
+    //             Facebook
+    //           </a>
+    //           <a
+    //             href="https://instagram.com"
+    //             className="block hover:underline text-sm mb-1 text-white"
+    //             target="_blank"
+    //             rel="noopener noreferrer"
+    //           >
+    //             Instagram
+    //           </a>
+    //           <a href="https://linkedin.com" className="block hover:underline text-sm text-white">
+    //             LinkedIn
+    //           </a>
+    //         </div>
+    //         <div className="lg:w-1/4 mb-6 lg:mb-0">
+    //           <h3 className="font-bold text-lg text-white mb-2">CGU/CGV</h3>
+    //           <a href="/home/mentions-legales" className="block hover:underline text-sm mb-1 text-white">
+    //             Mentions légales
+    //           </a>
+    //           <a href="/home/cgu" className="block hover:underline text-sm text-white">
+    //             Cgu / Cgv
+    //           </a>
+    //         </div>
+    //       </div>
+
+    //       <NewsLetter />
+    //     </div>
+
+    //   </div>
+    //   {/* Copyright */}
+    //   <div className="text-center mt-4 ">
+    //     <p className="text-white text-xs">&copy; 2024 Thé Tip-Top Bio. Tous droits réservés.</p>
+    //   </div>
+    // </footer>
     <footer className="bg-[#8FB43A] text-gray-300 py-6">
-      <div className="flex flex-center  px-4 lg:px-8">
-        <div className="flex flex-col md:flex-row md:justify-between gap-x-3 md:items-start">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-start">
           {/* Logo */}
           <div className="flex items-center justify-center lg:justify-start mb-6 lg:mb-0">
             <div className="h-32 w-32 bg-white rounded-full flex items-center overflow-hidden justify-center">
@@ -53,7 +127,6 @@ const Footer = () => {
                 width={120}
                 height={120}
                 className="object-contain"
-                style={{ width: 'auto', height: 'auto' }}
               />
             </div>
           </div>
@@ -99,36 +172,21 @@ const Footer = () => {
               <a href="/home/mentions-legales" className="block hover:underline text-sm mb-1 text-white">
                 Mentions légales
               </a>
-              <a href="/home/cgu" className="block hover:underline text-sm text-white">
-                Cgu / Cgv
+              <a href="/home/cgu" className="block hover:underline text-[12px] text-white">
+                CGU / CGV
               </a>
             </div>
           </div>
 
           {/* Newsletter Subscription */}
-          <div className="text-center lg:text-left mb-6 p-2">
-            <h3 className="font-bold font-lato text-lg text-white mb-2">ABONNEZ-VOUS À NOS NEWSLETTERS</h3>
-            <form className="flex flex-col sm:flex-row justify-center w-full max-w-md mx-auto lg:mx-0">
-              <input
-                type="email"
-                placeholder="Entrez votre email"
-                className="p-2 w-full rounded-md text-gray-800 mb-2 sm:mb-0 sm:mr-2 text-sm"
-              />
-              <button
-                type="submit"
-                className="p-2 bg-white text-[#8FB43A] rounded-md font-semibold text-sm hover:bg-gray-200 transition duration-300"
-              >
-                S&apos;abonner
-              </button>
-            </form>
-          </div>
+          <NewsLetter />
         </div>
 
         {/* Copyright */}
-      </div>
         <div className="text-center mt-4 ">
           <p className="text-white text-xs">&copy; 2024 Thé Tip-Top Bio. Tous droits réservés.</p>
         </div>
+      </div>
     </footer>
   );
 };

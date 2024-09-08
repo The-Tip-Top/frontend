@@ -6,22 +6,19 @@ import FormMessage from '@/components/FormMessage';
 import { verifyCodeTicket } from '@/lib/actions/user.action';
 
 export default function CheckCodePage() {
-  const [code, setCode] = useState('');
+  const [email, setEmail] = useState('');
   const router = useRouter();
   const [error, setError] = useState('');
 
-  const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCode(e.target.value);
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
   };
 
-  const handleVerifyCode = () => {
-    if (code.length !== 10) {
-      setError('Code invalide');
-      return;
-    }
-    verifyCodeTicket(code)
+  const handleVerifyEmail = () => {
+    verifyCodeTicket(email)
       .then((ticket) => {
-        router.push(`/employe/participation-details?id=${encodeURIComponent(ticket?.ticketId || '')}`);
+        // router.push(`/employe/participation-details?id=${encodeURIComponent(ticket?.ticketId || '')}`);
+        router.push(`/employe/participation-details?user=${encodeURIComponent(email || '')}`);
       })
       .catch((err) => {
         console.log('Une erreur est servenue', err);
@@ -31,7 +28,7 @@ export default function CheckCodePage() {
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      handleVerifyCode();
+      handleVerifyEmail();
     }
   };
 
@@ -42,10 +39,10 @@ export default function CheckCodePage() {
 
         <div className="relative w-full max-w-xl">
           <input
-            type="text"
-            value={code}
-            onChange={handleCodeChange}
-            onKeyPress={handleKeyPress} // Ajout du gestionnaire de touche "Entrée"
+            type="email"
+            value={email}
+            onChange={handleEmailChange}
+            onKeyPress={handleKeyPress} 
             placeholder="Entrez votre code"
             className="w-full p-4 pl-12 border border-gray-300 rounded-full text-lg"
           />

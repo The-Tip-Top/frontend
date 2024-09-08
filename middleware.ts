@@ -75,7 +75,8 @@ export default auth((req) => {
       return Response.redirect(new URL('/admin', nextUrl));
     }
 
-    if (isLoggedIn && userRole === 'EMPLOYEE' && nextUrl.pathname !== '/employe') {
+    // if (isLoggedIn && userRole === 'EMPLOYEE' && !nextUrl.pathname !== '/employe') {
+    if (isLoggedIn && userRole === 'EMPLOYEE' && !nextUrl.pathname.startsWith('/employe')) {
       return Response.redirect(new URL('/employe', nextUrl));
     }
     if (isLoggedIn && userRole === 'USER' && !nextUrl.pathname.includes('account')) {
