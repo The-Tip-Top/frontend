@@ -1,0 +1,125 @@
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { useSearchParams } from 'next/navigation';
+import ParticipationDetailsPage from '@/app/employe/participation-details/page';
+import { verifyCodeTicket, updateParticipationStatus } from '@/lib/actions/user.action';
+import { EGiftStatus, Ticket, Participation, Gift } from '@/lib/types/types';
+import React from 'react';
+
+// Mocking the next/navigation and actions
+jest.mock('next/navigation', () => ({
+  useSearchParams: jest.fn(),
+}));
+
+jest.mock('@/lib/actions/user.action', () => ({
+  verifyCodeTicket: jest.fn(),
+  updateParticipationStatus: jest.fn(),
+}));
+
+const mockVerifyCodeTicket = verifyCodeTicket as jest.MockedFunction<typeof verifyCodeTicket>;
+const mockUpdateParticipationStatus = updateParticipationStatus as jest.MockedFunction<typeof updateParticipationStatus>;
+
+describe('ParticipationDetailsPage', () => {
+  beforeEach(() => {
+    const params = new URLSearchParams();
+    params.set('user', 'test@example.com');
+    (useSearchParams as jest.Mock).mockReturnValue({
+      get: (key: string) => params.get(key),
+      toString: () => params.toString(),
+    });
+
+    mockVerifyCodeTicket.mockResolvedValue([
+      {
+        ticketId: '1',
+        code: 'ABC123',
+        maxValidDate: '2024-12-31',
+        isValid: 'true',
+        status: EGiftStatus.WAITING,
+        gift: {
+          imageUrl: 'http://example.com/image.png',
+          giftId: 'gift1',
+          status: EGiftStatus.WAITING,
+          name: 'Gift Name',
+          description: 'Gift Description',
+        } as Gift,
+        participation: {
+          participationId: 'participation1',
+          createdAt: new Date(),
+          submitedAt: new Date(),
+          participationTicketId: '1',
+          ticket: {
+            ticketId: '1',
+            code: 'ABC123',
+            maxValidDate: '2024-12-31',
+            isValid: 'true',
+            status: EGiftStatus.WAITING,
+            gift: {
+              imageUrl: 'http://example.com/image.png',
+              giftId: 'gift1',
+              status: EGiftStatus.WAITING,
+              name: 'Gift Name',
+              description: 'Gift Description',
+            } as Gift,
+            participation: null,
+          } as Ticket,
+          participationGiftId: 'gift1',
+          gift: {
+            imageUrl: 'http://example.com/image.png',
+            giftId: 'gift1',
+            status: EGiftStatus.WAITING,
+            name: 'Gift Name',
+            description: 'Gift Description',
+          } as Gift,
+        } as Participation,
+      } as Ticket,
+    ]);
+
+    mockUpdateParticipationStatus.mockResolvedValue({
+      giftId: 'gift1',
+      status: EGiftStatus.GIFT_GIVEN,
+      imageUrl: 'http://example.com/image.png',
+      name: 'Gift Name',
+      description: 'Gift Description',
+    });
+  });
+
+  it('should render loading spinner initially', () => {
+    render(<ParticipationDetailsPage />);
+    expect(screen.getByRole('progressbar')).toBeInTheDocument();
+  });
+
+  it('should render ticket details once data is fetched', async () => {
+    render(<ParticipationDetailsPage />);
+
+    await waitFor(() => {
+      expect(screen.getByText('Détails de la Participation')).toBeInTheDocument();
+      expect(screen.getByText('test@example.com')).toBeInTheDocument();
+      expect(screen.getByText('ABC123')).toBeInTheDocument();
+      expect(screen.getByText('Gift Name')).toBeInTheDocument();
+      expect(screen.getByText('Gift Description')).toBeInTheDocument();
+      expect(screen.getByText('Cadeau en Attente')).toBeInTheDocument();
+    });
+  });
+
+  it('should enable and handle button click correctly', async () => {
+    render(<ParticipationDetailsPage />);
+
+    await waitFor(() => {
+      const button = screen.getByText('Marquer comme Remis');
+      expect(button).not.toBeDisabled();
+
+      fireEvent.click(button);
+
+      expect(mockUpdateParticipationStatus).toHaveBeenCalledWith('participation1', EGiftStatus.GIFT_GIVEN);
+    });
+  });
+
+  it('should handle errors in data fetching', async () => {
+    mockVerifyCodeTicket.mockRejectedValue(new Error('Network error'));
+
+    render(<ParticipationDetailsPage />);
+
+    await waitFor(() => {
+      expect(screen.queryByText('Détails de la Participation')).not.toBeInTheDocument();
+    });
+  });
+});

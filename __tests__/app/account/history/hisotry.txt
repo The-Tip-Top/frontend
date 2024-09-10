@@ -1,0 +1,107 @@
+import { render, screen, waitFor } from '@testing-library/react';
+import HistoryPage from '@/app/account/history/page'; 
+import { getUserTickets, linkTicket } from '@/lib/actions/user.action';
+import React from 'react';
+import { Ticket, EGiftStatus, Gift } from '@/lib/types/types';
+import { GridLoader } from 'react-spinners';
+
+
+jest.mock('@/lib/actions/user.action', () => ({
+  getUserTickets: jest.fn(),
+  linkTicket: jest.fn(),
+}));
+
+jest.mock('react-spinners', () => ({
+  GridLoader: jest.fn(() => <div data-testid="loader">Loader</div>),
+}));
+
+const mockGetUserTickets = getUserTickets as jest.MockedFunction<typeof getUserTickets>;
+const mockLinkTicket = linkTicket as jest.MockedFunction<typeof linkTicket>;
+
+describe('HistoryPage', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should display the loader while tickets are being fetched', async () => {
+   
+    mockGetUserTickets.mockReturnValue(new Promise(() => {}));
+
+    render(<HistoryPage />);
+
+    
+    expect(screen.getByTestId('loader')).toBeInTheDocument();
+  });
+
+  it('should display tickets after fetching data', async () => {
+   
+    const mockTickets: Ticket[] = [
+      {
+        ticketId: '1',
+        status: EGiftStatus.GIFT_GIVEN,
+        maxValidDate: '2024-12-31',
+        isValid: 'true',
+        gift: {
+          giftId: 'gift1',
+          status: EGiftStatus.GIFT_GIVEN,
+          name: 'Gift 1',
+          description: 'Description 1',
+          imageUrl: '/cadeau1.webp',
+        } as Gift,
+      },
+      {
+        ticketId: '2',
+        status: EGiftStatus.WAITING,
+        maxValidDate: '2024-12-31',
+        isValid: 'true',
+        gift: {
+          giftId: 'gift2',
+          status: EGiftStatus.WAITING,
+          name: 'Gift 2',
+          description: 'Description 2',
+          imageUrl: '/cadeau2.webp',
+        } as Gift,
+      },
+    ];
+
+    mockGetUserTickets.mockResolvedValue(mockTickets);
+
+    render(<HistoryPage />);
+
+    
+    await waitFor(() => {
+      expect(screen.getByText('Gift 1')).toBeInTheDocument();
+      expect(screen.getByText('Description 1')).toBeInTheDocument();
+      expect(screen.getByText('Gift 2')).toBeInTheDocument();
+      expect(screen.getByText('Description 2')).toBeInTheDocument();
+    });
+  });
+
+  it('should call linkTicket when component mounts', async () => {
+    // Mock de linkTicket pour tester son appel
+    mockLinkTicket.mockResolvedValue({ status: 200 });
+
+    // Simuler un ticketId dans localStorage
+    localStorage.setItem('ticketId', '1');
+
+    render(<HistoryPage />);
+
+   
+    await waitFor(() => {
+      expect(mockLinkTicket).toHaveBeenCalledWith('1');
+      expect(localStorage.getItem('ticketId')).toBeNull(); 
+    });
+  });
+
+  it('should handle error when fetching tickets fails', async () => {
+    
+    mockGetUserTickets.mockRejectedValue(new Error('Network error'));
+
+    render(<HistoryPage />);
+
+    
+    await waitFor(() => {
+      expect(screen.queryByText('Gift 1')).not.toBeInTheDocument();
+    });
+  });
+});
