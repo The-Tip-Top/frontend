@@ -1,6 +1,6 @@
-'use client'
-import React, { useState } from 'react'
-import { Button } from './ui/button'
+'use client';
+import React, { useState } from 'react';
+import { Button } from './ui/button';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -10,10 +10,10 @@ import { Input } from './ui/input';
 import { useCurrentUser } from '@/lib/hooks/useCurrentUser';
 
 const NewsLetter = () => {
-  const user = useCurrentUser()
+  const user = useCurrentUser();
   const subscribeSchema = z.object({
-    email: z.string().email()
-  })
+    email: z.string().email(),
+  });
   const form = useForm<z.infer<typeof subscribeSchema>>({
     resolver: zodResolver(subscribeSchema),
     defaultValues: {
@@ -24,10 +24,9 @@ const NewsLetter = () => {
   const onSubmit = async (data: z.infer<typeof subscribeSchema>) => {
     try {
       if (user) {
-        subscribeToNewsLetter(user?.id)
-          .then((data) => {
-            console.log('subscribe  ', data);
-          });
+        subscribeToNewsLetter(user?.id).then((data) => {
+          console.log('subscribe  ', data);
+        });
       }
     } catch (error) {
       console.log(error);
@@ -35,10 +34,13 @@ const NewsLetter = () => {
   };
 
   return (
-    <div className="text-center lg:text-left mb-6 p-2 pt-0" >
+    <div className="text-center lg:text-left mb-6 p-2 pt-0">
       <h3 className="font-bold font-lato text-lg text-white mb-2">ABONNEZ-VOUS À NOS NEWSLETTERS</h3>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col sm:flex-row gap-1 justify-center w-full max-w-md mx-auto lg:mx-0">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex flex-col sm:flex-row gap-1 justify-center w-full max-w-md mx-auto lg:mx-0"
+        >
           <FormField
             control={form.control}
             name={'email'}
@@ -65,8 +67,8 @@ const NewsLetter = () => {
           </Button>
         </form>
       </Form>
-    </div >
-  )
-}
+    </div>
+  );
+};
 
-export default NewsLetter
+export default NewsLetter;

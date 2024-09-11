@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { EGiftStatus, Participation, ParticipationTableProps } from '@/lib/types/types';
-import {  formatDateTime, getColor } from '@/lib/utils';
+import { formatDateTime, getColor } from '@/lib/utils';
 import { StatusBadge } from './StatusBadge';
 
 const ParticipationTable = ({ participations }: ParticipationTableProps) => {

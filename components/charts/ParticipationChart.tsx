@@ -212,15 +212,15 @@ const ParticipationChart = () => {
         },
       ],
     });
-
   };
-  const [stats, setStats] = useState<StatsResponse | null>(null)
+  const [stats, setStats] = useState<StatsResponse | null>(null);
   useEffect(() => {
-    getStatistics().then((data) => {
-      console.log("==== ", data)
-      if(data) setStats(data)
-    })
-    .catch((err) => console.log(err))
+    getStatistics()
+      .then((data) => {
+        console.log('==== ', data);
+        if (data) setStats(data);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
@@ -384,59 +384,55 @@ const ParticipationChart = () => {
               <h3 className="text-lg font-semibold mb-2">Tendance de Participation Quotidienne</h3>
               <LineChartCard multiLineData={stats?.totalDetails ?? []} />
             </div>
-              <div className="border p-4">
-                <h3 className="text-lg font-semibold mb-2">Répartition des Participations</h3>
-                <PieChartCard data={stats?.totalDetails ?? []} />
-              </div>
-              <div className="border p-4">
-                <h3 className="text-[15px] md:text-lg font-semibold mb-2">Participations par Catégorie</h3>
-                <BarChartCard chartData={stats?.totalDetails ?? []} />
-              </div>
+            <div className="border p-4">
+              <h3 className="text-lg font-semibold mb-2">Répartition des Participations</h3>
+              <PieChartCard data={stats?.totalDetails ?? []} />
+            </div>
+            <div className="border p-4">
+              <h3 className="text-[15px] md:text-lg font-semibold mb-2">Participations par Catégorie</h3>
+              <BarChartCard chartData={stats?.totalDetails ?? []} />
+            </div>
             <div className="border p-4 mt-4">
               <h3 className="text-lg font-semibold mb-2">Évolution des Total des Participations</h3>
-              <OneLineChartCard singleLineData={stats?.total ?? []}/>
+              <OneLineChartCard singleLineData={stats?.total ?? []} />
             </div>
           </TabsContent>
           <TabsContent value="week">
             <div className="border p-4">
               <h3 className="text-lg font-semibold mb-2">Tendance de Participation Hebdomadaire</h3>
-              <LineChartCard  multiLineData={stats?.totalDetails ?? []}/>
-
+              <LineChartCard multiLineData={stats?.totalDetails ?? []} />
             </div>
-              <div className="border p-4">
-                <h3 className="text-lg font-semibold mb-2">Répartition des Participations</h3>
-                <PieChartCard data={stats?.totalDetails ?? []} />
-              </div>
-          
-              <div className="border p-4">
-                <h3 className="text-[15px] md:text-lg font-semibold mb-2">Participations par Catégorie</h3>
-                <BarChartCard chartData={stats?.totalDetails ?? []} />
-              </div>
+            <div className="border p-4">
+              <h3 className="text-lg font-semibold mb-2">Répartition des Participations</h3>
+              <PieChartCard data={stats?.totalDetails ?? []} />
+            </div>
+
+            <div className="border p-4">
+              <h3 className="text-[15px] md:text-lg font-semibold mb-2">Participations par Catégorie</h3>
+              <BarChartCard chartData={stats?.totalDetails ?? []} />
+            </div>
             <div className="border p-4 mt-4">
               <h3 className="text-lg font-semibold mb-2">Évolution des Total des Participations</h3>
-              <OneLineChartCard singleLineData={stats?.total ?? []}/>
-
+              <OneLineChartCard singleLineData={stats?.total ?? []} />
             </div>
           </TabsContent>
           <TabsContent value="month">
             <div className="border p-4">
               <h3 className="text-lg font-semibold mb-2">Tendance de Participation Mensuelle</h3>
-              <LineChartCard multiLineData={stats?.totalDetails ?? []}/>
-
+              <LineChartCard multiLineData={stats?.totalDetails ?? []} />
             </div>
-              <div className="border p-4">
-                <h3 className="text-lg font-semibold mb-2">Répartition des Participations</h3>
-                <PieChartCard data={stats?.totalDetails ?? []} />
-              </div>
-              <div className="border p">
-                <h3 className="text-[15px] md:text-lg font-semibold mb-2">Participations par Catégorie</h3>
-                <BarChartCard chartData={stats?.totalDetails ?? []} />
-              </div>
-            
+            <div className="border p-4">
+              <h3 className="text-lg font-semibold mb-2">Répartition des Participations</h3>
+              <PieChartCard data={stats?.totalDetails ?? []} />
+            </div>
+            <div className="border p">
+              <h3 className="text-[15px] md:text-lg font-semibold mb-2">Participations par Catégorie</h3>
+              <BarChartCard chartData={stats?.totalDetails ?? []} />
+            </div>
+
             <div className="border p-4 mt-4">
               <h3 className="text-lg font-semibold mb-2">Évolution des Total des Participations</h3>
               <OneLineChartCard singleLineData={stats?.total ?? []} />
-
             </div>
           </TabsContent>
         </Tabs>
@@ -450,7 +446,7 @@ const ParticipationChart = () => {
           </div>
         </div>
       </CardFooter>
-    </Card >
+    </Card>
   );
 };
 

@@ -48,7 +48,7 @@ export const SignInPasswordField = <T extends Partial<z.infer<typeof signUpSchem
                 </div>
               </div>
             </FormControl>
-              <FormMessage className="form-message w-[40%] text-right" />
+            <FormMessage className="form-message w-[40%] text-right" />
             {description && <div className="form-description">{description}</div>}
           </div>
         )}

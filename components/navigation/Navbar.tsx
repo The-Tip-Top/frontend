@@ -18,17 +18,11 @@ const NavBar = ({ user, role = 'USER' }: SiderbarProps) => {
         </Link>
       ) : (
         <>
-          <Link
-            href="/home"
-            className="text-muted-foreground text-[20px] transition-colors hover:text-foreground"
-          >
+          <Link href="/home" className="text-muted-foreground text-[20px] transition-colors hover:text-foreground">
             Accueil
           </Link>
 
-          <Link
-            href="/home/blog"
-            className="text-muted-foreground text-[20px] transition-colors hover:text-foreground"
-          >
+          <Link href="/home/blog" className="text-muted-foreground text-[20px] transition-colors hover:text-foreground">
             Blog
           </Link>
 
@@ -39,7 +33,6 @@ const NavBar = ({ user, role = 'USER' }: SiderbarProps) => {
             About
           </Link>
         </>
-        
       )}
       {role !== 'EMPLOYEE' && (
         <Link
