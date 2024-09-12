@@ -159,9 +159,9 @@ const  Home: React.FC = () => {
         </div>
       </section>
 
-      { <section id="ticket-form" className="container mx-auto my-16 px-4 lg:px-12 text-center">
+      {/* { <section id="ticket-form" className="container mx-auto my-16 px-4 lg:px-12 text-center">
         <TicketForm />
-      </section> }
+      </section> } */}
 
       <section className="container mx-auto my-16 px-4 lg:px-12">
         <h2 className="text-3xl font-bold mb-8 text-center text-[#8FB43A]">Ce que disent nos clients</h2>

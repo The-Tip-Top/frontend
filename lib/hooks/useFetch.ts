@@ -6,8 +6,10 @@ interface FetchOptions {
   body?: unknown;
 }
 
-const BASE_URL = 'http://localhost:3001/api/v1';
-//const BASE_URL = 'http://backendprod.dsp5-archi-022a-4-5-g2.fr:3000/api/v1';
+// const BASE_URL = 'http://aad590f084ec0441cb6a9613d81a3e21-1475415769.eu-west-3.elb.amazonaws.com:3000/api/v1';
+// const BASE_URL = 'http://localhost:3001/api/v1';
+// const BASE_URL = 'http://backendprod.dsp5-archi-022a-4-5-g2.fr:3000/api/v1';
+const BASE_URL = 'http://51.91.81.23:3000/api/v1';
 export const myFetch = async <T>(url: string, fetchOption: FetchOptions = {}): Promise<T> => {
   // console.log('url ', `${BASE_URL}/${url}`);
   const { method = 'GET', headers = {}, body = null } = fetchOption;

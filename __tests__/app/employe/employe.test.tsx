@@ -58,7 +58,7 @@ describe('CheckCodePage', () => {
     fireEvent.change(inputElement, { target: { value: 'test@example.com' } });
     fireEvent.keyPress(inputElement, { key: 'Enter', code: 13, charCode: 13 });
   
-    screen.debug();
+    // screen.debug();
   
     await waitFor(() => {
       expect(screen.getByText('Une erreur est servenue')).toBeInTheDocument();

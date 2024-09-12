@@ -1,0 +1,91 @@
+// __tests__/components/CustomInput.test.tsx
+
+import { render, screen } from '@testing-library/react';
+import { useForm, FormProvider } from 'react-hook-form';
+import { z } from 'zod';
+import CustomInput from '@/components/inputs/CustomInput';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+// Mock schemas
+const mockSchema = z.object({
+  email: z.string().email('Invalid email format'),
+  password: z.string().min(6, 'Password must be at least 6 characters long'),
+});
+
+type MockSchemaType = z.infer<typeof mockSchema>;
+
+// Utility function to render with FormProvider
+const renderWithFormProvider = (ui: React.ReactNode) => {
+  const methods = useForm<MockSchemaType>({
+    resolver: zodResolver(mockSchema),
+  });
+
+  return render(<FormProvider {...methods}>{ui}</FormProvider>);
+};
+
+describe('CustomInput Component', () => {
+  it('should render the input with correct label and placeholder', () => {
+    renderWithFormProvider(
+      <CustomInput<MockSchemaType>
+        control={useForm<MockSchemaType>().control}
+        name="email"
+        label="Email Address"
+        placeholder="Enter your email"
+      />
+    );
+
+    // Check for label
+    expect(screen.getByLabelText('Email Address')).toBeInTheDocument();
+    // Check for placeholder
+    expect(screen.getByPlaceholderText('Enter your email')).toBeInTheDocument();
+  });
+
+  it('should display validation error message when input is invalid', async () => {
+    renderWithFormProvider(
+      <CustomInput<MockSchemaType>
+        control={useForm<MockSchemaType>().control}
+        name="email"
+        label="Email Address"
+        placeholder="Enter your email"
+      />
+    );
+
+    // Simulate invalid input
+    const input = screen.getByPlaceholderText('Enter your email');
+    input.focus();
+    input.blur(); // Trigger validation
+
+    const errorMessage = await screen.findByText('Invalid email format');
+    expect(errorMessage).toBeInTheDocument();
+  });
+
+  it('should display the input as block element when block prop is true', () => {
+    renderWithFormProvider(
+      <CustomInput<MockSchemaType>
+        control={useForm<MockSchemaType>().control}
+        name="email"
+        label="Email Address"
+        placeholder="Enter your email"
+        block={true}
+      />
+    );
+
+    const input = screen.getByPlaceholderText('Enter your email');
+    expect(input).toHaveStyle('display: block');
+  });
+
+  it('should display the input as flex element when block prop is false', () => {
+    renderWithFormProvider(
+      <CustomInput<MockSchemaType>
+        control={useForm<MockSchemaType>().control}
+        name="email"
+        label="Email Address"
+        placeholder="Enter your email"
+        block={false}
+      />
+    );
+
+    const input = screen.getByPlaceholderText('Enter your email');
+    expect(input).toHaveStyle('display: flex');
+  });
+});
