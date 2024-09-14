@@ -26,7 +26,7 @@ const ContactPage = () => {
   return (
     <div className="flex justify-center top-10 items-center min-h-screen">
       <div className="w-full max-w-md">
-        <h2 className="text-center text-2xl text-[#8FB43A] font-bold mb-6">Contactez-nous</h2>
+        <h2 className="text-center text-2xl text-[#8FB43A] font-bold mb-6">Contactez Thétiptop pour en savoir plus sur notre gamme de thés</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">

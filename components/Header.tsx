@@ -2,20 +2,16 @@
 
 import React, { useEffect } from 'react';
 import Link from 'next/link';
-import { ContactIcon, HomeIcon, Menu, SquareUser, LogOut } from 'lucide-react';
+import {  ContactIcon, HomeIcon, Menu, SquareUser, LogOut } from "lucide-react";
 import { FaUser } from 'react-icons/fa';
-import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Image from 'next/image';
 import { useCurrentUser } from '@/lib/hooks/useCurrentUser';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import LogoutButton from '@/components/auth/logoutButton';
+
 import NavBar from './navigation/Navbar';
 
 const Header = () => {
@@ -41,13 +37,9 @@ const Header = () => {
   return (
     <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 bg-white z-50 font-lato text-[#8FB43A] md:px-6">
       <title>Thé Tip Top - Votre Boutique de Thé Bio à Nice</title>
-      <meta
-        name="description"
-        content="Découvrez Thé Tip Top, votre expert en thé bio à Nice. Participez à notre jeu-concours exclusif et explorez nos thés relaxants pour le bien-être."
-      />
+      <meta name="description" content="Découvrez Thé Tip Top, votre expert en thé bio à Nice. Participez à notre jeu-concours exclusif et explorez nos thés relaxants pour le bien-être." />
       <h1 className="sr-only">
-        Thétiptop, c&apos;est bien plus qu&apos;une boutique de thé. Nous sommes une communauté de passionnés qui croit
-        au pouvoir des ingrédients naturels pour le bien-être...
+        Thétiptop, c'est bien plus qu'une boutique de thé. Nous sommes une communauté de passionnés qui croit au pouvoir des ingrédients naturels pour le bien-être...
       </h1>
       <NavBar />
       <Sheet>
@@ -67,17 +59,11 @@ const Header = () => {
               <HomeIcon />
               Accueil
             </Link>
-            <Link
-              href="/home/contact"
-              className="text-muted-foreground flex gap-6 transition-colors hover:text-foreground"
-            >
+            <Link href="/home/contact" className="text-muted-foreground flex gap-6 transition-colors hover:text-foreground">
               <ContactIcon />
               Contact
             </Link>
-            <Link
-              href="/sign-up"
-              className="text-muted-foreground flex gap-6 items-center transition-colors hover:text-foreground"
-            >
+            <Link href="/sign-up" className="text-muted-foreground flex gap-6 items-center transition-colors hover:text-foreground">
               <SquareUser />
               Inscription
             </Link>
@@ -89,7 +75,7 @@ const Header = () => {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Avatar>
-                <AvatarImage src={user?.image || ''} />
+                <AvatarImage src={user?.image || ""} />
                 <AvatarFallback className="bg-[#8FB43A] cursor-pointer">
                   <FaUser className="text-white" />
                 </AvatarFallback>

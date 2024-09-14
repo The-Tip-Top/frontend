@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
 import { TicketForm } from '@/components/TicketForm';
-import Link from 'next/link';
-const  Home: React.FC = () => {
+
+const Home: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -44,12 +44,16 @@ const  Home: React.FC = () => {
         votre nouvelle boutique de vente de thé bio à Nice et participez à notre jeu-concours exclusif ! Thétiptop est
         votre destination de choix pour découvrir une vaste sélection de thés bio à Nice. Située en plein cœur de la
         ville, notre nouvelle boutique vous offre une expérience unique autour du thé, axée sur le bien-être et la
-        relaxation. Nous proposons des thés bio pour le bien-être : thé détox, thé minceur, thé vert, thé noir, thé
-        blanc, thé rouge, thé oolong, thé matcha, thé bio en vrac, en sachet et en boîte.
+        relaxation. Nous proposons des thés bio pour le bien-être : thé détox, thé minceur, thé vert, thé noir, thé blanc,
+        thé rouge, thé oolong, thé matcha, thé bio en vrac, en sachet et en boîte dsp5-archi-022a-4-5.
+
       </h1>
 
+
+
       <div className="relative w-full h-96 lg:h-[500px]">
-        <Image src="/newhead.png" alt="Image du jeu-concours" fill style={{ objectFit: 'cover' }} />
+        <Image src="/newhead.png" alt="Image du jeu-concours" layout="fill" objectFit="cover" />
+
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-center text-white p-4">
           <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-4">
             Participez à notre jeu-concours exclusif !
@@ -59,7 +63,7 @@ const  Home: React.FC = () => {
           </p>
           <div className="flex flex-col lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-6 mt-4">
             <div
-              className="flex flex-col items-center space-y-2 bg-[#505050] p-3 rounded-lg shadow-lg"
+              className="flex flex-col items-center space-y-2 p-3 rounded-lg shadow-lg"
               aria-labelledby="countdown-title"
             >
               <h2
@@ -101,17 +105,17 @@ const  Home: React.FC = () => {
             </div>
           </div>
 
-          <Link
-            role='link'
+          <a
             href="/sign-in?concour=true"
             className="text-white bg-[#6AA843] font-bold py-3 px-6 rounded-full transition-colors shadow-lg mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#505050] hover:bg-[#5A9437]"
             aria-label="Cliquez ici pour participer au jeu concours"
           >
             Participer maintenant
-          </Link>
+          </a>
 
         </div>
       </div>
+
       <section className="container mx-auto mt-8 lg:mt-16 px-4 lg:px-12">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-gray-800">Comment se déroule le jeu-concours</h2>
@@ -158,10 +162,88 @@ const  Home: React.FC = () => {
           </p>
         </div>
       </section>
+      <hr className="border-t border-gray-300 my-6" />
 
-      {/* { <section id="ticket-form" className="container mx-auto my-16 px-4 lg:px-12 text-center">
-        <TicketForm />
-      </section> } */}
+      {/* Section SEO avec images et descriptions */}
+      <section className="container mx-auto mt-8 lg:mt-16 px-4 lg:px-12">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-4xl font-bold text-center text-gray-800">Découvrez les lots</h2>
+
+          {/* Image à gauche, texte à droite */}
+          <div className="my-8 flex flex-col lg:flex-row lg:items-center">
+            <Image
+              src="/detox.jpg"
+              alt="Infuseurs à thé"
+              width={400}
+              height={225}
+              className="rounded-lg"
+            />
+            <p className="mt-10 lg:mt-0 lg:ml-6 text-lg text-gray-600 leading-relaxed lg:w-full">
+              Les infuseurs à thé de The tip top sont conçus pour une infusion parfaite à chaque utilisation. Ces infuseurs permettent de libérer toutes les saveurs et les arômes des feuilles de thé et aussi grâce à leur design élégant et pratique, ils sont faciles à utiliser et à nettoyer.
+            </p>
+          </div>
+          <hr className="border-t border-gray-300 my-6" />
+
+          {/* Texte à gauche, image à droite */}
+          <div className="my-8 flex flex-col lg:flex-row lg:items-center lg:flex-row-reverse">
+            <Image
+              src="/signature.jpg"
+              alt="Boîte de thé détox"
+              width={400}
+              height={225}
+              className="rounded-lg"
+            />
+            <p className="mt-4 lg:mt-0 lg:mr-6 text-lg text-gray-600 leading-relaxed lg:w-full">
+              Nos boîtes de thé bio détox et infusion offrent un mélange unique de plantes biologiques, spécialement sélectionnées pour leurs bienfaits purifiants et revitalisants.
+            </p>
+          </div>
+          <hr className="border-t border-gray-300 my-6" />
+
+          {/* Image à gauche, texte à droite */}
+          <div className="my-8 flex flex-col lg:flex-row lg:items-center">
+            <Image
+              src="/infuseur.jpg"
+              alt="Boîte de thé signature"
+              width={400}
+              height={225}
+              className="rounded-lg"
+            />
+            <p className="mt-4 lg:mt-0 lg:ml-6 text-lg text-gray-600 leading-relaxed lg:w-full">
+              Les boîtes de thé signature Thetiptop renferment des créations uniques, conçues pour les amateurs de thé les plus exigeants. Chaque boîte propose des mélanges exclusifs.
+            </p>
+          </div>
+          <hr className="border-t border-gray-300 my-6" />
+
+          {/* Texte à gauche, image à droite */}
+          <div className="my-8 flex flex-col lg:flex-row lg:items-center lg:flex-row-reverse">
+            <Image
+              src="/coffret.jpg"
+              alt="Coffret découverte thé bio"
+              width={400}
+              height={225}
+              className="rounded-lg"
+            />
+            <p className="mt-4 lg:mt-0 lg:mr-6 text-lg text-gray-600 leading-relaxed lg:w-full">
+              Les coffrets découverte Thetiptop sont parfaits pour explorer toute la richesse et la diversité de nos thés bio. Chaque coffret contient une sélection variée de thés.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
+      <div className="flex justify-center mt-4">
+        <a
+          href="/sign-in?concour=true"
+          className="text-white bg-[#6AA843] font-bold py-3 px-6 rounded-full transition-colors shadow-lg mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#505050] hover:bg-[#5A9437]"
+          aria-label="Cliquez ici pour participer au jeu concours"
+        >
+          Appuyez ici et découvrez votre lot
+        </a>
+      </div>
+
+
+      <hr className="border-t border-gray-300 my-6" />
+
 
       <section className="container mx-auto my-16 px-4 lg:px-12">
         <h2 className="text-3xl font-bold mb-8 text-center text-[#8FB43A]">Ce que disent nos clients</h2>
