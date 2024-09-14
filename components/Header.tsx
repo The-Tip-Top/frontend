@@ -1,17 +1,17 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
-import { CircleUser, ContactIcon, HomeIcon, Menu, SquareUser, LogOut } from "lucide-react";
+import {  ContactIcon, HomeIcon, Menu, SquareUser, LogOut } from "lucide-react";
 import { FaUser } from 'react-icons/fa';
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import NavBar from "@/components/Navbar";
 import Image from 'next/image';
 import { useCurrentUser } from '@/lib/hooks/useCurrentUser';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import LogoutButton from '@/components/auth/logoutButton';
+import NavBar from './navigation/Navbar';
 
 const Header = () => {
   const user = useCurrentUser();
