@@ -1,6 +1,5 @@
-// __tests__/Mentions.test.tsx
 import { render, screen } from '@testing-library/react';
-import Mentions from '@/app/home/mentions-legales/page'; // Ajustez le chemin selon l'emplacement de votre composant
+import Mentions from '@/app/home/mentions-legales/page'; 
 import '@testing-library/jest-dom';
 
 describe('Mentions', () => {
@@ -13,13 +12,8 @@ describe('Mentions', () => {
   it('should render the main content paragraph correctly', () => {
     render(<Mentions />);
     
-    // Vérifier la partie du texte avant <strong>
     expect(screen.getByText(/La société/i)).toBeInTheDocument();
-
-    // Vérifier la partie du texte après <strong>
     expect(screen.getByText(/soucieuse des droits des individus/i)).toBeInTheDocument();
-
-    // Vérifier le texte à l'intérieur de <strong>
     expect(screen.getByText(/Thé tip top/i)).toBeInTheDocument();
   });
 

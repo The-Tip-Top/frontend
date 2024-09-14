@@ -37,12 +37,12 @@ const MobileNav = ({ user }: MobileNavProps) => {
               // style={{ width: 'auto', height: 'auto' }}
               // className="bg-red-500 p-2"
             />
-            <h1 className="text-26  font-bold font-lato text-[#8FB43A]">Thé Tip Top</h1>
+            <h1 className="text-sm font-bold font-lato text-[#8FB43A]">Thé Tip Top</h1>
           </Link>
           <Separator className="my-4 text-black-2 bg-gray-300" />
           <div className="mobilenav-sheet">
             <SheetClose asChild>
-              <nav className="flex h-full flex-col gap-6 pt-16 text-white">
+              <nav className="flex  flex-col gap-3 pt-6 text-white">
                 {sidebarLinks.map((item) => {
                   const isActive = pathname === item.route; //|| pathname.startsWith(`${item.route}/`)
 
@@ -51,7 +51,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
                       <Link
                         href={item.route}
                         key={item.label}
-                        className={cn('mobilenav-sheet_close w-full bg-gray-50', { 'bg-[#8FB43A]': isActive })}
+                        className={cn('mobilenav-sheet_close w-full bg-gray-100', { 'bg-[#8FB43A]': isActive })}
                       >
                         <Image
                           src={item.icon}
@@ -73,12 +73,11 @@ const MobileNav = ({ user }: MobileNavProps) => {
                     </SheetClose>
                   );
                 })}
-                USER
               </nav>
             </SheetClose>
 
             <LogoutButton user={user}>
-              <FooterAdmin name={'admin'} email={'admin@gmail.com'} type="mobile" />
+              <FooterAdmin name={ user?.name || 'admin'} email={user?.email || 'admin@gmail.com'} type="mobile" />
             </LogoutButton>
           </div>
         </SheetContent>

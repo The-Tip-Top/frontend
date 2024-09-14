@@ -1,9 +1,8 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { useRouter } from 'next/navigation';
-import CheckCodePage from '../../../app/employe/page'; 
-import { verifyCodeTicket } from '@/lib/actions/user.action';
-import FormMessage from '@/components/FormMessage'; 
+import CheckCodePage from '../../../app/employe/page';
 import React from 'react';
+import { verifyCodeTicket } from '@/lib/actions/user.action';
 
 
 jest.mock('next/navigation', () => ({
@@ -21,14 +20,14 @@ describe('CheckCodePage', () => {
   beforeEach(() => {
     pushMock = jest.fn();
     (useRouter as jest.Mock).mockReturnValue({ push: pushMock });
-    render(<CheckCodePage />); 
+    render(<CheckCodePage />);
   });
 
   it('should render the input and error message correctly', () => {
     const inputElement = screen.getByPlaceholderText('Entrez votre code') as HTMLInputElement;
     expect(inputElement).toBeInTheDocument();
 
-    expect(screen.queryByText('Une erreur est servenue')).not.toBeInTheDocument(); 
+    expect(screen.queryByText('Une erreur est servenue')).not.toBeInTheDocument();
   });
 
   it('should update email state when input changes', () => {
@@ -53,13 +52,11 @@ describe('CheckCodePage', () => {
 
   it('should display an error message on verification failure', async () => {
     (verifyCodeTicket as jest.Mock).mockRejectedValue(new Error('Failed'));
-  
+
     const inputElement = screen.getByPlaceholderText('Entrez votre code') as HTMLInputElement;
     fireEvent.change(inputElement, { target: { value: 'test@example.com' } });
     fireEvent.keyPress(inputElement, { key: 'Enter', code: 13, charCode: 13 });
-  
-    // screen.debug();
-  
+
     await waitFor(() => {
       expect(screen.getByText('Une erreur est servenue')).toBeInTheDocument();
     });

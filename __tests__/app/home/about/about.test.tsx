@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import Head from 'next/head';
+import React from 'react';
+import '@testing-library/jest-dom'
 import About from '@/app/home/about/page';
 
 describe('About Component', () => {

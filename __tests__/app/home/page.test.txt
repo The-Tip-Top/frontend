@@ -1,0 +1,48 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import React from 'react';
+import Home from '../../../app/home/page';
+
+jest.mock('@/components/CountdownTimer', () => () => <div data-testid="countdown-timer">Countdown Timer</div>);
+jest.mock('@/components/TestimonialCarousel', () => () => <div data-testid="testimonial-carousel">Testimonial Carousel</div>);
+
+jest.mock('next/image', () => (props: React.JSX.IntrinsicAttributes & React.ClassAttributes<HTMLImageElement> & React.ImgHTMLAttributes<HTMLImageElement>) => <img {...props} />);
+
+describe('Home Page', () => {
+  it('should render the description text', () => {
+    render(<Home />);
+    const heading = screen.getByRole('heading', {level: 2});
+    // expect(heading).toBeInTheDocument();
+    expect(heading).toHaveTextContent('Comment se déroule le jeu-concours');
+  });
+
+  it('should render the description text', () => {
+    render(<Home />);
+    const descriptionText = screen.getByText(/Découvrez Thetiptop/i);
+    expect(descriptionText).toBeInTheDocument();
+  });
+
+  it('should render the link to participate', () => {
+    render(<Home />);
+    const link = screen.getByRole('link', { name: /Participer maintenant/i });
+    expect(link).toHaveAttribute('href', '/sign-in?concour=true');
+  });
+
+  it('should render the list of prizes', () => {
+    render(<Home />);
+    
+    const prizeItems = screen.getAllByText(/Infuseurs à thé/i);
+    expect(prizeItems.length).toBeGreaterThan(0);
+
+    const otherPrizes = ['Boîte de thé détox', 'Boîte de thé signature', 'Coffret découverte thé bio'];
+    otherPrizes.forEach(prize => {
+      expect(screen.getByText(new RegExp(prize, 'i'))).toBeInTheDocument();
+    });
+  });
+
+  it('should render the grand prize description', () => {
+    render(<Home />);
+    const grandPrizeText = screen.getByText(/Le grand tirage dans/i);
+    expect(grandPrizeText).toBeInTheDocument();
+  });
+});

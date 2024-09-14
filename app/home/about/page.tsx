@@ -26,7 +26,7 @@ const About = () => {
 
       <div className="bg-gray-100 min-h-screen py-12">
         <div className="container mx-auto px-4 lg:px-8">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#8FB43A] text-center mb-8">
+          <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-[#8FB43A] text-center mb-8">
             À Propos de Thé Tip Top
           </h1>
 

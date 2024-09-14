@@ -20,6 +20,7 @@ import { cn } from '@/lib/utils';
 import NavBar from '@/components/navigation/Navbar';
 import LogoutButton from '@/components/auth/logoutButton';
 import { SiderbarProps } from '@/components/navigation/Sidebar';
+import FooterAdmin from '../FooterAdmin';
 
 const Header = ({ user, role }: SiderbarProps) => {
   const pathname = usePathname();
@@ -44,7 +45,7 @@ const Header = ({ user, role }: SiderbarProps) => {
         des ingrédients naturels
       </h1>
       <NavBar role={role} user={user} />
-      <section className="w-fulll max-w-[264px]">
+      <section className="w-full max-w-[264px] h-14 flex items-center">
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="shrink-0 md:hidden">
@@ -55,12 +56,12 @@ const Header = ({ user, role }: SiderbarProps) => {
           <SheetContent side="left" className="bg-white">
             <Link href="/home" className="cursor-pointer flex items-center gap-1 px-4">
               <Image src="/logofinal.png" width={70} height={70} alt="Thé Tip-Top logo" />
-              <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">Thé Tip-Top</h1>
+              <h1 className="text-sm  font-ibm-plex-serif  font-bold text-[#8FB43A]">Thé Tip-Top</h1>
             </Link>
             <Separator className="my-4 text-black-2 bg-gray-300" />
             <div className="mobilenav-sheet">
               <SheetClose asChild>
-                <nav className="flex h-full flex-col gap-6 pt-16 text-black-1">
+                <nav className="flex h-full flex-col gap-2 pt-4 text-black-1">
                   {role === 'EMPLOYEE' ? (
                     <Link
                       href="/employe/check-page"
@@ -75,7 +76,7 @@ const Header = ({ user, role }: SiderbarProps) => {
                     <>
                       <Link
                         href="/home"
-                        className={cn(`mobilenav-sheet_close w-full bg-gray-50`, {
+                        className={cn(`mobilenav-sheet_close text-sm !p-3 w-full bg-gray-100`, {
                           'bg-[#8FB43A]': pathname === '/home',
                         })}
                       >
@@ -85,7 +86,7 @@ const Header = ({ user, role }: SiderbarProps) => {
 
                       <Link
                         href="/home/blog"
-                        className={cn(`mobilenav-sheet_close w-full bg-gray-50`, {
+                        className={cn(`mobilenav-sheet_close text-sm !p-3 w-full bg-gray-100`, {
                           'bg-[#8FB43A]': pathname === '/home/blog',
                         })}
                       >
@@ -95,7 +96,7 @@ const Header = ({ user, role }: SiderbarProps) => {
 
                       <Link
                         href="/home/about"
-                        className={cn(`mobilenav-sheet_close w-full bg-gray-50`, {
+                        className={cn(`mobilenav-sheet_close text-sm !p-3 w-full bg-gray-100`, {
                           'bg-[#8FB43A]': pathname === '/home/about',
                         })}
                       >
@@ -105,7 +106,7 @@ const Header = ({ user, role }: SiderbarProps) => {
 
                       <Link
                         href="/account/history"
-                        className={cn(`mobilenav-sheet_close w-full bg-gray-50`, {
+                        className={cn(`mobilenav-sheet_close text-sm !p-3 w-full bg-gray-100`, {
                           'bg-[#8FB43A]': pathname === '/account/history',
                         })}
                       >
@@ -114,7 +115,7 @@ const Header = ({ user, role }: SiderbarProps) => {
                       </Link>
                       <Link
                         href="/home/contact"
-                        className={cn(`mobilenav-sheet_close w-full bg-gray-50`, {
+                        className={cn(`mobilenav-sheet_close text-sm !p-3 w-full bg-gray-100`, {
                           'bg-[#8FB43A]': pathname === '/home/contact',
                         })}
                       >
@@ -124,7 +125,7 @@ const Header = ({ user, role }: SiderbarProps) => {
                       {!user && (
                         <Link
                           href="/sign-in"
-                          className={cn(`mobilenav-sheet_close w-full bg-gray-50`, {
+                          className={cn(`mobilenav-sheet_close text-sm !p-3 w-full bg-gray-100`, {
                             'bg-[#8FB43A]': pathname === '/sign-in',
                           })}
                         >
@@ -136,6 +137,9 @@ const Header = ({ user, role }: SiderbarProps) => {
                   )}
                 </nav>
               </SheetClose>
+              <LogoutButton user={user}>
+                <FooterAdmin name={user?.name || 'admin'} email={user?.email || 'admin@gmail.com'} type="mobile" />
+              </LogoutButton>
             </div>
           </SheetContent>
         </Sheet>

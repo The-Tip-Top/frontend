@@ -12,7 +12,7 @@ const FooterAdmin = ({ name, email, type = 'desktop' }: FooterProps) => {
   const user = useCurrentUser();
 
   return (
-    <footer className="footer bg-red-200">
+    <footer className="footer ">
       <Avatar>
         <AvatarImage src={user?.image || ''} />
         <AvatarFallback className="bg-[#8FB43A] font-bold cursor-pointer">{name.charAt(0)}</AvatarFallback>
@@ -24,7 +24,7 @@ const FooterAdmin = ({ name, email, type = 'desktop' }: FooterProps) => {
       </div>
 
       <div className="footer_image">
-        <Image src="icons/logout.svg" fill alt="jsm" />
+        <Image src="icons/logout.svg" width={40} height={40} alt="jsm" />
       </div>
     </footer>
   );

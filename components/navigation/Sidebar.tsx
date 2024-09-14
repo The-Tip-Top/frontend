@@ -31,14 +31,14 @@ const Sidebar = ({ user }: SiderbarProps) => {
             alt="The tip top logo"
             className="size-[50px] max-xl:size-14"
           />
-          <h1 className="text-26  font-bold font-lato text-[#8FB43A]">Thé Tip Top</h1>
+          <h1 className="text-sm font-bold font-lato text-[#8FB43A]">Thé Tip Top</h1>
         </Link>
         <Separator className="bg-gray-200" />
         {sidebarLinks?.map((item) => {
           const isActive = pathname === item.route; //|| pathname.startsWith(`${item.route}/`);
           return (
             <Link
-              className={cn('sidebar-link items-center', { '!bg-[#8FB43A]': isActive })}
+              className={cn('sidebar-link items-center text-sm !p-3', { '!bg-[#8FB43A]': isActive })}
               href={item.route}
               key={item.label}
             >

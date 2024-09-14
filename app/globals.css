@@ -204,11 +204,11 @@
   }
 
   .mobilenav-sheet {
-    @apply flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto;
+    @apply flex h-[calc(100vh-110px)] flex-col justify-between overflow-y-auto;
   }
 
   .mobilenav-sheet_close {
-    @apply flex gap-3 items-center p-4 rounded-lg w-full max-w-60;
+    @apply flex gap-3 items-center p-4 rounded-lg w-full max-w-full;
   }
 
   .auth-asset {
@@ -218,7 +218,7 @@
 
   .auth-form {
     /* @apply font-lato flex h-max sm:max-w-[300px] md:max-w-[520px] md:w-[500px] min-w-[300px] flex-col justify-center gap-4 md:gap-4; */
-    @apply font-lato flex h-max md:max-w-[520px] w-full md:w-[500px] md:min-w-[320] flex-col justify-center gap-4
+    @apply font-lato flex h-max md:max-w-[520px] w-full  md:w-[500px] md:min-w-[320] flex-col justify-center gap-4
     ;
   }
 
@@ -249,7 +249,7 @@
 
   /* Footer */
   .footer {
-    @apply flex p-2 cursor-pointer items-center justify-between gap-2 mb-9 bg-gray-50 rounded-md;
+    @apply flex p-2 cursor-pointer items-center justify-between gap-2 mb-9 bg-gray-100 rounded-md;
   }
 
   .footer_name {
@@ -269,7 +269,7 @@
   }
 
   .footer_image {
-    @apply relative size-5 max-xl:w-full max-xl:flex max-xl:justify-center max-xl:items-center;
+    @apply relative size-5  max-xl:flex max-xl:justify-center max-xl:items-center;
   }
 
   .footer_image-mobile {
