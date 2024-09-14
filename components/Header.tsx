@@ -11,6 +11,7 @@ import Image from 'next/image';
 import { useCurrentUser } from '@/lib/hooks/useCurrentUser';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import LogoutButton from '@/components/auth/logoutButton';
+
 import NavBar from './navigation/Navbar';
 
 const Header = () => {
