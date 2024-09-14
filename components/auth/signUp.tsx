@@ -54,7 +54,7 @@ const SignUpFormContent = () => {
     }
   };
   const passCheck = form.getFieldState('password')?.error?.message?.length! > 0;
-  
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 sm:space-y-4">

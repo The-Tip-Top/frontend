@@ -1,25 +1,11 @@
+'use client';
 
+import { TrendingUp } from 'lucide-react';
+import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 
-"use client"
-
-import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
-
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart"
-import { TicketStats } from "@/lib/types/types"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
+import { TicketStats } from '@/lib/types/types';
 
 // const chartData = [
 //   { month: "January", remis: 186, annule: 80, enAttente: 50 },
@@ -32,24 +18,24 @@ import { TicketStats } from "@/lib/types/types"
 
 const chartConfig = {
   remis: {
-    label: "Remis",
-    color: "hsl(var(--chart-1))",
+    label: 'Remis',
+    color: 'hsl(var(--chart-1))',
   },
   annule: {
-    label: "Annulé",
-    color: "hsl(var(--chart-2))",
+    label: 'Annulé',
+    color: 'hsl(var(--chart-2))',
   },
   enAttente: {
-    label: "En Attente",
-    color: "hsl(var(--chart-3))",
+    label: 'En Attente',
+    color: 'hsl(var(--chart-3))',
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 interface ChartCardProps {
-  chartData: TicketStats[],
+  chartData: TicketStats[];
 }
 
-export const BarChartCard = ({chartData}: ChartCardProps) => {
+export const BarChartCard = ({ chartData }: ChartCardProps) => {
   return (
     <Card>
       {/* <CardHeader>
@@ -59,7 +45,7 @@ export const BarChartCard = ({chartData}: ChartCardProps) => {
       <CardContent>
         <ChartContainer className="h-[500px] w-full" config={chartConfig}>
           <BarChart accessibilityLayer data={chartData}>
-            <CartesianGrid vertical={false}  />
+            <CartesianGrid vertical={false} />
             <XAxis
               dataKey="day"
               tickLine={false}
@@ -67,10 +53,7 @@ export const BarChartCard = ({chartData}: ChartCardProps) => {
               axisLine={false}
               tickFormatter={(value) => value.slice(0, 3)}
             />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="dashed" className="bg-white" />}
-            />
+            <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="dashed" className="bg-white" />} />
             <Bar dataKey="remis" fill="var(--color-remis)" radius={4} />
             <Bar dataKey="annule" fill="var(--color-annule)" radius={4} />
             <Bar dataKey="enAttente" fill="var(--color-enAttente)" radius={4} />
@@ -86,6 +69,5 @@ export const BarChartCard = ({chartData}: ChartCardProps) => {
         </div>
       </CardFooter> */}
     </Card>
-
-  )
-}
+  );
+};

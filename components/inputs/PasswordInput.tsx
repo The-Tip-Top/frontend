@@ -5,8 +5,8 @@ import { Control, FieldPath, useFormContext } from 'react-hook-form';
 import { z } from 'zod';
 import { useState } from 'react';
 import { signInSchema, signUpSchema } from '@/lib/utils';
-import zxcvbn from "zxcvbn";
-import { Progress } from "@/components/ui/progress"
+import zxcvbn from 'zxcvbn';
+import { Progress } from '@/components/ui/progress';
 
 type PasswordFieldProps<T extends Partial<z.infer<typeof signUpSchema | typeof signInSchema>>> = {
   name: FieldPath<T>;
@@ -26,27 +26,27 @@ export const PasswordField = <T extends Partial<z.infer<typeof signUpSchema | ty
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(0);
   const [progressColor, setProgressColor] = useState('transparent');
-  const { setValue, setError } = useFormContext()
+  const { setValue, setError } = useFormContext();
 
   const handleChange = (value: string) => {
     const result = zxcvbn(value);
     setPasswordStrength(result.score);
-    setProgressColor(getStrengthMessage(result.score))
+    setProgressColor(getStrengthMessage(result.score));
     setValue('password', value);
-  }
+  };
 
   const getStrengthMessage = (score: number) => {
     switch (score) {
       case 0:
       case 1:
-        setError('password', { message: 'Mot de pass faible' })
+        setError('password', { message: 'Mot de pass faible' });
         return 'bg-red-600';
       case 2:
-        setError('password', { message: 'Mot de pass moyen' })
+        setError('password', { message: 'Mot de pass moyen' });
         return 'bg-yellow-600';
       case 3:
       case 4:
-        setError('password', { message: '' })
+        setError('password', { message: '' });
         return 'bg-green-600';
       default:
         return 'bg-transparent';
@@ -81,9 +81,11 @@ export const PasswordField = <T extends Partial<z.infer<typeof signUpSchema | ty
             </FormControl>
             <div className="mt-2 text-sm flex justify-between">
               <div className="w-5/6 animate-pulse">
-                <Progress value={getProgressValue(passwordStrength)}
+                <Progress
+                  value={getProgressValue(passwordStrength)}
                   className={`w-[60%] text-gray-500 h-1 `}
-                  indicatorColor={progressColor} />
+                  indicatorColor={progressColor}
+                />
               </div>
               <FormMessage className="form-message w-[40%] text-right" />
             </div>

@@ -14,19 +14,22 @@ const config: Config = {
   collectCoverage: true,
   // coverageDirectory: "coverage",
   preset: "ts-jest/presets/js-with-ts",
-  testEnvironment: 'jest-environment-jsdom',
-  moduleDirectories: ["node_modules", "src"],
+  testEnvironment: 'jsdom',
+  // testEnvironment: 'node',
+  moduleDirectories: ["node_modules", "src", '<rootDir>/'],
   // Add more setup options before each test is run
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
  
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
     '^.+\\.(ts|tsx|js|jsx)$': 'babel-jest',
+    '^.+\\.jsx?$': 'babel-jest',
     '^.+\\.(js|jsx)$': 'babel-jest',  // Use Babel for JavaScript files
     "(\\.ts$|query-string)":  ["ts-jest", {}]
   },
   transformIgnorePatterns: [
-    '/node_modules/(?!(query-string)/)' // Include specific packages if needed
+    '/node_modules/(?!(query-string)/)', // Include specific packages if needed
+    '/node_modules/(?!query-string|)',
     // "node_modules/(?!(react-leaflet-custom-control)/)"
   ],
   
@@ -35,6 +38,7 @@ const config: Config = {
   moduleNameMapper: {
     '^@/components/(.*)$': '<rootDir>/components/$1',
     '^@/(.*)$': '<rootDir>/$1', // This should match your paths in tsconfig.json
+    "^react-flow-renderer": "identity-obj-proxy"
   },
   globals: {
     "ts-jest": {

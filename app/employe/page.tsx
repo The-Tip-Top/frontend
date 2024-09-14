@@ -42,7 +42,7 @@ export default function CheckCodePage() {
             type="email"
             value={email}
             onChange={handleEmailChange}
-            onKeyPress={handleKeyPress} 
+            onKeyPress={handleKeyPress}
             placeholder="Entrez votre code"
             className="w-full p-4 pl-12 border border-gray-300 rounded-full text-lg"
           />
@@ -66,8 +66,7 @@ export default function CheckCodePage() {
         <FormMessage style="rounded-full" type="ERROR" message={error} />
       </div>
 
-      <div className="mt-8">
-      </div>
+      <div className="mt-8"></div>
     </div>
   );
 }

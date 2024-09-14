@@ -28,6 +28,7 @@ export const CheckboxInput = ({ checked, setChecked }: CheckboxInputProps) => {
         onCheckedChange={(e: boolean) => handleCheckboxChange(e)}
         onClick={(e) => e.stopPropagation()}
         id="terms2"
+        data-testid="terms-checkbox"
       />
       <div
         className="text-xs sm:text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 

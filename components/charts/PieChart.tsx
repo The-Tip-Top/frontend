@@ -1,61 +1,52 @@
-"use client"
+'use client';
 
-import { Pie, PieChart } from "recharts"
+import { Pie, PieChart } from 'recharts';
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart"
-import { TicketStats } from "@/lib/types/types"
-import { useEffect } from "react"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
+import { TicketStats } from '@/lib/types/types';
+import { useEffect } from 'react';
 
 const chartConfig = {
   total: {
-    label: "Total",
+    label: 'Total',
   },
   remis: {
-    label: "Remis",
-    color: "hsl(var(--chart-1))",
+    label: 'Remis',
+    color: 'hsl(var(--chart-1))',
   },
   annule: {
-    label: "Annulé",
-    color: "hsl(var(--chart-2))",
+    label: 'Annulé',
+    color: 'hsl(var(--chart-2))',
   },
   enAttente: {
-    label: "En Attente",
-    color: "hsl(var(--chart-3))",
-  }
-} satisfies ChartConfig
+    label: 'En Attente',
+    color: 'hsl(var(--chart-3))',
+  },
+} satisfies ChartConfig;
 
 interface PieChartProps {
-  data: TicketStats[]
+  data: TicketStats[];
 }
 
-export const PieChartCard = ({data}: PieChartProps) => {
-  const chartDataa = data.reduce((acc, current) => {
-    acc[0].total += current.remis
-    acc[1].total += current.annule
-    acc[2].total += current.enAttente
-    return acc
-  }, [
-    {status: "remis", total: 0, fill: "var(--color-remis)"},
-    {status: "annule", total: 0, fill: "var(--color-annule)"},
-    {status: "enAttente", total: 0, fill: "var(--color-enAttente)"},
-  ])
+export const PieChartCard = ({ data }: PieChartProps) => {
+  const chartDataa = data.reduce(
+    (acc, current) => {
+      acc[0].total += current.remis;
+      acc[1].total += current.annule;
+      acc[2].total += current.enAttente;
+      return acc;
+    },
+    [
+      { status: 'remis', total: 0, fill: 'var(--color-remis)' },
+      { status: 'annule', total: 0, fill: 'var(--color-annule)' },
+      { status: 'enAttente', total: 0, fill: 'var(--color-enAttente)' },
+    ],
+  );
 
   useEffect(() => {
-    console.log("------ ", chartDataa)
-  }, [chartDataa])
+    console.log('------ ', chartDataa);
+  }, [chartDataa]);
   return (
     <Card className="flex flex-col">
       {/* <CardHeader className="items-center pb-0">
@@ -82,5 +73,5 @@ export const PieChartCard = ({data}: PieChartProps) => {
         </div>
       </CardFooter> */}
     </Card>
-  )
-}
+  );
+};

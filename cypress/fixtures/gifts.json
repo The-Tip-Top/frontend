@@ -1,0 +1,37 @@
+[
+  {
+    "giftId": "clzzijph10000zk1vq5nbex3y",
+    "name": "Infuseur th",
+    "description": "Infuseur th",
+    "status": "GIFT_GIVEN",
+    "imageUrl": "/path/to/image/infuseur_th.webp"
+  },
+  {
+    "giftId": "clzzijphv0001zk1vns6mfwfg",
+    "name": "Bote de th dtox ou infusion",
+    "description": "Bote de th dtox ou infusion",
+    "status": "WAITING",
+    "imageUrl": "/path/to/image/bote_th_dtox.webp"
+  },
+  {
+    "giftId": "clzzijpi70002zk1vchwt3t62",
+    "name": "Bote de th signature",
+    "description": "Bote de th signature",
+    "status": "WAITING",
+    "imageUrl": "/path/to/image/bote_th_signature.webp"
+  },
+  {
+    "giftId": "clzzijpig0003zk1vzffhchve",
+    "name": "Coffret dcouverte 39",
+    "description": "Coffret dcouverte dune valeur de 39",
+    "status": "WAITING",
+    "imageUrl": "/path/to/image/coffret_dcouverte_39.webp"
+  },
+  {
+    "giftId": "clzzijpiq0004zk1vnv8vnxse",
+    "name": "Coffret dcouverte 69",
+    "description": "Coffret dcouverte dune valeur de 69",
+    "status": "WAITING",
+    "imageUrl": "/path/to/image/coffret_dcouverte_69.webp"
+  }
+]

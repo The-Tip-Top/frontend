@@ -1,0 +1,179 @@
+import { getAllParticipations, getCountTicketByStatus, getStatistics, getAllTicketsWithParticipations } from '@/lib/actions/admin.action';
+import { Participation, CountingTicketResponse, StatsResponse, UserWithDetails, UserRole, EGiftStatus } from '@/lib/types/types';
+import '@testing-library/jest-dom';
+
+jest.mock('../hooks/useFetch', () => ({
+    myFetch: jest.fn(),
+  }));
+  
+  const mockedMyFetch = myFetch as jest.MockedFunction<typeof myFetch>;
+  
+  describe('API Functions', () => {
+    
+    beforeEach(() => {
+      jest.resetAllMocks();
+    });
+  
+    it('should fetch all participations', async () => {
+      // Arrange
+      const mockParticipations: Participation[] = [
+        {
+          participationId: '1',
+          createdAt: new Date(),
+          submitedAt: new Date(),
+          participationTicketId: 'ticket1',
+          ticket: {
+            ticketId: 'ticket1',
+            maxValidDate: '2024-12-31',
+            isValid: 'true',
+            status: EGiftStatus.WAITING,
+          },
+          participationGiftId: 'gift1',
+          gift: {
+            imageUrl: 'http://example.com/image.jpg',
+            giftId: 'gift1',
+            status: 'WAITING',
+            name: 'Gift Name',
+            description: 'Gift Description',
+          },
+        },
+      ];
+      mockedMyFetch.mockResolvedValue(mockParticipations);
+      
+      // Act
+      const result = await getAllParticipations();
+      
+      // Assert
+      expect(result).toEqual(mockParticipations);
+      expect(mockedMyFetch).toHaveBeenCalledWith('admin/getAllParticipations', { method: 'GET' });
+    });
+  
+    it('should handle error when fetching all participations', async () => {
+      // Arrange
+      mockedMyFetch.mockRejectedValue(new Error('Fetch error'));
+      
+      // Act
+      const result = await getAllParticipations();
+      
+      // Assert
+      expect(result).toBeUndefined();
+      expect(mockedMyFetch).toHaveBeenCalledWith('admin/getAllParticipations', { method: 'GET' });
+    });
+  
+    it('should fetch count of tickets by status', async () => {
+      // Arrange
+      const mockCount: CountingTicketResponse = {
+        WAITING: 5,
+        CONCLUDED: 10,
+        CANCELLED: 2,
+        PARTICIPATION: 3,
+        CURRENT_PARTICIPATION: 1,
+      };
+      mockedMyFetch.mockResolvedValue(mockCount);
+      
+      // Act
+      const result = await getCountTicketByStatus();
+      
+      // Assert
+      expect(result).toEqual(mockCount);
+      expect(mockedMyFetch).toHaveBeenCalledWith('admin/countTickets', { method: 'GET' });
+    });
+  
+    it('should handle error when fetching count of tickets by status', async () => {
+      // Arrange
+      mockedMyFetch.mockRejectedValue(new Error('Fetch error'));
+      
+      // Act
+      const result = await getCountTicketByStatus();
+      
+      // Assert
+      expect(result).toBeUndefined();
+      expect(mockedMyFetch).toHaveBeenCalledWith('admin/countTickets', { method: 'GET' });
+    });
+  
+    it('should fetch statistics', async () => {
+      // Arrange
+      const mockStats: StatsResponse = {
+        total: [
+          { day: '2024-09-01', total: 15 },
+          { day: '2024-09-02', total: 20 },
+        ],
+        totalDetails: [
+          { day: '2024-09-01', remis: 5, annule: 2, enAttente: 8 },
+          { day: '2024-09-02', remis: 10, annule: 3, enAttente: 7 },
+        ],
+      };
+      mockedMyFetch.mockResolvedValue(mockStats);
+      
+      // Act
+      const result = await getStatistics();
+      
+      // Assert
+      expect(result).toEqual(mockStats);
+      expect(mockedMyFetch).toHaveBeenCalledWith('admin/stats', { method: 'GET' });
+    });
+  
+    it('should handle error when fetching statistics', async () => {
+      // Arrange
+      mockedMyFetch.mockRejectedValue(new Error('Fetch error'));
+      
+      // Act
+      const result = await getStatistics();
+      
+      // Assert
+      expect(result).toBeNull();
+      expect(mockedMyFetch).toHaveBeenCalledWith('admin/stats', { method: 'GET' });
+    });
+  
+    it('should fetch all tickets with participations', async () => {
+      // Arrange
+      const mockTickets: UserWithDetails[] = [
+        {
+          id: 'user1',
+          email: 'user@example.com',
+          password: null,
+          name: 'User One',
+          dateOfBirth: new Date('1990-01-01'),
+          phoneNumber: '1234567890',
+          role: UserRole.USER,
+          emailVerified: null,
+          image: 'http://example.com/user.jpg',
+          Account: [],
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          tickets: [
+            {
+              ticketId: 'ticket1',
+              maxValidDate: '2024-12-31',
+              isValid: 'true',
+              status: EGiftStatus.WAITING,
+            },
+          ],
+          gifts: [],
+          participations: [],
+        },
+      ];
+      mockedMyFetch.mockResolvedValue(mockTickets);
+      
+      // Act
+      const result = await getAllTicketsWithParticipations();
+      
+      // Assert
+      expect(result).toEqual(mockTickets);
+      expect(mockedMyFetch).toHaveBeenCalledWith('admin/getAllTicketsWithParticipations', { method: 'GET' });
+    });
+  
+    it('should handle error when fetching all tickets with participations', async () => {
+      // Arrange
+      mockedMyFetch.mockRejectedValue(new Error('Fetch error'));
+      
+      // Act
+      const result = await getAllTicketsWithParticipations();
+      
+      // Assert
+      expect(result).toBeUndefined();
+      expect(mockedMyFetch).toHaveBeenCalledWith('admin/getAllTicketsWithParticipations', { method: 'GET' });
+    });
+  
+  });
+  
