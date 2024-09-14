@@ -1,6 +1,6 @@
 'use server';
 
-import { auth} from '@/auth';
+import { auth } from '@/auth';
 import { myFetch } from '../hooks/useFetch';
 import { ResponseMessageWithStatus } from './newVerificationToken.action';
 import { EGiftStatus, Gift, Ticket, User } from '../types/types';
@@ -64,13 +64,13 @@ export const updateParticipationStatus = async (id: string, status: EGiftStatus)
 };
 
 export const subscribeToNewsLetter = async (id: string | undefined) => {
-  if(id) {
+  if (id) {
     const updated = await myFetch<User>(`subscribeNews/${id}`, {
       method: 'PUT',
-    })
-    if(updated){
-      return updated
+    });
+    if (updated) {
+      return updated;
     }
   }
-  return null
-}
+  return null;
+};

@@ -42,8 +42,7 @@ const SignInFormContent = () => {
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
     try {
       setTransition(() => {
-       
-        Login(data, variable ?? "").then((data) => {
+        Login(data, variable ?? '').then((data) => {
           // console.log('loginn ', data);
           setMessage({
             error: data?.error ?? '',

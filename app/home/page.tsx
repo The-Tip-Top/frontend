@@ -12,11 +12,13 @@ const  Home: React.FC = () => {
     seconds: 0,
   });
 
+
   useEffect(() => {
     const targetDate = new Date('2024-10-30T23:59:59'); // Date de fin du jeu
     const interval = setInterval(() => {
       const now = new Date();
       const difference = targetDate.getTime() - now.getTime();
+
 
       if (difference > 0) {
         setTimeLeft({
@@ -30,8 +32,10 @@ const  Home: React.FC = () => {
       }
     }, 1000);
 
+
     return () => clearInterval(interval);
   }, []);
+
 
   return (
     <>
@@ -40,14 +44,16 @@ const  Home: React.FC = () => {
         votre nouvelle boutique de vente de thé bio à Nice et participez à notre jeu-concours exclusif ! Thétiptop est
         votre destination de choix pour découvrir une vaste sélection de thés bio à Nice. Située en plein cœur de la
         ville, notre nouvelle boutique vous offre une expérience unique autour du thé, axée sur le bien-être et la
-        relaxation. Nous proposons des thés bio pour le bien-être : thé détox, thé minceur, thé vert, thé noir, thé blanc,
-        thé rouge, thé oolong, thé matcha, thé bio en vrac, en sachet et en boîte.
+        relaxation. Nous proposons des thés bio pour le bien-être : thé détox, thé minceur, thé vert, thé noir, thé
+        blanc, thé rouge, thé oolong, thé matcha, thé bio en vrac, en sachet et en boîte.
       </h1>
 
       <div className="relative w-full h-96 lg:h-[500px]">
         <Image src="/newhead.png" alt="Image du jeu-concours" fill style={{ objectFit: 'cover' }} />
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-center text-white p-4">
-          <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-4">Participez à notre jeu-concours exclusif !</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-4">
+            Participez à notre jeu-concours exclusif !
+          </h2>
           <p className="text-lg sm:text-xl lg:text-2xl mb-4">
             Thetiptop - Votre Boutique de Thé Bio à Nice | Jeu Concours pour l&apos;Ouverture
           </p>
@@ -120,6 +126,7 @@ const  Home: React.FC = () => {
             sort et gagner des cadeaux incroyables !
           </p>
 
+
           <div className="flex justify-center mt-4">
             <ul className="text-lg text-[#8FB43A] font-semibold leading-relaxed text-left">
               <li className="flex items-center">
@@ -137,6 +144,7 @@ const  Home: React.FC = () => {
             </ul>
           </div>
 
+
           <p className="mt-4 text-lg text-gray-600 leading-relaxed">
             Vous avez 30 jours supplémentaires après la fin du concours pour vérifier vos gains en ligne.
           </p>
@@ -151,9 +159,9 @@ const  Home: React.FC = () => {
         </div>
       </section>
 
-      { <section id="ticket-form" className="container mx-auto my-16 px-4 lg:px-12 text-center">
+      {/* { <section id="ticket-form" className="container mx-auto my-16 px-4 lg:px-12 text-center">
         <TicketForm />
-      </section> }
+      </section> } */}
 
       <section className="container mx-auto my-16 px-4 lg:px-12">
         <h2 className="text-3xl font-bold mb-8 text-center text-[#8FB43A]">Ce que disent nos clients</h2>
@@ -163,4 +171,6 @@ const  Home: React.FC = () => {
   );
 };
 
+
 export default Home;
+

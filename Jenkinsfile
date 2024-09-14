@@ -25,10 +25,30 @@ pipeline {
                 }
             }
         }
+
+        stage('Run tests') {
+            steps {
+                script {
+                        sh '''
+                            npm install jest --legacy-peer-deps
+                            npm test
+                        '''
+                }
+            }
+            post {
+                success {
+                    echo "Tests passed :)"
+                }
+                failure {
+                    echo "Tests failed :("
+                }
+            }
+        }
                
         stage('Docker build and push') {
             when {
                 anyOf {
+                    branch 'tests'
                     branch 'develop'
                     branch 'master'
                 }
@@ -54,6 +74,7 @@ pipeline {
 
         stage('Deploy to Staging and Preprod') {
             when {  
+                branch 'tests'
                 branch 'develop'
             }
             steps {

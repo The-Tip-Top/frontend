@@ -32,15 +32,15 @@ export const getStatistics = async () => {
     const stats = await myFetch<StatsResponse>('admin/stats', {
       method: 'GET',
     });
-    if(stats){
+    if (stats) {
       console.log('stats tickets ', stats);
       return stats;
     }
-    return null
+    return null;
   } catch (err) {
     console.log('error when fetching participations ', err);
   }
-}
+};
 
 export const getAllTicketsWithParticipations = async () => {
   try {

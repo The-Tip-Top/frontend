@@ -1,50 +1,38 @@
-"use client"
+'use client';
 
-import { TrendingUp } from "lucide-react"
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
+import { TrendingUp } from 'lucide-react';
+import { CartesianGrid, Line, LineChart, XAxis } from 'recharts';
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart"
-import { ParticipationStats, TicketStats } from "@/lib/types/types"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
+import { ParticipationStats, TicketStats } from '@/lib/types/types';
 
-export const description = "A multiple line chart"
+export const description = 'A multiple line chart';
 
 const chartConfig = {
   remis: {
-    label: "Remis",
-    color: "hsl(var(--chart-1))",
+    label: 'Remis',
+    color: 'hsl(var(--chart-1))',
   },
   annule: {
-    label: "Annulé",
-    color: "hsl(var(--chart-2))",
+    label: 'Annulé',
+    color: 'hsl(var(--chart-2))',
   },
   enAttente: {
-    label: "En Attente",
-    color: "hsl(var(--chart-3))",
+    label: 'En Attente',
+    color: 'hsl(var(--chart-3))',
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 interface LineChartCardProps {
-  multiLineData: TicketStats[],
+  multiLineData: TicketStats[];
 }
 
 interface OneLineChartCardProps {
-  singleLineData: ParticipationStats[]
+  singleLineData: ParticipationStats[];
 }
 
-export const LineChartCard = ({multiLineData}: LineChartCardProps) => {
+export const LineChartCard = ({ multiLineData }: LineChartCardProps) => {
   return (
     <Card>
       {/* <CardHeader>
@@ -70,27 +58,9 @@ export const LineChartCard = ({multiLineData}: LineChartCardProps) => {
               tickFormatter={(value) => value.slice(0, 3)}
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent className="bg-white" />} />
-            <Line
-              dataKey="remis"
-              type="monotone"
-              stroke="var(--color-remis)"
-              strokeWidth={2}
-              dot={false}
-            />
-            <Line
-              dataKey="annule"
-              type="monotone"
-              stroke="var(--color-annule)"
-              strokeWidth={2}
-              dot={false}
-            />
-            <Line
-              dataKey="enAttente"
-              type="monotone"
-              stroke="var(--color-enAttente)"
-              strokeWidth={2}
-              dot={false}
-            />
+            <Line dataKey="remis" type="monotone" stroke="var(--color-remis)" strokeWidth={2} dot={false} />
+            <Line dataKey="annule" type="monotone" stroke="var(--color-annule)" strokeWidth={2} dot={false} />
+            <Line dataKey="enAttente" type="monotone" stroke="var(--color-enAttente)" strokeWidth={2} dot={false} />
           </LineChart>
         </ChartContainer>
       </CardContent>
@@ -107,9 +77,9 @@ export const LineChartCard = ({multiLineData}: LineChartCardProps) => {
         </div>
       </CardFooter> */}
     </Card>
-  )
-}
-export const OneLineChartCard = ({singleLineData}: OneLineChartCardProps) => {
+  );
+};
+export const OneLineChartCard = ({ singleLineData }: OneLineChartCardProps) => {
   return (
     <Card>
       {/* <CardHeader>
@@ -135,13 +105,7 @@ export const OneLineChartCard = ({singleLineData}: OneLineChartCardProps) => {
               tickFormatter={(value) => value.slice(0, 3)}
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent className="bg-white" />} />
-            <Line
-              dataKey="total"
-              type="monotone"
-              stroke="var(--color-remis)"
-              strokeWidth={2}
-              dot={false}
-            />
+            <Line dataKey="total" type="monotone" stroke="var(--color-remis)" strokeWidth={2} dot={false} />
           </LineChart>
         </ChartContainer>
       </CardContent>
@@ -158,5 +122,5 @@ export const OneLineChartCard = ({singleLineData}: OneLineChartCardProps) => {
         </div>
       </CardFooter> */}
     </Card>
-  )
-}
+  );
+};

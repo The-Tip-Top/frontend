@@ -1,0 +1,92 @@
+[
+  {
+    "ticketId": "clzzijv0j0005zk1vi9ygd2kr",
+    "code": "51a1fa67b0",
+    "maxValidDate": "2024-10-17 11:58:23.657",
+    "isValid": "1",
+    "ticketUserId": "cm01fe25y000012zs3ov1f0aj",
+    "ticketGiftId": "clzzijph10000zk1vq5nbex3y",
+    "status": "GIFT_GIVEN",
+    "user": null,
+    "gift": {
+      "giftId": "clzzijph10000zk1vq5nbex3y",
+      "name": "Infuseur th",
+      "description": "Infuseur th",
+      "status": "GIFT_GIVEN",
+      "imageUrl": "/path/to/image/infuseur_th.webp"
+    },
+    "participation": null
+  },
+  {
+    "ticketId": "clzzijv0j0006zk1via4xuo3n",
+    "code": "1e39121206",
+    "maxValidDate": "2024-10-17 11:58:23.657",
+    "isValid": "1",
+    "ticketUserId": "cm01fe25y000012zs3ov1f0aj",
+    "ticketGiftId": "clzzijph10000zk1vq5nbex3y",
+    "status": "GIFT_GIVEN",
+    "user": null,
+    "gift": {
+      "giftId": "clzzijph10000zk1vq5nbex3y",
+      "name": "Infuseur th",
+      "description": "Infuseur th",
+      "status": "GIFT_GIVEN",
+      "imageUrl": "/path/to/image/infuseur_th.webp"
+    },
+    "participation": null
+  },
+  {
+    "ticketId": "clzzijv0j0007zk1vyt11ny4u",
+    "code": "1d2b490cf7",
+    "maxValidDate": "2024-10-17 11:58:23.657",
+    "isValid": "1",
+    "ticketUserId": "cm01fe25y000012zs3ov1f0aj",
+    "ticketGiftId": "clzzijph10000zk1vq5nbex3y",
+    "status": "GIFT_GIVEN",
+    "user": null,
+    "gift": {
+      "giftId": "clzzijph10000zk1vq5nbex3y",
+      "name": "Infuseur th",
+      "description": "Infuseur th",
+      "status": "GIFT_GIVEN",
+      "imageUrl": "/path/to/image/infuseur_th.webp"
+    },
+    "participation": null
+  },
+  {
+    "ticketId": "clzzijv0j0008zk1v37j6moc5",
+    "code": "108e484b74",
+    "maxValidDate": "2024-10-17 11:58:23.657",
+    "isValid": "1",
+    "ticketUserId": "cm032dcgz0000mftq3154c4dk",
+    "ticketGiftId": "clzzijph10000zk1vq5nbex3y",
+    "status": "GIFT_GIVEN",
+    "user": null,
+    "gift": {
+      "giftId": "clzzijph10000zk1vq5nbex3y",
+      "name": "Infuseur th",
+      "description": "Infuseur th",
+      "status": "GIFT_GIVEN",
+      "imageUrl": "/path/to/image/infuseur_th.webp"
+    },
+    "participation": null
+  },
+  {
+    "ticketId": "clzzijv0j0009zk1vi5qfma5a",
+    "code": "8844dec094",
+    "maxValidDate": "2024-10-17 11:58:23.657",
+    "isValid": "1",
+    "ticketUserId": "cm01fe25y000012zs3ov1f0aj",
+    "ticketGiftId": "clzzijph10000zk1vq5nbex3y",
+    "status": "WAITING",
+    "user": null,
+    "gift": {
+      "giftId": "clzzijph10000zk1vq5nbex3y",
+      "name": "Infuseur th",
+      "description": "Infuseur th",
+      "status": "WAITING",
+      "imageUrl": "/path/to/image/infuseur_th.webp"
+    },
+    "participation": null
+  }
+]

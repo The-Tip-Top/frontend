@@ -8,10 +8,8 @@ export const exportTableToExcel = async (data: Participation[], fileName: string
   const workbook = new ExcelJS.Workbook();
   const worksheet = workbook.addWorksheet('Sheet1');
 
- 
   worksheet.addRow(['Status', 'Participant', 'Gift', 'Date participation', 'Date de récupération']);
 
- 
   data.forEach((row) => {
     worksheet.addRow([
       row.ticket?.status ?? 'N/A',
@@ -79,7 +77,3 @@ export const exportTableToPDF = (data: Participation[], fileName: string) => {
 
   doc.save(`${fileName}.pdf`);
 };
-
-
-
-

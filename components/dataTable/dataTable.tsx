@@ -74,7 +74,6 @@ export function DataTable({ data }: { data: Participation[] }) {
 
   return (
     <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1">
-
       <div className="w-full relative overflow-x-hidden">
         <div className="flex lg:flex-row items-center py-4 flex-col gap-y-1 lg:gap-x-1">
           <Input
@@ -83,10 +82,10 @@ export function DataTable({ data }: { data: Participation[] }) {
             onChange={(event) => {
               const filterValue = event.target.value;
               table.getColumn('participant')?.setFilterValue(filterValue);
-            }} 
+            }}
             className="lg:max-w-sm w-full mx-1 border-gray-400 focus:border-none focus:shadow-none"
           />
-          <div className='flex  w-full items-center justify-end gap-x-2 flex-col gap-y-2 xs:flex-row'>
+          <div className="flex  w-full items-center justify-end gap-x-2 flex-col gap-y-2 xs:flex-row">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size={'sm'} className="w-full flex justify-between text-white bg-[#18181B]">
@@ -105,7 +104,7 @@ export function DataTable({ data }: { data: Participation[] }) {
             {/* </div> */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button size={"sm"} className="border-gray-400 w-full flex justify-between text-white bg-[#18181B]">
+                <Button size={'sm'} className="border-gray-400 w-full flex justify-between text-white bg-[#18181B]">
                   Columns <ChevronDown className="ml-2 h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
