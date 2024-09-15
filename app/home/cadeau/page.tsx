@@ -21,9 +21,28 @@ const CadeauPageContent = () => {
     const fetchGifts = async () => {
       try {
         const response = await myFetch<Gift[]>('gifts', {});
-        console.log('--- gifts ', response);
         if (response) {
-          setGifts(response);
+          response.forEach((g) => {
+            switch(g.name) {
+              case "Infuseur à thé":
+                g.imageUrl = "/detox.jpg"
+              break;
+              case "Boîte de thé détox ou infusion":
+                g.imageUrl = "/signature.jpg"
+              break;
+              case "Boîte de thé signature":
+                g.imageUrl = "/infuseur.jpg"
+              break;
+              case "Coffret découverte 39€":
+                g.imageUrl = "/coffret.jpg"
+                break;
+                case "Infuseurs à thé":
+                  g.imageUrl = "/detox.jpg"
+                  break;
+                }
+              })
+              console.log('--- gifts ', response);
+              setGifts(response);
         } else {
           console.error('Erreur lors de la récupération des gifts');
         }
@@ -67,7 +86,7 @@ const CadeauPageContent = () => {
                 },
               )}
             >
-              <Image src={'/cadeau1.webp'} width={300} height={300} alt="cadeau1" className="rounded-md" />
+              <Image src={ gift.imageUrl || '/cadeau1.webp'} width={300} height={300} alt="cadeau1" className="rounded-md" />
               <h2 className="text-2xl font-semibold text-gray-700 mt-4 mb-2">{gift.name}</h2>
               <p className="text-gray-600">{gift.description}</p>
             </div>

@@ -36,7 +36,7 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      <section className="container mx-auto mt-8 lg:mt-16 px-4 lg:px-12 bg-red-300">
+      <section className="container mx-auto mt-8 lg:mt-16 px-4 lg:px-12">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-gray-800">Comment se déroule le jeu-concours</h2>
           <p className="mt-4 text-lg text-gray-600 leading-relaxed">

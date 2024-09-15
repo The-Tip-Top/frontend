@@ -105,11 +105,11 @@ pipeline {
                             sh 'kubectl apply -f staging/ -n front-staging'
                             sh 'kubectl apply -f pre-prod/ -n front-pre-prod'
 
-                            // sh 'kubectl  set image deployment/frontend-staging-deployment frontend=thetiptopymcm/thetiptop-frontend:latest'
-                            // sh 'kubectl  set image deployment/frontend-pre-prod-deployment frontend=thetiptopymcm/thetiptop-frontend:latest'
+                            sh 'kubectl  set image deployment/frontend-staging-deployment frontend=thetiptopymcm/thetiptop-frontend:latest'
+                            sh 'kubectl  set image deployment/frontend-pre-prod-deployment frontend=thetiptopymcm/thetiptop-frontend:latest'
                            
-                            // sh 'kubectl  rollout restart deployment/frontend-staging-deployment'
-                            // sh 'kubectl  rollout restart deployment/frontend-pre-prod-deployment'
+                            sh 'kubectl  rollout restart deployment/frontend-staging-deployment'
+                            sh 'kubectl  rollout restart deployment/frontend-pre-prod-deployment'
                         }
                     }
                 }

@@ -24,11 +24,11 @@
     "paths": {
       "@/*": ["./*"]
     },
-    "types": ["cypress"]
+    // "types": ["cypress"]
   },
   "include": [
-    "cypress",
-    "./cypress/support/cypress.d.ts",
+    // "cypress",
+    // "./cypress/support/cypress.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
@@ -37,5 +37,6 @@
     "tsconfig.build.json",
     "src"
   ],
-  "exclude": ["cypress.config.ts", "cypress", "node_modules"]
+  "exclude": [ //"cypress.config.ts", "cypress", 
+  "node_modules"]
 }
