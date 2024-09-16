@@ -20,7 +20,9 @@ export const signUpSchema = z.object({
   email: z.string().email({
     message: 'Email invalide.',
   }),
-  password: z.string().min(8),
+  password: z.string().min(8, {
+    message: "Invalid password"
+  }),
 });
 
 export const signInSchema = z.object({
@@ -32,7 +34,9 @@ export const signInSchema = z.object({
   email: z.string().email({
     message: 'Email invalide.',
   }),
-  password: z.string().min(8),
+  password: z.string().min(8, {
+    message: "Invalid password"
+  }),
 });
 
 // FORMAT DATE TIME

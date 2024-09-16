@@ -1,5 +1,4 @@
 import { auth } from '@/auth';
-import Footer from '@/components/Footer';
 import Header from '@/components/navigation/Header';
 
 export default async function RootLayout({
@@ -10,10 +9,10 @@ export default async function RootLayout({
   const session = await auth();
   const user = session?.user ?? undefined;
   return (
-    <section className="flex h-screen w-full flex-col">
+    <section className="flex h-screen w-full flex-col  justify-center items-center font-lato">
       <Header role="EMPLOYEE" user={user || undefined} />
       <main className="">{children}</main>
-      <Footer />
+      {/* <Footer /> */}
     </section>
   );
 }

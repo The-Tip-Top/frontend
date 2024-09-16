@@ -1,0 +1,10 @@
+node_modules
+__tests__
+npm-debug.log
+Dockerfile*
+README.md
+.git
+.husky
+.sws
+.vercel
+.next

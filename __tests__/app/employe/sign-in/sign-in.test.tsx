@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import SignIn from "../../../../app/employe/sign-in/page" 
-import AdminAuthForm from '@/components/auth/AdminAuthForm';
+import SignIn from "../../../../app/employe/sign-in/page"
 
 jest.mock('@/components/auth/AdminAuthForm', () => () => <div>Admin Auth Form</div>);
 

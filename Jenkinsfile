@@ -48,7 +48,7 @@ pipeline {
         stage('Docker build and push') {
             when {
                 anyOf {
-                    branch 'tests'
+                    branch 'ajust-css'
                     branch 'develop'
                     branch 'master'
                 }
@@ -74,8 +74,11 @@ pipeline {
 
         stage('Deploy to Staging and Preprod') {
             when {  
-                branch 'tests'
-                branch 'develop'
+               anyOf {
+                    branch 'ajust-css'
+                    branch 'develop'
+                    branch 'master'
+                }
             }
             steps {
                 withCredentials([
@@ -86,9 +89,27 @@ pipeline {
                         sh 'git clone https://$GITHUB_TOKEN@github.com/The-Tip-Top/workflow_furious_duck.git'
 
                         dir('workflow_furious_duck/frontend') {
-                            sh 'kubectl delete deployment web-deployment-staging -n staging'
+                            // sh 'kubectl delete deployment web-deployment-staging -n staging'
+                            // sh 'kubectl apply -f staging/ -n front-staging'
+                            // sh 'kubectl apply -f pre-prod/ -n front-pre-prod'
+                             sh '''
+                                if kubectl get deployment frontend-staging-deployment -n front-staging > /dev/null 2>&1; then
+                                    kubectl delete deployment frontend-staging-deployment -n front-staging
+                                fi
+                                '''
+                             sh '''
+                                if kubectl get deployment frontend-pre-prod-deployment -n front-pre-prod > /dev/null 2>&1; then
+                                    kubectl delete deployment frontend-pre-prod-deployment -n front-pre-prod
+                                fi
+                                '''
                             sh 'kubectl apply -f staging/ -n front-staging'
                             sh 'kubectl apply -f pre-prod/ -n front-pre-prod'
+
+                            sh 'kubectl  set image deployment/frontend-staging-deployment frontend=thetiptopymcm/thetiptop-frontend:latest'
+                            sh 'kubectl  set image deployment/frontend-pre-prod-deployment frontend=thetiptopymcm/thetiptop-frontend:latest'
+                           
+                            sh 'kubectl  rollout restart deployment/frontend-staging-deployment'
+                            sh 'kubectl  rollout restart deployment/frontend-pre-prod-deployment'
                         }
                     }
                 }

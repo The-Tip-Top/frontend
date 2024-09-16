@@ -16,7 +16,7 @@ export default function CheckCodePage() {
 
   const handleVerifyEmail = () => {
     verifyCodeTicket(email)
-      .then((ticket) => {
+      .then(() => {
         // router.push(`/employe/participation-details?id=${encodeURIComponent(ticket?.ticketId || '')}`);
         router.push(`/employe/participation-details?user=${encodeURIComponent(email || '')}`);
       })
@@ -43,8 +43,8 @@ export default function CheckCodePage() {
             value={email}
             onChange={handleEmailChange}
             onKeyPress={handleKeyPress}
-            placeholder="Entrez votre code"
-            className="w-full p-4 pl-12 border border-gray-300 rounded-full text-lg"
+            placeholder="Entrez l'e-mail"
+            className="w-full p-2 pl-12 md:p-4 md:pl-12 border border-gray-300 rounded-full text-lg"
           />
           <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
             <svg

@@ -1,8 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import Ticket from '@/app/account/ticket/page'; 
-import { TicketForm } from '@/components/TicketForm';
+import Ticket from '@/app/account/ticket/page';
 import React from 'react';
-
 
 jest.mock('@/components/TicketForm', () => ({
   TicketForm: jest.fn(() => <div data-testid="ticket-form">Mocked Ticket Form</div>),

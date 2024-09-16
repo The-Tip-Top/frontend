@@ -21,12 +21,22 @@
         "name": "next"
       }
     ],
-   "paths": {
+    "paths": {
       "@/*": ["./*"]
     },
-    "types": ["cypress"],
+    // "types": ["cypress"]
   },
-  "include": ["cypress", "./cypress/support/cypress.d.ts" ,"next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "jest.config.js", "tsconfig.build.json"],
-  "exclude": ["cypress.config.ts", "cypress", "node_modules", "__tests__/**"]
-  
+  "include": [
+    // "cypress",
+    // "./cypress/support/cypress.d.ts",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "jest.config.js",
+    "tsconfig.build.json",
+    "src"
+  ],
+  "exclude": [ //"cypress.config.ts", "cypress", 
+  "node_modules"]
 }

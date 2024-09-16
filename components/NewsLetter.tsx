@@ -46,12 +46,12 @@ const NewsLetter = () => {
             name={'email'}
             render={({ field }) => (
               <div className="form-item w-full">
-                <div className="flex w-full flex-col">
+                <div className="flex w-full flex-col bg-white">
                   <FormControl>
                     <Input
                       placeholder="Entrez votre email"
                       type="email"
-                      className="input-class w-full placeholder:text-gray-400"
+                      className="input-class w-full  placeholder:text-[#8FB43A]"
                       {...field}
                     />
                   </FormControl>
@@ -61,7 +61,7 @@ const NewsLetter = () => {
           />
           <Button
             type="submit"
-            className="p-2 bg-white text-[#8FB43A] rounded-none font-semibold text-sm hover:bg-gray-200 transition duration-300"
+            className="p-2 bg-white text-[#8FB43A] rounded-sm font-semibold text-sm hover:bg-gray-200 transition duration-300"
           >
             S&apos;abonner
           </Button>

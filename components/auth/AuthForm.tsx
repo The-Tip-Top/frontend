@@ -8,8 +8,8 @@ import { Card } from '@/components/ui/card';
 const AuthForm = ({ type }: { type: string }) => {
   return (
     <>
-      <Card className="shadow-lg rounded-lg p-4  bg-white my-20">
-        <section className="auth-form">
+      <Card className="shadow-lg rounded-lg p-4 w-full xs:max-w-md bg-white my-20">
+        <section className="auth-form xs:max-w-[26rem]">
           <header className="flex flex-col gap-4 md:gap-6">
             <div className="flex flex-col gap-1 md:gap-3">
               <h1 className="text-24 lg:text-26 flex justify-center font-semibold text-gray-900">

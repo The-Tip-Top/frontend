@@ -1,15 +1,15 @@
 {
-  // "parser": "@typescript-eslint/parser",
-  // "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier", "next/core-web-vitals"],
+  "parser": "@typescript-eslint/parser",
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier", "next/core-web-vitals"],
   // "parserOptions": {
   //   "ecmaVersion": 2018,
   //   "sourceType": "module"
   // },
   // "plugins": ["unused-imports", "@typescript-eslint", "prettier"],
-  "extends": [
-    "next",
-    "next/core-web-vitals"
-  ],
+  // "extends": [
+  //   "next",
+  //   "next/core-web-vitals"
+  // ],
   "plugins": [
     "next"
   ],
