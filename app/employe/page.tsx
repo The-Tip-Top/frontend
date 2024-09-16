@@ -43,7 +43,7 @@ export default function CheckCodePage() {
             value={email}
             onChange={handleEmailChange}
             onKeyPress={handleKeyPress}
-            placeholder="Entrez votre code"
+            placeholder="Entrez l'e-mail"
             className="w-full p-2 pl-12 md:p-4 md:pl-12 border border-gray-300 rounded-full text-lg"
           />
           <div className="absolute left-4 top-1/2 transform -translate-y-1/2">

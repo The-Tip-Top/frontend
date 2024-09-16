@@ -24,6 +24,7 @@ import FooterAdmin from '../FooterAdmin';
 
 const Header = ({ user, role }: SiderbarProps) => {
   const pathname = usePathname();
+  if(pathname.includes('employe')) return null;
   return (
     <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 bg-white z-50 font-lato text-[#8FB43A] md:px-6">
       <title>Thé Tip Top - Votre Boutique de Thé Bio à Nice</title>

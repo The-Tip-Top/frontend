@@ -9,7 +9,7 @@ export default async function RootLayout({
   const session = await auth();
   const user = session?.user ?? undefined;
   return (
-    <section className="flex h-screen w-full justify-center items-center font-lato">
+    <section className="flex h-screen w-full flex-col  justify-center items-center font-lato">
       <Header role="EMPLOYEE" user={user || undefined} />
       <main className="">{children}</main>
       {/* <Footer /> */}
