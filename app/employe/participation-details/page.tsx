@@ -30,7 +30,7 @@ export default function ParticipationDetailsPage() {
             setTickets(ticket);
           })
           .catch((err) => {
-            console.log('Une erreur est servenue', err);
+            console.error('Une erreur est servenue', err);
           });
       });
     }
@@ -59,14 +59,12 @@ export default function ParticipationDetailsPage() {
                 : t,
             );
           });
-          console.log(gift);
         })
         .catch((err) => {
-          console.log('error when udating participation status ', err);
+          console.error('error when udating participation status ', err);
         });
     }
   };
-  console.log(isPending);
   return (
     <div className=" min-h-[calc(100vh-60px)] flex justify-center items-center p-3 pt-10 md:p-10 ">
       {isPending ? (

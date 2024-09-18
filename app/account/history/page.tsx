@@ -17,7 +17,6 @@ interface CardItemProps {
 }
 
 const CardItem = ({ ticket }: CardItemProps) => {
-  console.log("-- ", ticket)
   return (
     <Card
       x-chunk="dashboard-02-chunk-2"
@@ -49,7 +48,6 @@ export default function HistoryPage() {
   }, []);
 
   useEffect(() => {
-    console.log(')-- ', isPending);
     startTransition(() => {
       getUserTickets()
         .then((data) => {
@@ -113,7 +111,7 @@ export default function HistoryPage() {
 
           <Select
             value={filterBy}
-            onValueChange={(value) => setFilterBy(value as 'createdAt' | 'status' | 'giftName' | 'description')}
+            onValueChange={(value: string) => setFilterBy(value as 'createdAt' | 'status' | 'giftName' | 'description')}
           >
             <SelectTrigger className="bg-white border border-gray-300 w-full rounded-lg shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-2">
               <SelectValue placeholder="Choisissez un attribut de filtrage" />

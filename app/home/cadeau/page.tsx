@@ -41,14 +41,14 @@ const CadeauPageContent = () => {
                   break;
                 }
               })
-              console.log('--- gifts ', response);
+
               setGifts(response);
         } else {
           console.error('Erreur lors de la récupération des gifts');
         }
         myFetch<Ticket>(`tickets/id/${ticketId}`)
           .then((res) => setTicket(res))
-          .catch((err) => console.log(err));
+          .catch((err) => console.error(err));
       } catch (error) {
         console.error('Erreur:', error);
       } finally {

@@ -21,7 +21,6 @@ export default function CheckCodePage() {
         router.push(`/employe/participation-details?user=${encodeURIComponent(email || '')}`);
       })
       .catch((err) => {
-        console.log('Une erreur est servenue', err);
         setError('Une erreur est servenue');
       });
   };

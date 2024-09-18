@@ -43,7 +43,6 @@ const SignInFormContent = () => {
     try {
       setTransition(() => {
         Login(data, variable ?? '').then((data) => {
-          // console.log('loginn ', data);
           setMessage({
             error: data?.error ?? '',
             success: data?.success ?? '',
@@ -53,7 +52,7 @@ const SignInFormContent = () => {
       // const newUser = await signUp(data);
       // setUser(newUser);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
   return (

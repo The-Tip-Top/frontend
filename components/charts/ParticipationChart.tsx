@@ -217,10 +217,9 @@ const ParticipationChart = () => {
   useEffect(() => {
     getStatistics()
       .then((data) => {
-        console.log('==== ', data);
         if (data) setStats(data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   }, []);
 
   useEffect(() => {
