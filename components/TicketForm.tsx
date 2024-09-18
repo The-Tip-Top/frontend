@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Ticket } from '@prisma/client';
 import { myFetch } from '@/lib/hooks/useFetch';
 import { useRouter } from 'next/navigation';
 import FormMessage from '@/components/FormMessage';
+import { Ticket } from '@/lib/types/types';
 
 export const TicketForm = () => {
   const router = useRouter();

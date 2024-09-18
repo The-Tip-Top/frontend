@@ -29,7 +29,7 @@ const Sidebar = ({ user }: SiderbarProps) => {
             width={50}
             height={50}
             alt="The tip top logo"
-            className="size-[50px] max-xl:size-14"
+            className="size-[50px] max-xl:size-14 w-auto"
           />
           <h1 className="text-sm font-bold font-lato text-[#8FB43A]">Thé Tip Top</h1>
         </Link>
@@ -43,7 +43,8 @@ const Sidebar = ({ user }: SiderbarProps) => {
               key={item.label}
             >
               <div className="relative size-6">
-                <Image src={item.icon} fill alt={item.label} className={cn({ 'brightness-[3] invert-0': isActive })} />
+                <Image src={item.icon} fill sizes="(max-width: 768px) 24px, (max-width: 1200px) 24px, 24px" 
+                alt={item.label} className={cn({ 'brightness-[3] invert-0': isActive })} />
               </div>
               <p
                 className={cn('sidebar-label text-sm ', {

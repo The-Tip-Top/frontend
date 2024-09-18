@@ -3,8 +3,10 @@ import Image from 'next/image';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
 import ConcourTimer from '@/components/ConcourTimer';
 import Link from 'next/link';
+import { auth } from '@/auth';
 
-const Home: React.FC = () => {
+const Home: React.FC = async () => {
+  const session = await auth();
   return (
     <>
       <h1 className="sr-only">
@@ -26,13 +28,14 @@ const Home: React.FC = () => {
             Thetiptop - Votre Boutique de Thé Bio à Nice | Jeu Concours pour l&apos;Ouverture
           </p>
           <ConcourTimer />
-          <a
-            href="/sign-in?concour=true"
-            className="text-sm text-white bg-[#6AA843] font-bold py-3 px-6 rounded-full transition-colors shadow-lg mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#505050] hover:bg-[#5A9437]"
+          <Link
+            href={session?.user ? "/account/ticket" : "/sign-in?concour=true"}
+            className="text-sm text-[#000] bg-[#8FB43A] font-bold py-3 px-6 rounded-full transition-colors shadow-lg mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#505050] hover:bg-[#5A9437]"
             aria-label="Cliquez ici pour participer au jeu concours"
+            role="button"
           >
             Participer maintenant
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -150,7 +153,7 @@ const Home: React.FC = () => {
       <div className="flex justify-center mt-4">
         <a
           href="/sign-in?concour=true"
-          className="text-white bg-[#6AA843] font-bold py-3 px-6 rounded-full transition-colors shadow-lg mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#505050] hover:bg-[#5A9437]"
+          className="text-[#000] bg-[#8FB43A] font-bold py-3 px-6 rounded-full transition-colors shadow-lg mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#505050] hover:bg-[#5A9437]"
           aria-label="Cliquez ici pour participer au jeu concours"
         >
           Appuyez ici et découvrez votre lot

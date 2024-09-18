@@ -51,7 +51,7 @@ const NewsLetter = () => {
                     <Input
                       placeholder="Entrez votre email"
                       type="email"
-                      className="input-class w-full  placeholder:text-[#8FB43A]"
+                      className="input-class w-full  placeholder:text-[#3C5E27]"
                       {...field}
                     />
                   </FormControl>
@@ -61,7 +61,7 @@ const NewsLetter = () => {
           />
           <Button
             type="submit"
-            className="p-2 bg-white text-[#8FB43A] rounded-sm font-semibold text-sm hover:bg-gray-200 transition duration-300"
+            className="p-2 bg-white text-[#3C5E27] rounded-sm font-semibold text-sm hover:bg-gray-200 transition duration-300"
           >
             S&apos;abonner
           </Button>

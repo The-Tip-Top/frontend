@@ -39,6 +39,10 @@ export interface RecentParticipationsProps {
   participations: Participation[];
   page: number;
 }
+export interface TableUserProps {
+  users: User[];
+  page: number;
+}
 
 export enum EGiftStatus {
   WAITING = 'WAITING',
