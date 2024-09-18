@@ -8,19 +8,19 @@ const About = () => {
         <title>À Propos de Thé Tip Top | Boutique de Thé Bio à Nice</title>
         <meta
           name="description"
-          content="Découvrez Thé Tip Top, votre boutique de thé bio à Nice. Profitez de notre jeu-concours pour célébrer l'ouverture de notre 10ème boutique."
+          content="Découvrez Thé Tip Top, votre boutique de thé bio à Nice. Profitez de notre jeu-concours et de nos thés et infusions : rooibos, thés verts, thés noirs, et bien plus."
         />
         <meta
           name="keywords"
-          content="Thé bio, Nice, boutique de thé, Thé Tip Top, jeu concours, thé de qualité, thé nature, cadeaux, bien-être"
+          content="Thé bio, Nice, boutique de thé, Thé Tip Top, jeu concours, rooibos, thés verts, thés noirs, Earl Grey, agriculture biologique, tisanes, théière, infuser, dégustation, fruits rouges"
         />
         <meta property="og:title" content="À Propos de Thé Tip Top | Boutique de Thé Bio à Nice" />
         <meta
           property="og:description"
-          content="Découvrez Thé Tip Top, votre boutique de thé bio à Nice, et participez à notre jeu-concours pour célébrer l'ouverture de notre 10ème boutique."
+          content="Découvrez Thé Tip Top, votre boutique de thé bio à Nice, et participez à notre jeu-concours pour célébrer l'ouverture de notre 10ème boutique, avec des thés et infusions de qualité."
         />
         <meta property="og:image" content="/path-to-image.jpg" />
-        <meta property="og:url" content="https://yourwebsite.com/about" />
+        <meta property="og:url" content="https://dsp5-archi-022a-4-5-g2.fr/home/about" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
@@ -36,30 +36,30 @@ const About = () => {
             </h2>
             <p className="text-base md:text-lg text-gray-700 mb-6">
               Chez <strong>Thé Tip Top</strong>, nous croyons en l'art du thé comme un moment de détente, de découverte
-              et de bien-être. Avec notre nouvelle expérience au cœur de la ville de Nice, riche en saveurs, notre
-              boutique est un havre de paix où vous pouvez échapper au tumulte de la vie quotidienne et vous plonger
-              dans un monde de délices aromatiques.
+              et de bien-être. Que vous soyez amateur de <strong>thés verts</strong>, <strong>thés noirs</strong> ou
+              d'<strong>infusions</strong>, nous proposons une large sélection de thés bio, soigneusement sélectionnés.
+              Notre boutique, située au cœur de Nice, vous invite à déguster des thés de qualité supérieure dans une
+              atmosphère chaleureuse.
             </p>
 
             <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-[#8FB43A] text-center mb-4">
               Qualité et Durabilité
             </h3>
             <p className="text-base md:text-lg text-gray-700 mb-6">
-              Avec <strong>Thé Tip Top</strong>, la passion du thé va au-delà de sa simple préparation. Nous nous
-              engageons à offrir à nos clients une sélection exquise de thés bio de la plus haute qualité, soigneusement
-              sélectionnés pour leur saveur riche et dans le plus grand respect de l&apos;environnement. Chaque feuille
-              de thé que nous proposons est un témoignage de notre engagement envers la durabilité, le respect de
-              l&apos;environnement et des agriculteurs engagés.
+              Avec <strong>Thé Tip Top</strong>, chaque tasse de thé est un moment d'exception. Nous nous engageons à
+              offrir des <strong>thés et infusions</strong> issus de l'<strong>agriculture biologique</strong>, comme
+              notre thé vert de Chine, ou encore nos infusions parfumées aux saveurs 
+              fruits rouges et gingembre.
             </p>
 
             <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-[#8FB43A] text-center mb-4">
               Notre Présence à Nice
             </h3>
             <p className="text-base md:text-lg text-gray-700 mb-6">
-              En tant que nouveaux arrivants dans la ville de Nice et désireux de nous faire connaître, c&apos;est avec
-              une grande joie que nous partageons notre amour du thé dans cette magnifique ville. Pour célébrer
-              l&apos;ouverture de notre <strong>10ème boutique à Nice</strong>, nous organisons un jeu-concours très
-              excitant dont tous les tickets seront gagnants.
+              En tant que maison de thé passionnée et nouveaux arrivants dans la ville de Nice, nous célébrons l'ouverture de notre <strong>10ème boutique à Nice</strong>.
+              À cette occasion, nous organisons un jeu-concours où vous pourrez gagner des infusions, des thés menthe, des thés verts aromatisés et des paniers remplis de nos <strong>meilleurs thés</strong>, comme notre
+              célèbre <strong>Earl Grey</strong> à la <strong>bergamote</strong> et nos <strong>thés parfumés</strong>
+              aux <strong>agrumes</strong>. Nous sommes venus ici partager avec vous notre amour du thé dans cette magnifique ville.
             </p>
 
             <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-[#8FB43A] text-center mb-4">
@@ -67,15 +67,15 @@ const About = () => {
             </h3>
             <p className="text-base md:text-lg text-gray-700 mb-6">
               Après chaque achat de notre délicieux thé, vous recevrez un ticket gagnant, garantissant à chacun une
-              surprise spéciale. Des remises exclusives, des cadeaux surprises et même la chance de remporter de
+              surprise spéciale. Au delà de nos thés fruits rouges et ceux au goùt de gingembre provenant d'une agriculture biologique, des cadeaux surprises et même la chance de remporter de
               fabuleux paniers cadeaux remplis de nos thés les plus populaires vous attendent. Que vous soyez un
               passionné de thé ou un novice curieux, <strong>Thé Tip Top</strong> a toujours quelque chose de spécial
-              pour vous.
+              pour vous afin de vous plonger dans l'univers des saveurs devant votre tasse de thé.
             </p>
 
             <p className="text-base md:text-lg text-gray-700 mb-6">
-              Vous trouverez des gammes de thé de haute qualité qui vous seront présentées par nos équipes toujours
-              prêtes à vous accueillir.
+              Nos équipes vous attendent pour vous faire découvrir les merveilles du thé et de l'infusion. Chaque tasse
+              que vous dégustez dans notre <strong>maison de thé</strong> est un moment de plaisir.
             </p>
           </article>
         </div>
