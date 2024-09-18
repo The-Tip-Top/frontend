@@ -50,7 +50,7 @@ const SignUpFormContent = () => {
         });
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
   const passCheck = form.getFieldState('password')?.error?.message?.length! > 0;

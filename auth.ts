@@ -30,7 +30,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async linkAccount({ user }) {
       // update user data "email verification"
       const res = await myFetch(`verificationEmail/${user?.id}`);
-      console.log('link account ', res);
     },
   },
 
@@ -52,7 +51,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return true;
     },
     async session({ token, session }) {
-      // console.log(token);
       if (token.sub && session.user) {
         session.user.id = token.sub;
       }

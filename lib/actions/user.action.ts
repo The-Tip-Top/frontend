@@ -14,7 +14,6 @@ export const linkTicket = async (ticketId: string) => {
       method: 'PUT',
       body: bodyData,
     });
-    console.log('----- link ticket ', linktiketResponse);
     return linktiketResponse;
   }
   return null;

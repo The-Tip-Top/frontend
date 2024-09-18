@@ -10,7 +10,6 @@ import { cookies } from 'next/headers';
 import { User } from '../types/types';
 
 export const Register = async (userData: z.infer<typeof signUpSchema>) => {
-  console.log(userData);
   const validData = signUpSchema.safeParse(userData);
   if (!validData.success) return { error: 'Invalid inputs' };
 
@@ -39,7 +38,6 @@ export const Login = async (data: z.infer<typeof signInSchema>, variable?: strin
     }
     const user = (await auth())?.user;
 
-    console.log('==================== ', variable ? '/account/ticket' : '/account/history');
     await signIn('credentials', {
       email,
       password,

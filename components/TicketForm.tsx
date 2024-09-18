@@ -20,7 +20,6 @@ export const TicketForm = () => {
 
     try {
       const response = await myFetch<Ticket>(`tickets/${code.trim()}`, {});
-      console.log('response tocket ', response);
       if (response) {
         router.push(`/home/cadeau?ticketId=${response.ticketId}`);
       } else {
