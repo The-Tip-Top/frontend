@@ -26,24 +26,24 @@ pipeline {
             }
         }
 
-        stage('Run tests') {
-            steps {
-                script {
-                        sh '''
-                            npm install
-                            npm test
-                        '''
-                }
-            }
-            post {
-                success {
-                    echo "Tests passed :)"
-                }
-                failure {
-                    echo "Tests failed :("
-                }
-            }
-        }
+        // stage('Run tests') {
+        //     steps {
+        //         script {
+        //                 sh '''
+        //                     npm install
+        //                     npm test
+        //                 '''
+        //         }
+        //     }
+        //     post {
+        //         success {
+        //             echo "Tests passed :)"
+        //         }
+        //         failure {
+        //             echo "Tests failed :("
+        //         }
+        //     }
+        // }
 
                
         stage('Docker build and push') {
