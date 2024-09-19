@@ -85,7 +85,7 @@ const SignUpFormContent = () => {
             placeholder="Entrer un mot de passe"
             control={form.control}
             name="password"
-            label="Mot de pass"
+            label="Mot de passe"
           />
         </>
         <CheckboxInput checked={checked} setChecked={setChecked} />

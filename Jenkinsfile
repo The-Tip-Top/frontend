@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                         sh '''
-                            npm install jest --legacy-peer-deps
+                            npm install
                             npm test
                         '''
                 }
@@ -44,11 +44,12 @@ pipeline {
                 }
             }
         }
+
                
         stage('Docker build and push') {
             when {
                 anyOf {
-                    branch 'ajust-css'
+                    branch 'emailingAdmin'
                     branch 'develop'
                     branch 'master'
                 }
@@ -57,8 +58,10 @@ pipeline {
                 script {
                     dir("$WORKSPACE") {
                         docker.withRegistry('', 'dockerhub-tiptop') {
-                            sh 'docker build --no-cache -t thetiptopymcm/thetiptop-frontend .'
-                            sh 'docker push thetiptopymcm/thetiptop-frontend:latest'
+                            sh 'docker build --no-cache -t thetiptopymcm/thetiptop-frontend:test-env .'
+                            sh 'docker push thetiptopymcm/thetiptop-frontend:test-env'
+                            // def image = docker.build('thetiptopymcm/thetiptop-frontend:st', '--no-cache .')
+                            // image.push()
                         }
                     }
                 }
@@ -66,7 +69,7 @@ pipeline {
         }
 
 
-        stage('Clean Workspace') {
+     stage('Clean Workspace') {
             steps {
                 cleanWs()
             }
@@ -75,7 +78,7 @@ pipeline {
         stage('Deploy to Staging and Preprod') {
             when {  
                anyOf {
-                    branch 'ajust-css'
+                    branch 'emailingAdmin'
                     branch 'develop'
                     branch 'master'
                 }
@@ -83,7 +86,7 @@ pipeline {
             steps {
                 withCredentials([
                     file(credentialsId: 'ovh-kubeconfig', variable: 'KUBECONFIG'),
-                    string(credentialsId: 'tiptopbackendtoken', variable: 'GITHUB_TOKEN')
+                    string(credentialsId: 'git_clone_token', variable: 'GITHUB_TOKEN')
                 ]) {
                     script {
                         sh 'git clone https://$GITHUB_TOKEN@github.com/The-Tip-Top/workflow_furious_duck.git'
@@ -105,11 +108,11 @@ pipeline {
                             sh 'kubectl apply -f staging/ -n front-staging'
                             sh 'kubectl apply -f pre-prod/ -n front-pre-prod'
 
-                            sh 'kubectl  set image deployment/frontend-staging-deployment frontend=thetiptopymcm/thetiptop-frontend:latest'
-                            sh 'kubectl  set image deployment/frontend-pre-prod-deployment frontend=thetiptopymcm/thetiptop-frontend:latest'
+                            sh 'kubectl -n front-staging  set image deployment/frontend-staging-deployment frontend=thetiptopymcm/thetiptop-frontend:test-env'
+                            sh 'kubectl -n front-pre-prod set image deployment/frontend-pre-prod-deployment frontend=thetiptopymcm/thetiptop-frontend:test-env'
                            
-                            sh 'kubectl  rollout restart deployment/frontend-staging-deployment'
-                            sh 'kubectl  rollout restart deployment/frontend-pre-prod-deployment'
+                            sh 'kubectl  rollout restart deployment/frontend-staging-deployment -n front-staging'
+                            sh 'kubectl  rollout restart deployment/frontend-pre-prod-deployment -n front-pre-prod'
                         }
                     }
                 }
@@ -128,8 +131,16 @@ pipeline {
                         sh 'git clone https://github.com/The-Tip-Top/workflow_furious_duck.git'
 
                         dir('workflow_furious_duck/frontend') {
-                            sh 'kubectl apply -f production/'
+                            sh '''
+                                if kubectl get deployment frontend-deployment > /dev/null 2>&1; then
+                                    kubectl delete deployment frontend-deployment
+                                fi
+                                '''
+                            sh 'kubectl apply -f prod/ '
+                            sh 'kubectl set image deployment/frontend-deployment frontend=thetiptopymcm/thetiptop-frontend:test-env'
+                            sh 'kubectl  rollout restart deployment/frontend-deployment'
                         }
+
                     }
                 }
             }

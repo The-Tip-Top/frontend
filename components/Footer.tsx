@@ -96,10 +96,10 @@ const Footer = () => {
             </div>
             <div className="lg:w-1/4 mb-6 lg:mb-0">
               <h3 className="font-bold text-lg text-white mb-2">CGU/CGV</h3>
-              <a href="/home/mentions-legales" className="block hover:underline text-sm mb-1 text-white">
+              <a href="/home/mentions-legales" className="block hover:underline text-sm mb-1 p-2 text-white">
                 Mentions légales
               </a>
-              <a href="/home/cgu" className="block hover:underline text-[12px] text-white">
+              <a href="/home/cgu" className="block hover:underline p-2 text-[12px] text-white">
                 CGU / CGV
               </a>
             </div>
@@ -112,6 +112,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="text-center mt-4 ">
           <p className="text-white text-xs">&copy; 2024 Thé Tip-Top Bio. Tous droits réservés.</p>
+          <p className="text-white text-xs">Ce jeu s'inscrit dans le cadre d'un projet académique, aucune participation ne sera prise en compte.</p>
         </div>
       </div>
     </footer>

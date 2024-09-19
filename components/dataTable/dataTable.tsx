@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import {
+  ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
@@ -10,7 +11,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
+  useReactTable, 
 } from '@tanstack/react-table';
 
 import {
@@ -22,21 +23,29 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Participation } from '@/lib/types/types';
+import { Participation, User } from '@/lib/types/types';
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
 import { columnsParticipation } from './columnDefinition';
 import { exportTableToCSV, exportTableToExcel, exportTableToPDF } from './exportData';
+import { sendEmailing } from '@/lib/actions/admin.action';
+import { usePathname } from 'next/navigation';
 
-export function DataTable({ data }: { data: Participation[] }) {
+interface DataTableProps<T> {
+  data: T[],
+  columns: ColumnDef<T>[]
+}
+
+export function DataTable<T>({ data, columns }: DataTableProps<T>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+  const pathname = usePathname()
 
   const table = useReactTable({
     data,
-    columns: columnsParticipation,
+    columns: columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -59,18 +68,28 @@ export function DataTable({ data }: { data: Participation[] }) {
     const fileName = 'Participation_Data';
     switch (fileType) {
       case 'excel':
-        exportTableToExcel(data, fileName);
+        exportTableToExcel(data as Participation[], fileName);
         break;
       case 'csv':
-        exportTableToCSV(data, fileName);
+        exportTableToCSV(data as Participation[], fileName);
         break;
       case 'pdf':
-        exportTableToPDF(data, fileName);
+        exportTableToPDF(data as Participation[], fileName);
         break;
       default:
-        exportTableToExcel(data, fileName);
+        exportTableToExcel(data as Participation[], fileName);
     }
   };
+
+  const handleSendEmails = () => {
+    const selectedRows = table.getSelectedRowModel().rows;
+    if (selectedRows.length > 0) {
+      const selectedEmails = selectedRows.map((row) => (row.original as User).email);
+      sendEmailing(selectedEmails).then((response) => console.log(response));
+    } else {
+      console.log('No rows selected.');
+    }
+  }
 
   return (
     <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1">
@@ -78,14 +97,19 @@ export function DataTable({ data }: { data: Participation[] }) {
         <div className="flex lg:flex-row items-center py-4 flex-col gap-y-1 lg:gap-x-1">
           <Input
             placeholder="Filter participant name..."
-            value={(table.getColumn('participant')?.getFilterValue() as string) ?? ''}
+            value={(table.getColumn(pathname?.includes('emaling') ? 'name' : 'participant')?.getFilterValue() as string) ?? ''}
             onChange={(event) => {
               const filterValue = event.target.value;
-              table.getColumn('participant')?.setFilterValue(filterValue);
+              table.getColumn(pathname?.includes('emaling') ? 'name' : 'participant')?.setFilterValue(filterValue);
             }}
             className="lg:max-w-sm w-full mx-1 border-gray-400 focus:border-none focus:shadow-none"
           />
           <div className="flex  w-full items-center justify-end gap-x-2 flex-col gap-y-2 xs:flex-row">
+            { pathname.includes('emailing') &&
+              <Button size="sm" onClick={handleSendEmails} className="w-full border-gray-400 text-white bg-[#18181B]">
+              Send Email
+            </Button>
+            }
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size={'sm'} className="w-full flex justify-between text-white bg-[#18181B]">

@@ -8,7 +8,8 @@ interface FetchOptions {
 
 // const BASE_URL = 'http://localhost:3001/api/v1';
 // const BASE_URL = 'http://backend.dsp5-archi-022a-4-5-g2.fr:3000//api/v1';
-const BASE_URL = 'http://51.91.81.23:3000/api/v1';
+// const BASE_URL = 'http://51.91.81.23:3000/api/v1';
+const BASE_URL = 'https://dsp5-archi-o22a-4-5-g2.online/api/v1';
 export const myFetch = async <T>(url: string, fetchOption: FetchOptions = {}): Promise<T> => {
   const { method = 'GET', headers = {}, body = null } = fetchOption;
   try {

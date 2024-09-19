@@ -24,9 +24,8 @@ import FooterAdmin from '../FooterAdmin';
 
 const Header = ({ user, role }: SiderbarProps) => {
   const pathname = usePathname();
-  if(pathname.includes('employe')) return null;
   return (
-    <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 bg-white z-50 font-lato text-[#8FB43A] md:px-6">
+    <header className="sticky top-0 flex w-full h-16 items-center gap-4 border-b bg-background px-4 bg-white z-50 font-lato text-[#8FB43A] md:px-6">
       <title>Thé Tip Top - Votre Boutique de Thé Bio à Nice</title>
       <meta
         name="description"
@@ -57,7 +56,7 @@ const Header = ({ user, role }: SiderbarProps) => {
           <SheetContent side="left" className="bg-white">
             <Link href="/home" className="cursor-pointer flex items-center gap-1 px-4">
               <Image src="/logofinal.png" width={70} height={70} alt="Thé Tip-Top logo" />
-              <h1 className="text-sm  font-ibm-plex-serif  font-bold text-[#8FB43A]">Thé Tip-Top</h1>
+              <h1 className="text-sm  font-ibm-plex-serif  font-bold text-[#3C5E27]">Thé Tip-Top</h1>
             </Link>
             <Separator className="my-4 text-black-2 bg-gray-300" />
             <div className="mobilenav-sheet">
@@ -65,9 +64,9 @@ const Header = ({ user, role }: SiderbarProps) => {
                 <nav className="flex h-full flex-col gap-2 pt-4 text-black-1">
                   {role === 'EMPLOYEE' ? (
                     <Link
-                      href="/employe/check-page"
+                      href="/employe"
                       className={cn(`mobilenav-sheet_close w-full bg-gray-50`, {
-                        'bg-[#8FB43A]': pathname === '/employe/check-page',
+                        'bg-[#8FB43A]': pathname === '/employe',
                       })}
                     >
                       <HomeIcon />
@@ -138,9 +137,11 @@ const Header = ({ user, role }: SiderbarProps) => {
                   )}
                 </nav>
               </SheetClose>
-              <LogoutButton user={user}>
-                <FooterAdmin name={user?.name || 'admin'} email={user?.email || 'admin@gmail.com'} type="mobile" />
-              </LogoutButton>
+              {user && (
+                <LogoutButton user={user}>
+                  <FooterAdmin name={user?.name || 'admin'} email={user?.email || 'admin@gmail.com'} type="mobile" />
+                </LogoutButton>
+              )}
             </div>
           </SheetContent>
         </Sheet>
@@ -160,13 +161,13 @@ const Header = ({ user, role }: SiderbarProps) => {
             <DropdownMenuContent className="bg-white" align="end">
               <DropdownMenuItem className="cursor-pointer">
                 <FaUser className="text-black-2 mr-2" />
-                <Link href={'/account/history'}>Compte</Link>
+                <Link href={role === 'EMPLOYEE' ? '/employe' : '/account/history'}>Compte</Link>
               </DropdownMenuItem>
               <Separator className="bg-black-2 opacity-5" />
               <LogoutButton>
                 <DropdownMenuItem className="cursor-pointer">
                   <LogOut className="h-4 w-4 mr-2" />
-                  Logout
+                  Déconnexion
                 </DropdownMenuItem>
               </LogoutButton>
             </DropdownMenuContent>

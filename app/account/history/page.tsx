@@ -25,7 +25,7 @@ const CardItem = ({ ticket }: CardItemProps) => {
         'bg-white shadow-md rounded-lg p-3 max-w-xs text-center transition-transform duration-300 relative',
       )}
     >
-      <Image src={'/cadeau1.webp'} width={300} height={300} alt="cadeau1" className="rounded-md" />
+      <Image src={ticket?.gift?.imageUrl || '/cadeau1.webp'} width={300} height={300} alt="cadeau1" className="rounded-md" />
       <div className="absolute top-7 left-7">
         <StatusBadge status={ticket.status ?? ''} frStatus={frStatus[ticket.status] ?? ''} />
       </div>
@@ -42,7 +42,7 @@ export default function HistoryPage() {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [isPending, startTransition] = useTransition();
-  
+
   useEffect(() => {
     linkTicketToUser();
   }, []);
@@ -51,6 +51,25 @@ export default function HistoryPage() {
     startTransition(() => {
       getUserTickets()
         .then((data) => {
+          data && data.forEach((t) => {
+            switch (t?.gift?.name) {
+              case "Infuseur à thé":
+                t.gift.imageUrl = "/detox.jpg"
+                break;
+              case "Boîte de thé détox ou infusion":
+                t.gift.imageUrl = "/signature.jpg"
+                break;
+              case "Boîte de thé signature":
+                t.gift.imageUrl = "/infuseur.jpg"
+                break;
+              case "Coffret découverte 39€":
+                t.gift.imageUrl = "/coffret.jpg"
+                break;
+              case "Infuseurs à thé":
+                t.gift.imageUrl = "/detox.jpg"
+                break;
+            }
+          })
           setTickets(data || []);
         })
         .catch((err) => {
@@ -73,7 +92,6 @@ export default function HistoryPage() {
     const searchValue = searchTerm.toLowerCase();
     switch (filterBy) {
       case 'createdAt':
-        // Convert both the search term and the ticket date to lowercase strings for comparison
         const ticketDate = new Date(ticket.participation?.createdAt ?? "").toLocaleDateString();
         return ticketDate.toLowerCase().includes(searchValue);
       case 'status':
@@ -133,9 +151,15 @@ export default function HistoryPage() {
             <GridLoader loading={isPending} color="black" />
           </div>
         ) : (
-          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 place-content-center lg:grid-cols-3 xl:grid-cols-4">
-            {filteredTickets?.map((ticket) => <CardItem key={ticket.ticketId} date={'01/01/2024'} ticket={ticket || null} />)}
-          </div>
+          filteredTickets && filteredTickets?.length > 0 ? (
+            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 place-content-center lg:grid-cols-3 xl:grid-cols-4">
+              {filteredTickets?.map((ticket) => <CardItem key={ticket.ticketId} date={'01/01/2024'} ticket={ticket || null} />)}
+            </div>
+          ) : (
+            <div className="flex w-full h-[500px] justify-center items-center border border-gray-200 rounded-md">
+              Aucun résultat trouvé
+            </div>
+          )
         )}
       </section>
     </div>

@@ -19,6 +19,7 @@ export const authRoutes = [
   '/admin',
   '/admin/chart-data',
   '/employe/sign-in',
+  '/admin/emailing',
   '/employe',
   '/employe/participation-details',
 ];
